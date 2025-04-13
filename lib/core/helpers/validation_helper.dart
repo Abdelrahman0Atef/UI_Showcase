@@ -1,5 +1,4 @@
 import 'package:untitled/core/constants/imports.dart';
-
 class ValidationHelper {
   static String? validatePhone(String? phone) {
     if (phone == null || phone.isEmpty) return kEnterPhoneNumber;
@@ -18,19 +17,31 @@ class ValidationHelper {
   }
 
   static String? validatePassword(String? password) {
-    if (password == null || password.isEmpty) return kPasswordNotEmpty;
+    if (password == null || password.isEmpty) return kPasswordEmpty;
     if (password.length < 8) return kPasswordLength;
     return null;
   }
 
   static String? validateName(String? name) {
     if (name == null || name.isEmpty) {
-      return kNameNotEmpty;
+      return kNameEmpty;
     }
     final nameRegex = RegExp(r'^[a-zA-Z\u0600-\u06FF ]+$');
     if (!nameRegex.hasMatch(name)) {
       return kNameHaveOnlyLetters;
     }
     return null;
+  }
+
+  static bool hasCapitalLetter(String password) {
+    return RegExp(r'[A-Z]').hasMatch(password);
+  }
+
+  static bool hasNumber(String password) {
+    return RegExp(r'[0-9]').hasMatch(password);
+  }
+
+  static bool hasValidLength(String password) {
+    return password.length >= 8;
   }
 }

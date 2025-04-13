@@ -22,17 +22,17 @@ const kPhone = 'رقم الهاتف';
 const kPasswordHaveCapitalLetter = 'علي الاقل يحتوي علي حرف كبير •';
 const kPasswordHaveNumber = 'علي الاقل يحتوي علي رقم واحد •';
 const kPasswordLength = 'علي الاقل مكون من 8 حروف •';
-const kPasswordNotEmpty = 'كلمة السر لا يمكن أن تكون فارغه';
-const kNameNotEmpty = 'الاسم لا يمكن أن يكون فارغا';
+const kPasswordEmpty = 'كلمة السر لا يمكن أن تكون فارغه';
+const kNameEmpty = 'الاسم لا يمكن أن يكون فارغا';
 const kNameHaveOnlyLetters = 'الاسم يجب أن يحتوي على حروف فقط';
 const kDataValidation = 'فيه خطأ في البيانات من فضلك راجع الحقول';
 const kRememberMe = 'تذكرني';
 const kLoginSuccessful = 'تم تسجيل الدخول بنجاح';
-const emailKey = 'saved_email';
-const passwordKey = 'saved_password';
-const phoneKey = 'saved_phone';
-const emailRememberMeKey = 'email_remember_me';
-const phoneRememberMeKey = 'phone_remember_me';
+const kEmailKey = 'saved_email';
+const kPasswordKey = 'saved_password';
+const kPhoneKey = 'saved_phone';
+const kEmailRememberMeKey = 'email_remember_me';
+const kPhoneRememberMeKey = 'phone_remember_me';
 
 //Assets - Images
 const kCirclePic = 'assets/images/Group.png';

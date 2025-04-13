@@ -7,9 +7,32 @@ class RegistrationCubit extends BaseCubit<RegistrationState> {
   void togglePasswordVisibility() {
     if (state is RegistrationInitial) {
       final currentState = state as RegistrationInitial;
-      emit(RegistrationInitial(passwordVisible: !currentState.isPasswordVisible));
+      emit(RegistrationInitial(
+        passwordVisible: !currentState.isPasswordVisible,
+        hasCapitalLetter: currentState.hasCapitalLetter,
+        hasNumber: currentState.hasNumber,
+        hasValidLength: currentState.hasValidLength,
+      ));
     } else {
       emit(const RegistrationInitial());
+    }
+  }
+
+  void updatePasswordValidation(String password) {
+    if (state is RegistrationInitial) {
+      final currentState = state as RegistrationInitial;
+      emit(RegistrationInitial(
+        passwordVisible: currentState.isPasswordVisible,
+        hasCapitalLetter: ValidationHelper.hasCapitalLetter(password),
+        hasNumber: ValidationHelper.hasNumber(password),
+        hasValidLength: ValidationHelper.hasValidLength(password),
+      ));
+    } else {
+      emit(RegistrationInitial(
+        hasCapitalLetter: ValidationHelper.hasCapitalLetter(password),
+        hasNumber: ValidationHelper.hasNumber(password),
+        hasValidLength: ValidationHelper.hasValidLength(password),
+      ));
     }
   }
 
@@ -27,13 +50,15 @@ class RegistrationCubit extends BaseCubit<RegistrationState> {
     final phoneError = ValidationHelper.validatePhone(phone);
     final emailError = ValidationHelper.validateEmail(email);
     final passwordError = ValidationHelper.validatePassword(password);
+    final currentState = state is RegistrationInitial ? state as RegistrationInitial : const RegistrationInitial();
 
     if (!formKey.currentState!.validate() ||
         firstNameError != null ||
         lastNameError != null ||
         phoneError != null ||
         emailError != null ||
-        passwordError != null) {
+        passwordError != null ||
+        !currentState.isPasswordValid) {
       emit(const RegistrationFailure(kDataValidation));
       showSnackBar(context, kDataValidation);
     } else {

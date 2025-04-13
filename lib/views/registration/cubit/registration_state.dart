@@ -6,10 +6,20 @@ abstract class RegistrationState extends BaseState {
 
 class RegistrationInitial extends RegistrationState {
   final bool passwordVisible;
+  final bool hasCapitalLetter;
+  final bool hasNumber;
+  final bool hasValidLength;
 
-  const RegistrationInitial({this.passwordVisible = false});
+  const RegistrationInitial({
+    this.passwordVisible = false,
+    this.hasCapitalLetter = false,
+    this.hasNumber = false,
+    this.hasValidLength = false,
+  });
 
   bool get isPasswordVisible => passwordVisible;
+
+  bool get isPasswordValid => hasCapitalLetter && hasNumber && hasValidLength;
 }
 
 class RegistrationLoading extends RegistrationState {}

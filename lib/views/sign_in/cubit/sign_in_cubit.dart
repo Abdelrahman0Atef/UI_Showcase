@@ -5,11 +5,11 @@ class SignInCubit extends BaseCubit<SignInState> {
     _loadSavedCredentials();
   }
 
-  static const String _emailKey = emailKey;
-  static const String _passwordKey = passwordKey;
-  static const String _phoneKey = phoneKey;
-  static const String _emailRememberMeKey = emailRememberMeKey;
-  static const String _phoneRememberMeKey = phoneRememberMeKey;
+  static const String _emailKey = kEmailKey;
+  static const String _passwordKey = kPasswordKey;
+  static const String _phoneKey = kPhoneKey;
+  static const String _emailRememberMeKey = kEmailRememberMeKey;
+  static const String _phoneRememberMeKey = kPhoneRememberMeKey;
 
   Future<void> saveEmailCredentials(
     String email,

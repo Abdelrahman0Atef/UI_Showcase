@@ -33,6 +33,11 @@ class _RegistrationViewState extends State<RegistrationView> {
     phoneController = TextEditingController();
     emailController = TextEditingController();
     passwordController = TextEditingController();
+
+    // مراقبة التغييرات في حقل الباسورد
+    passwordController.addListener(() {
+      context.read<RegistrationCubit>().updatePasswordValidation(passwordController.text);
+    });
   }
 
   @override
@@ -87,7 +92,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                   20.verticalSpace,
                   CustomTextFieldWithSection(
                     label: kFirstName,
-                    validator: (value)=>ValidationHelper.validateName(value as String?),
+                    validator: (value) => ValidationHelper.validateName(value as String?),
                     focusNode: firstNameFocusNode,
                     controller: firstNameController,
                     onSubmitted: (_) {
@@ -120,7 +125,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                   16.verticalSpace,
                   CustomTextFieldWithSection(
                     label: kEmail,
-                    validator: (value) => ValidationHelper.validatePhone(value as String?),
+                    validator: (value) => ValidationHelper.validateEmail(value as String?),
                     focusNode: emailFocusNode,
                     controller: emailController,
                     onSubmitted: (_) {
@@ -142,11 +147,16 @@ class _RegistrationViewState extends State<RegistrationView> {
                     },
                   ),
                   16.verticalSpace,
-                  const CustomValidationText() as Widget,
+                  CustomValidationText(
+                    hasCapitalLetter: currentState.hasCapitalLetter,
+                    hasNumber: currentState.hasNumber,
+                    hasValidLength: currentState.hasValidLength,
+                  ),
                   32.verticalSpace,
                   Center(
                     child: CustomButton(
-                      onPressed: () {
+                      onPressed: currentState.isPasswordValid
+                          ? () {
                         closeKeyboard();
                         cubit.validateAndProceed(
                           formKey: formKey,
@@ -157,12 +167,13 @@ class _RegistrationViewState extends State<RegistrationView> {
                           password: passwordController.text,
                           context: context,
                         );
-                      },
+                      }
+                          : (){},
                       text: kCreateAccount,
                       textColor: Colors.white,
-                      color: Colors.red,
+                      color: currentState.isPasswordValid ? Colors.red : Colors.grey,
                       width: 0.w,
-                      borderColor: Colors.red,
+                      borderColor: currentState.isPasswordValid ? Colors.red : Colors.grey,
                     ),
                   ),
                   8.verticalSpace,
