@@ -1,11 +1,11 @@
-import 'package:untitled/core/constants/imports.dart';
+part of sign_in;
 
-class CustomTextButton extends StatelessWidget {
+class AuthTextButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
   final TextStyle? textStyle;
 
-  const CustomTextButton({
+  const AuthTextButton({
     super.key,
     required this.text,
     required this.onPressed,

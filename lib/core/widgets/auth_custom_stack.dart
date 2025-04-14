@@ -1,7 +1,7 @@
-import 'package:untitled/core/constants/imports.dart';
+part of widgets;
 
-class CustomStack extends StatelessWidget {
-  const CustomStack({
+class AuthCustomStack extends StatelessWidget {
+  const AuthCustomStack({
     super.key,
   });
 
@@ -13,7 +13,7 @@ class CustomStack extends StatelessWidget {
         Stack(
           children: [
             Image.asset(
-              kCirclePic,
+              MyAssets.kHalfCircle,
               opacity: AlwaysStoppedAnimation(0.7),
             ),
             Positioned(
@@ -21,7 +21,7 @@ class CustomStack extends StatelessWidget {
               left: 58.w,
               right: 39.w,
               child: Image.asset(
-                kLogo,
+                MyAssets.kAlmasryLogo,
                 width: 278.w,
                 height: 89.h,
               ),

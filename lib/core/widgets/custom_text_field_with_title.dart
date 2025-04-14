@@ -1,6 +1,6 @@
-import 'package:untitled/core/constants/imports.dart';
+part of widgets;
 
-class CustomTextFieldWithSection extends StatefulWidget {
+class CustomTextFieldWithTitle extends StatefulWidget {
   final String label;
   final TextInputType keyboardType;
   final TextStyle? labelStyle;
@@ -12,8 +12,11 @@ class CustomTextFieldWithSection extends StatefulWidget {
   final FocusNode? focusNode;
   final TextEditingController? controller;
   final ValueChanged<String>? onSubmitted;
+  final void Function(String)? onChanged;
+  final bool isLastField;
 
-  const CustomTextFieldWithSection({
+  const CustomTextFieldWithTitle({
+    super.key,
     required this.label,
     this.keyboardType = TextInputType.text,
     this.labelStyle,
@@ -25,13 +28,17 @@ class CustomTextFieldWithSection extends StatefulWidget {
     this.focusNode,
     this.controller,
     this.onSubmitted,
+    this.onChanged,
+    this.isLastField = false,
   });
 
   @override
-  _CustomTextFieldWithSectionState createState() => _CustomTextFieldWithSectionState();
+  CustomTextFieldWithTitleState createState() {
+    return CustomTextFieldWithTitleState();
+  }
 }
 
-class _CustomTextFieldWithSectionState extends State<CustomTextFieldWithSection> {
+class CustomTextFieldWithTitleState extends State<CustomTextFieldWithTitle> {
   late FocusNode _focusNode;
   late TextEditingController _controller;
 
@@ -58,7 +65,7 @@ class _CustomTextFieldWithSectionState extends State<CustomTextFieldWithSection>
         children: [
           Align(
             alignment: Alignment.centerRight,
-            child: CustomText(label: widget.label, labelStyle: widget.labelStyle),
+            child: CustomText(text: widget.label, textStyle: widget.labelStyle),
           ),
           TextFormField(
             controller: _controller,
@@ -67,6 +74,7 @@ class _CustomTextFieldWithSectionState extends State<CustomTextFieldWithSection>
             textDirection: TextDirection.rtl,
             validator: widget.validator,
             obscureText: widget.obscureText && !widget.isPasswordVisible,
+            textInputAction: widget.isLastField ? TextInputAction.done : TextInputAction.next,
             decoration: widget.inputDecoration ??
                 InputDecoration(
                   prefixIcon: widget.onIconPressed != null
@@ -82,6 +90,7 @@ class _CustomTextFieldWithSectionState extends State<CustomTextFieldWithSection>
                 ),
             keyboardType: widget.keyboardType,
             onFieldSubmitted: widget.onSubmitted,
+            onChanged: widget.onChanged,
           ),
         ],
       ),

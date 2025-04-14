@@ -1,0 +1,36 @@
+class MyStrings{
+  static const kPhoneSignIn = 'الدخول برقم الهاتف';
+  static const  kUserNameSignIn = 'تسجيل الدخول';
+  static const  kPhoneNumber = 'ادخل رقم الهاتف';
+  static const  kSendOTP = 'ارسال رمز التأكيد';
+  static const  kCreateAccount = 'انشاء حساب';
+  static const  kGuest = 'الدخول كزائر';
+  static const  kUserName = 'اسم المستخدم';
+  static const  kPassword = 'الرقم السري';
+  static const  kForgetPassword = 'هل نسيت كلمة السر؟';
+  static const  kSignIn = 'الدخول';
+  static const  kEnterPhoneNumber = 'يرجى إدخال رقم الهاتف';
+  static const  kPhonerNumbersCheck = 'رقم الهاتف يجب أن يحتوي على 11 رقمًا';
+  static const  kPhoneNumberStart = 'رقم الهاتف يجب أن يبدأ بـ 01';
+  static const  kPhoneNumberHaveOnlyNumbers = 'رقم الهاتف يجب أن يحتوي على أرقام فقط';
+  static const  kEnterEmail = 'يرجى إدخال البريد الإلكتروني';
+  static const  kEmailCheck = 'يرجى إدخال بريد إلكتروني صحيح';
+  static const  kFirstName = 'الاسم الاول';
+  static const  kLastName = 'الاسم الاخير';
+  static const  kEmail = 'البريد الالكتروني';
+  static const  kPhone = 'رقم الهاتف';
+  static const  kPasswordHaveCapitalLetter = 'علي الاقل يحتوي علي حرف كبير';
+  static const  kPasswordHaveNumber = 'علي الاقل يحتوي علي رقم واحد';
+  static const  kPasswordLength = 'علي الاقل مكون من 8 حروف';
+  static const  kPasswordEmpty = 'كلمة السر لا يمكن أن تكون فارغه';
+  static const  kNameEmpty = 'الاسم لا يمكن أن يكون فارغا';
+  static const  kNameHaveOnlyLetters = 'الاسم يجب أن يحتوي على حروف فقط';
+  static const  kDataValidation = 'فيه خطأ في البيانات من فضلك راجع الحقول';
+  static const  kRememberMe = 'تذكرني';
+  static const  kLoginSuccessful = 'تم تسجيل الدخول بنجاح';
+  static const  kEmailKey = 'saved_email';
+  static const  kPasswordKey = 'saved_password';
+  static const  kPhoneKey = 'saved_phone';
+  static const  kEmailRememberMeKey = 'email_remember_me';
+  static const  kPhoneRememberMeKey = 'phone_remember_me';
+}

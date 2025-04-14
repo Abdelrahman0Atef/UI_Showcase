@@ -1,4 +1,5 @@
-import 'package:untitled/core/constants/imports.dart';
+part of widgets;
+
 
 class CustomButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -23,18 +24,18 @@ class CustomButton extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        height: 50.h,
-        width: 200.w,
+        height: 48.h,
+        width: 245.w,
         decoration: BoxDecoration(
           color: color,
           border: Border.all(width: width!, color: borderColor!),
           borderRadius: BorderRadius.circular(12.r),
-          boxShadow: [BoxShadow(blurRadius: 8.r,offset: Offset(0, 2),color: Color(0x053F5233),),],
+          boxShadow: [BoxShadow(blurRadius: 8.r,offset: Offset(0, 2),color: MyColors.kButtonShadow,),],
         ),
         child: Center(
-          child: Text(
-            text,
-            style: TextStyle(
+          child: CustomText(
+            text: text,
+            textStyle: TextStyle(
               color: textColor,
               fontSize: 18.sp,
               fontWeight: FontWeight.bold,

@@ -1,10 +1,10 @@
-import 'package:untitled/core/constants/imports.dart';
+part of sign_in;
 
-class CustomToggleButton extends StatelessWidget {
+class SignInToggleButton extends StatelessWidget {
   final SignInInitial currentState;
   final SignInCubit cubit;
 
-  const CustomToggleButton({super.key, required this.currentState, required this.cubit});
+  const SignInToggleButton({super.key, required this.currentState, required this.cubit});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class CustomToggleButton extends StatelessWidget {
             color: Colors.white,
             boxShadow: const [
               BoxShadow(
-                color: Color(0x5A5A5A1A),
+                color: MyColors.kToggleShadow,
                 offset: Offset(0, 1),
                 blurRadius: 8.0,
               ),
@@ -29,17 +29,17 @@ class CustomToggleButton extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () {
-                  cubit.toggleLogInMethod(0);
+                  cubit.toggleSignInMethod(0);
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50.0),
+                    borderRadius: BorderRadius.circular(50.r),
                     color: currentState.selectedIndex == 0 ? Colors.red : Colors.white,
                   ),
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0).w,
                   child: CustomText(
-                    label: kPhoneLogIn,
-                    labelStyle: TextStyle(
+                    text: MyStrings.kPhoneSignIn,
+                    textStyle: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: currentState.selectedIndex == 0 ? Colors.white : Colors.black,
                     ),
@@ -48,17 +48,17 @@ class CustomToggleButton extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  cubit.toggleLogInMethod(1);
+                  cubit.toggleSignInMethod(1);
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50.0),
+                    borderRadius: BorderRadius.circular(50.r),
                     color: currentState.selectedIndex == 1 ? Colors.red : Colors.white,
                   ),
                   padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                   child: CustomText(
-                    label: kUserNameLogIn,
-                    labelStyle: TextStyle(
+                    text: MyStrings.kUserNameSignIn,
+                    textStyle: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: currentState.selectedIndex == 1 ? Colors.white : Colors.black,
                     ),

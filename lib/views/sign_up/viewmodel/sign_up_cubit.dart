@@ -1,34 +1,34 @@
-import 'package:untitled/core/constants/imports.dart';
+part of sign_up;
 
-class RegistrationCubit extends BaseCubit<RegistrationState> {
-  RegistrationCubit() : super(const RegistrationInitial());
+class SignUpCubit extends BaseCubit<SignUpState> {
+  SignUpCubit() : super(const SignUpInitial());
 
   @override
   void togglePasswordVisibility() {
-    if (state is RegistrationInitial) {
-      final currentState = state as RegistrationInitial;
-      emit(RegistrationInitial(
+    if (state is SignUpInitial) {
+      final currentState = state as SignUpInitial;
+      emit(SignUpInitial(
         passwordVisible: !currentState.isPasswordVisible,
         hasCapitalLetter: currentState.hasCapitalLetter,
         hasNumber: currentState.hasNumber,
         hasValidLength: currentState.hasValidLength,
       ));
     } else {
-      emit(const RegistrationInitial());
+      emit(const SignUpInitial());
     }
   }
 
   void updatePasswordValidation(String password) {
-    if (state is RegistrationInitial) {
-      final currentState = state as RegistrationInitial;
-      emit(RegistrationInitial(
+    if (state is SignUpInitial) {
+      final currentState = state as SignUpInitial;
+      emit(SignUpInitial(
         passwordVisible: currentState.isPasswordVisible,
         hasCapitalLetter: ValidationHelper.hasCapitalLetter(password),
         hasNumber: ValidationHelper.hasNumber(password),
         hasValidLength: ValidationHelper.hasValidLength(password),
       ));
     } else {
-      emit(RegistrationInitial(
+      emit(SignUpInitial(
         hasCapitalLetter: ValidationHelper.hasCapitalLetter(password),
         hasNumber: ValidationHelper.hasNumber(password),
         hasValidLength: ValidationHelper.hasValidLength(password),
@@ -43,14 +43,13 @@ class RegistrationCubit extends BaseCubit<RegistrationState> {
     required String phone,
     required String email,
     required String password,
-    required BuildContext context,
   }) {
     final firstNameError = ValidationHelper.validateName(firstName);
     final lastNameError = ValidationHelper.validateName(lastName);
     final phoneError = ValidationHelper.validatePhone(phone);
     final emailError = ValidationHelper.validateEmail(email);
     final passwordError = ValidationHelper.validatePassword(password);
-    final currentState = state is RegistrationInitial ? state as RegistrationInitial : const RegistrationInitial();
+    final currentState = state is SignUpInitial ? state as SignUpInitial : const SignUpInitial();
 
     if (!formKey.currentState!.validate() ||
         firstNameError != null ||
@@ -59,18 +58,10 @@ class RegistrationCubit extends BaseCubit<RegistrationState> {
         emailError != null ||
         passwordError != null ||
         !currentState.isPasswordValid) {
-      emit(const RegistrationFailure(kDataValidation));
-      showSnackBar(context, kDataValidation);
+      emit(const SignUpFailure(MyStrings.kDataValidation));
     } else {
-      emit(RegistrationSuccess());
-      navigateTo(context, const HomeView());
-      Future.delayed(Duration.zero, () => emit(const RegistrationInitial()));
+      emit(SignUpSuccess());
+      Future.delayed(Duration.zero, () => emit(const SignUpInitial()));
     }
-  }
-
-  void logInNavigate({required BuildContext context}) {
-    emit(RegistrationSuccess());
-    navigateTo(context, const UserNameSignIn());
-    Future.delayed(Duration.zero, () => emit(const RegistrationInitial()));
   }
 }

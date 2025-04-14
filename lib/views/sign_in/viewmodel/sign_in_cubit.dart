@@ -1,21 +1,21 @@
-import 'package:untitled/core/constants/imports.dart';
+part of sign_in;
 
 class SignInCubit extends BaseCubit<SignInState> {
   SignInCubit() : super(const SignInInitial(1, false)) {
     _loadSavedCredentials();
   }
 
-  static const String _emailKey = kEmailKey;
-  static const String _passwordKey = kPasswordKey;
-  static const String _phoneKey = kPhoneKey;
-  static const String _emailRememberMeKey = kEmailRememberMeKey;
-  static const String _phoneRememberMeKey = kPhoneRememberMeKey;
+  static const String _emailKey = MyStrings.kEmailKey;
+  static const String _passwordKey = MyStrings.kPasswordKey;
+  static const String _phoneKey = MyStrings.kPhoneKey;
+  static const String _emailRememberMeKey = MyStrings.kEmailRememberMeKey;
+  static const String _phoneRememberMeKey = MyStrings.kPhoneRememberMeKey;
 
   Future<void> saveEmailCredentials(
-    String email,
-    String password,
-    bool rememberMe,
-  ) async {
+      String email,
+      String password,
+      bool rememberMe,
+      ) async {
     final prefs = await SharedPreferences.getInstance();
     if (rememberMe) {
       await prefs.setString(_emailKey, email);
@@ -90,7 +90,7 @@ class SignInCubit extends BaseCubit<SignInState> {
     );
   }
 
-  void toggleLogInMethod(int index) {
+  void toggleSignInMethod(int index) {
     if (state is SignInInitial) {
       final currentState = state as SignInInitial;
       emit(
@@ -167,37 +167,31 @@ class SignInCubit extends BaseCubit<SignInState> {
     }
   }
 
-  void registrationNavigate({required BuildContext context}) {
+  void signUp() {
     emit(SignInSuccess());
-    navigateTo(context, const RegistrationView() as Widget);
     Future.delayed(Duration.zero, () => _loadSavedCredentials());
   }
 
-  void validatePhoneLogin({
+  void validatePhoneSignIn({
     required GlobalKey<FormState> formKey,
     required String phone,
-    required BuildContext context,
     required FocusNode phoneFocusNode,
+    required bool rememberMe,
   }) {
     if (!formKey.currentState!.validate()) {
       if (phone.isNotEmpty && ValidationHelper.validatePhone(phone) != null) {
         phoneFocusNode.requestFocus();
       }
     } else {
-      if (state is SignInInitial) {
-        final currentState = state as SignInInitial;
-        savePhoneCredentials(phone, currentState.isPhoneRememberMeChecked);
-      }
+      savePhoneCredentials(phone, rememberMe);
       emit(SignInSuccess());
-      navigateTo(context, const HomeView());
     }
   }
 
-  void validateEmailLogin({
+  void validateEmailSignIn({
     required GlobalKey<FormState> formKey,
     required String email,
     required String password,
-    required BuildContext context,
     required FocusNode emailFocusNode,
     required FocusNode passwordFocusNode,
     required bool rememberMe,
@@ -212,7 +206,6 @@ class SignInCubit extends BaseCubit<SignInState> {
     } else {
       saveEmailCredentials(email, password, rememberMe);
       emit(SignInSuccess());
-      navigateTo(context, const HomeView());
     }
   }
 }

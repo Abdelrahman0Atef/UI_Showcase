@@ -1,20 +1,20 @@
-import 'package:untitled/core/constants/imports.dart';
+part of widgets;
 
 class CustomText extends StatelessWidget {
   const CustomText({
     super.key,
-    required this.label,
-    required this.labelStyle,
+    required this.text,
+    this.textStyle,
   });
 
-  final String label;
-  final TextStyle? labelStyle;
+  final String text;
+  final TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      label,
-      style: labelStyle ??
+      text,
+      style: textStyle ??
           TextStyle(
             fontWeight: FontWeight.bold,
           ),

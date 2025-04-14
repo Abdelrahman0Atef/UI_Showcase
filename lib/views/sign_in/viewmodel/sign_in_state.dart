@@ -1,4 +1,4 @@
-import 'package:untitled/core/constants/imports.dart';
+part of sign_in;
 
 abstract class SignInState extends BaseState {
   const SignInState();
@@ -23,7 +23,6 @@ class SignInInitial extends SignInState {
         this.savedPhone = '',
       });
 
-  @override
   bool get isPasswordVisible => passwordVisible;
 }
 
