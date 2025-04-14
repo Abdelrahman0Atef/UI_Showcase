@@ -1,4 +1,4 @@
-part of sign_in;
+part of 'widgets_imports.dart';
 
 class AuthTextButton extends StatelessWidget {
   final String text;
@@ -16,9 +16,9 @@ class AuthTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: onPressed,
-      child: Text(
-        text,
-        style: textStyle
+      child: CustomText(
+        text: text,
+        textStyle: textStyle
       ),
     );
   }

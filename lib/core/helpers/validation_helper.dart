@@ -2,34 +2,34 @@ import 'package:untitled/core/resources/my_strings.dart';
 
 class ValidationHelper {
   static String? validatePhone(String? phone) {
-    if (phone == null || phone.isEmpty) return MyStrings.kEnterPhoneNumber;
-    if (phone.length != 11) return MyStrings.kPhonerNumbersCheck;
-    if (!phone.startsWith('01')) return MyStrings.kPhoneNumberStart;
+    if (phone == null || phone.isEmpty) return MyStrings.enterPhoneNumber;
+    if (phone.length != 11) return MyStrings.phonerNumbersCheck;
+    if (!phone.startsWith('01')) return MyStrings.phoneNumberStart;
     final phoneRegex = RegExp(r'^[0-9]+$');
-    if (!phoneRegex.hasMatch(phone)) return MyStrings.kPhoneNumberHaveOnlyNumbers;
+    if (!phoneRegex.hasMatch(phone)) return MyStrings.phoneNumberHaveOnlyNumbers;
     return null;
   }
 
   static String? validateEmail(String? email) {
-    if (email == null || email.isEmpty) return MyStrings.kEnterEmail;
+    if (email == null || email.isEmpty) return MyStrings.enterEmail;
     final emailRegex = RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
-    if (!emailRegex.hasMatch(email)) return MyStrings.kEmailCheck;
+    if (!emailRegex.hasMatch(email)) return MyStrings.emailCheck;
     return null;
   }
 
   static String? validatePassword(String? password) {
-    if (password == null || password.isEmpty) return MyStrings.kPasswordEmpty;
-    if (password.length < 8) return MyStrings.kPasswordLength;
+    if (password == null || password.isEmpty) return MyStrings.passwordEmpty;
+    if (password.length < 8) return MyStrings.passwordLength;
     return null;
   }
 
   static String? validateName(String? name) {
     if (name == null || name.isEmpty) {
-      return MyStrings.kNameEmpty;
+      return MyStrings.nameEmpty;
     }
     final nameRegex = RegExp(r'^[a-zA-Z\u0600-\u06FF ]+$');
     if (!nameRegex.hasMatch(name)) {
-      return MyStrings.kNameHaveOnlyLetters;
+      return MyStrings.nameHaveOnlyLetters;
     }
     return null;
   }

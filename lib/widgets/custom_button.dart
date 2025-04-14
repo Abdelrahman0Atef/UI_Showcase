@@ -1,5 +1,4 @@
-part of widgets;
-
+part of 'widgets_imports.dart';
 
 class CustomButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -28,9 +27,9 @@ class CustomButton extends StatelessWidget {
         width: 245.w,
         decoration: BoxDecoration(
           color: color,
-          border: Border.all(width: width!, color: borderColor!),
+          border: Border.all(width: width ?? 0, color: borderColor ?? Colors.white),
           borderRadius: BorderRadius.circular(12.r),
-          boxShadow: [BoxShadow(blurRadius: 8.r,offset: Offset(0, 2),color: MyColors.kButtonShadow,),],
+          boxShadow: [BoxShadow(blurRadius: 8.r,offset: Offset(0, 2),color: MyColors.buttonShadow,),],
         ),
         child: Center(
           child: CustomText(

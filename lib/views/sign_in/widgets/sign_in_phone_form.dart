@@ -1,4 +1,4 @@
-part of sign_in;
+part of '../sign_in_imports.dart';
 
 class SignInPhoneFormWidget extends StatefulWidget {
   final SignInInitial currentState;
@@ -15,6 +15,7 @@ class SignInPhoneFormWidget extends StatefulWidget {
 }
 
 class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
+  late final SignInCubit _cubit;
   final GlobalKey<FormState> phoneFormKey = GlobalKey<FormState>();
   final TextEditingController phoneController = TextEditingController();
   final FocusNode phoneFocusNode = FocusNode();
@@ -22,6 +23,7 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
   @override
   void initState() {
     super.initState();
+    _cubit = getIt<SignInCubit>();
     _loadCredentialsFromState();
   }
 
@@ -52,7 +54,7 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
         children: [
           16.verticalSpace,
           CustomTextFieldWithTitle(
-            label: MyStrings.kPhoneNumber,
+            label: MyStrings.phoneNumber,
             keyboardType: TextInputType.phone,
             validator: (value) =>
                 ValidationHelper.validatePhone(value as String?),
@@ -79,7 +81,7 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
                 },
                 activeColor: Colors.red,
               ),
-              const Text(MyStrings.kRememberMe),
+              const Text(MyStrings.rememberMe),
             ],
           ),
           62.verticalSpace,
@@ -100,7 +102,7 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
               }
             },
             color: Colors.red,
-            text: MyStrings.kSendOTP,
+            text: MyStrings.sendOTP,
             textColor: Colors.white,
             width: 0.w,
             borderColor: Colors.red,
@@ -115,14 +117,14 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
               );
             },
             color: Colors.white,
-            text: MyStrings.kCreateAccount,
+            text: MyStrings.createAccount,
             textColor: Colors.black,
             width: 1.w,
             borderColor: Colors.black,
           ),
           16.verticalSpace,
           AuthTextButton(
-            text: MyStrings.kGuest,
+            text: MyStrings.guest,
             onPressed: () {},
             textStyle: TextStyle(
               fontSize: 20.sp,

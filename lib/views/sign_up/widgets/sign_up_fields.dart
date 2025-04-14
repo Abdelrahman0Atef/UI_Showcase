@@ -1,4 +1,4 @@
-part of sign_up;
+part of '../sign_up_imports.dart';
 
 class SignUpFields extends StatelessWidget {
   final SignUpInitial currentState;
@@ -35,7 +35,7 @@ class SignUpFields extends StatelessWidget {
     return Column(
       children: [
         CustomTextFieldWithTitle(
-          label: MyStrings.kFirstName,
+          label: MyStrings.firstName,
           validator: (value) => ValidationHelper.validateName(value as String?),
           focusNode: firstNameFocusNode,
           controller: firstNameController,
@@ -46,7 +46,7 @@ class SignUpFields extends StatelessWidget {
         ),
         16.verticalSpace,
         CustomTextFieldWithTitle(
-          label: MyStrings.kLastName,
+          label: MyStrings.lastName,
           validator: (value) => ValidationHelper.validateName(value as String?),
           focusNode: lastNameFocusNode,
           controller: lastNameController,
@@ -57,7 +57,7 @@ class SignUpFields extends StatelessWidget {
         ),
         16.verticalSpace,
         CustomTextFieldWithTitle(
-          label: MyStrings.kPhone,
+          label: MyStrings.phone,
           validator: (value) => ValidationHelper.validatePhone(value as String?),
           focusNode: phoneFocusNode,
           controller: phoneController,
@@ -68,7 +68,7 @@ class SignUpFields extends StatelessWidget {
         ),
         16.verticalSpace,
         CustomTextFieldWithTitle(
-          label: MyStrings.kEmail,
+          label: MyStrings.email,
           validator: (value) => ValidationHelper.validateEmail(value as String?),
           focusNode: emailFocusNode,
           controller: emailController,
@@ -79,7 +79,7 @@ class SignUpFields extends StatelessWidget {
         ),
         16.verticalSpace,
         CustomTextFieldWithTitle(
-          label: MyStrings.kPassword,
+          label: MyStrings.password,
           obscureText: !currentState.isPasswordVisible,
           isPasswordVisible: currentState.isPasswordVisible,
           onIconPressed: cubit.togglePasswordVisibility,

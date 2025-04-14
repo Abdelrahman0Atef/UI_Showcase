@@ -1,4 +1,4 @@
-part of sign_in;
+part of '../sign_in_imports.dart';
 
 class SignInBody extends StatefulWidget {
   const SignInBody({

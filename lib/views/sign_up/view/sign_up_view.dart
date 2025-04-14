@@ -1,4 +1,4 @@
-part of sign_up;
+part of '../sign_up_imports.dart';
 
 class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
@@ -90,7 +90,7 @@ class SignUpViewState extends State<SignUpView> {
                     null) {
               passwordFocusNode.requestFocus();
             }
-            showSnackBar(MyStrings.kDataValidation);
+            //showSnackBar(MyStrings.dataValidation);
           } else if (state is SignUpSuccess) {
             Navigator.pushReplacement(
               context,
@@ -101,7 +101,7 @@ class SignUpViewState extends State<SignUpView> {
         builder: (context, state) {
           final cubit = context.read<SignUpCubit>();
           final currentState =
-          state is SignUpInitial ? state : const SignUpInitial();
+              state is SignUpInitial ? state : const SignUpInitial();
 
           return Scaffold(
             body: Form(
@@ -133,52 +133,15 @@ class SignUpViewState extends State<SignUpView> {
                       hasValidLength: currentState.hasValidLength,
                     ),
                     32.verticalSpace,
-                    Center(
-                      child: CustomButton(
-                        onPressed:
-                        currentState.isPasswordValid
-                            ? () {
-                          closeKeyboard();
-                          cubit.validateAndProceed(
-                            formKey: formKey,
-                            firstName: firstNameController.text,
-                            lastName: lastNameController.text,
-                            phone: phoneController.text,
-                            email: emailController.text,
-                            password: passwordController.text,
-                          );
-                        }
-                            : () {},
-                        text: MyStrings.kCreateAccount,
-                        textColor: Colors.white,
-                        color:
-                        currentState.isPasswordValid
-                            ? Colors.red
-                            : Colors.grey,
-                        width: 0.w,
-                        borderColor:
-                        currentState.isPasswordValid
-                            ? Colors.red
-                            : Colors.grey,
-                      ),
-                    ),
-                    8.verticalSpace,
-                    Center(
-                      child: AuthTextButton(
-                        text: MyStrings.kUserNameSignIn,
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const SigInView(),
-                            ),
-                          );
-                        },
-                        textStyle: const TextStyle(
-                          color: Colors.black,
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
+                    SignUpButtons(
+                      currentState: currentState,
+                      cubit: cubit,
+                      formKey: formKey,
+                      firstNameController: firstNameController,
+                      lastNameController: lastNameController,
+                      phoneController: phoneController,
+                      emailController: emailController,
+                      passwordController: passwordController,
                     ),
                   ],
                 ),

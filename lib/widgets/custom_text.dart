@@ -1,4 +1,4 @@
-part of widgets;
+part of 'widgets_imports.dart';
 
 class CustomText extends StatelessWidget {
   const CustomText({

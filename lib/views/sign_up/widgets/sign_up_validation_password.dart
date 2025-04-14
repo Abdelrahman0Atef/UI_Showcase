@@ -1,4 +1,4 @@
-part of sign_up;
+part of '../sign_up_imports.dart';
 
 class SignUpValidationPassword extends StatelessWidget {
   final bool hasCapitalLetter;
@@ -23,7 +23,7 @@ class SignUpValidationPassword extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               CustomText(
-                text: MyStrings.kPasswordHaveCapitalLetter,
+                text: MyStrings.passwordHaveCapitalLetter,
                 textStyle: TextStyle(
                   color: hasCapitalLetter ? Colors.green : Colors.black,
                 ),
@@ -44,7 +44,7 @@ class SignUpValidationPassword extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               CustomText(
-                text: MyStrings.kPasswordHaveNumber,
+                text: MyStrings.passwordHaveNumber,
                 textStyle: TextStyle(
                   color: hasNumber ? Colors.green : Colors.black,
                 ),
@@ -65,7 +65,7 @@ class SignUpValidationPassword extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               CustomText(
-                text: MyStrings.kPasswordLength,
+                text: MyStrings.passwordLength,
                 textStyle: TextStyle(
                   color: hasValidLength ? Colors.green : Colors.black,
                 ),

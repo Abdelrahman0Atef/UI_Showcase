@@ -1,4 +1,4 @@
-part of sign_up;
+part of '../sign_up_imports.dart';
 
 class SignUpCubit extends BaseCubit<SignUpState> {
   SignUpCubit() : super(const SignUpInitial());
@@ -58,7 +58,7 @@ class SignUpCubit extends BaseCubit<SignUpState> {
         emailError != null ||
         passwordError != null ||
         !currentState.isPasswordValid) {
-      emit(const SignUpFailure(MyStrings.kDataValidation));
+      emit(const SignUpFailure(MyStrings.dataValidation));
     } else {
       emit(SignUpSuccess());
       Future.delayed(Duration.zero, () => emit(const SignUpInitial()));

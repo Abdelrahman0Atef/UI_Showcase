@@ -1,4 +1,4 @@
-part of sign_up;
+part of '../sign_up_imports.dart';
 
 abstract class SignUpState extends BaseState {
   const SignUpState();

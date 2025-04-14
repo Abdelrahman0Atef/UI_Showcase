@@ -1,4 +1,4 @@
-part of sign_in;
+part of '../sign_in_imports.dart';
 
 class SigInView extends StatelessWidget {
   const SigInView({super.key});
@@ -6,7 +6,7 @@ class SigInView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SignInCubit(),
+      create: (context) => getIt<SignInCubit>(),
       child: BlocBuilder<SignInCubit, SignInState>(
         builder: (context, state) {
           final cubit = context.read<SignInCubit>();

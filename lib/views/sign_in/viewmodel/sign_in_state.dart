@@ -1,4 +1,4 @@
-part of sign_in;
+part of '../sign_in_imports.dart';
 
 abstract class SignInState extends BaseState {
   const SignInState();

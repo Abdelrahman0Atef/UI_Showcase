@@ -1,4 +1,4 @@
-part of sign_in;
+part of '../sign_in_imports.dart';
 
 class SignInToggleButton extends StatelessWidget {
   final SignInInitial currentState;
@@ -17,7 +17,7 @@ class SignInToggleButton extends StatelessWidget {
             color: Colors.white,
             boxShadow: const [
               BoxShadow(
-                color: MyColors.kToggleShadow,
+                color: MyColors.toggleShadow,
                 offset: Offset(0, 1),
                 blurRadius: 8.0,
               ),
@@ -38,7 +38,7 @@ class SignInToggleButton extends StatelessWidget {
                   ),
                   padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0).w,
                   child: CustomText(
-                    text: MyStrings.kPhoneSignIn,
+                    text: MyStrings.phoneSignIn,
                     textStyle: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: currentState.selectedIndex == 0 ? Colors.white : Colors.black,
@@ -57,7 +57,7 @@ class SignInToggleButton extends StatelessWidget {
                   ),
                   padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                   child: CustomText(
-                    text: MyStrings.kUserNameSignIn,
+                    text: MyStrings.userNameSignIn,
                     textStyle: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: currentState.selectedIndex == 1 ? Colors.white : Colors.black,

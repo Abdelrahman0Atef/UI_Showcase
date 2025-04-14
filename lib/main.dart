@@ -1,11 +1,14 @@
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:untitled/core/resources/my_fonts.dart';
+import 'package:untitled/core/services/local_storage_data/setup_services.dart';
 import 'package:untitled/views/sign_in/sign_in_imports.dart';
 
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await setupServices();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -20,7 +23,7 @@ class MyApp extends StatelessWidget {
       builder: (_, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          theme: ThemeData(fontFamily: MyFonts.kFont),
+          theme: ThemeData(fontFamily: MyFonts.font),
           home: child,
         );
       },

@@ -1,30 +1,31 @@
-part of sign_in;
+part of '../sign_in_imports.dart';
 
 class SignInCubit extends BaseCubit<SignInState> {
-  SignInCubit() : super(const SignInInitial(1, false)) {
+  final LocalStorageService _storage;
+
+  SignInCubit(this._storage) : super(const SignInInitial(1, false)) {
     _loadSavedCredentials();
   }
 
-  static const String _emailKey = MyStrings.kEmailKey;
-  static const String _passwordKey = MyStrings.kPasswordKey;
-  static const String _phoneKey = MyStrings.kPhoneKey;
-  static const String _emailRememberMeKey = MyStrings.kEmailRememberMeKey;
-  static const String _phoneRememberMeKey = MyStrings.kPhoneRememberMeKey;
+  static const String _emailKey = MyStrings.emailKey;
+  static const String _passwordKey = MyStrings.passwordKey;
+  static const String _phoneKey = MyStrings.phoneKey;
+  static const String _emailRememberMeKey = MyStrings.emailRememberMeKey;
+  static const String _phoneRememberMeKey = MyStrings.phoneRememberMeKey;
 
   Future<void> saveEmailCredentials(
       String email,
       String password,
       bool rememberMe,
       ) async {
-    final prefs = await SharedPreferences.getInstance();
     if (rememberMe) {
-      await prefs.setString(_emailKey, email);
-      await prefs.setString(_passwordKey, password);
-      await prefs.setBool(_emailRememberMeKey, true);
+      await _storage.setString(_emailKey, email);
+      await _storage.setString(_passwordKey, password);
+      await _storage.setIsChecked(_emailRememberMeKey, true);
     } else {
-      await prefs.remove(_emailKey);
-      await prefs.remove(_passwordKey);
-      await prefs.setBool(_emailRememberMeKey, false);
+      await _storage.remove(_emailKey);
+      await _storage.remove(_passwordKey);
+      await _storage.setIsChecked(_emailRememberMeKey, false);
     }
 
     if (state is SignInInitial) {
@@ -44,13 +45,12 @@ class SignInCubit extends BaseCubit<SignInState> {
   }
 
   Future<void> savePhoneCredentials(String phone, bool rememberMe) async {
-    final prefs = await SharedPreferences.getInstance();
     if (rememberMe) {
-      await prefs.setString(_phoneKey, phone);
-      await prefs.setBool(_phoneRememberMeKey, true);
+      await _storage.setString(_phoneKey, phone);
+      await _storage.setIsChecked(_phoneRememberMeKey, true);
     } else {
-      await prefs.remove(_phoneKey);
-      await prefs.setBool(_phoneRememberMeKey, false);
+      await _storage.remove(_phoneKey);
+      await _storage.setIsChecked(_phoneRememberMeKey, false);
     }
 
     if (state is SignInInitial) {
@@ -70,12 +70,11 @@ class SignInCubit extends BaseCubit<SignInState> {
   }
 
   Future<void> _loadSavedCredentials() async {
-    final prefs = await SharedPreferences.getInstance();
-    final email = prefs.getString(_emailKey) ?? '';
-    final password = prefs.getString(_passwordKey) ?? '';
-    final phone = prefs.getString(_phoneKey) ?? '';
-    final emailRememberMe = prefs.getBool(_emailRememberMeKey) ?? false;
-    final phoneRememberMe = prefs.getBool(_phoneRememberMeKey) ?? false;
+    final email = _storage.getString(_emailKey) ?? '';
+    final password = _storage.getString(_passwordKey) ?? '';
+    final phone = _storage.getString(_phoneKey) ?? '';
+    final emailRememberMe = _storage.getIsChecked(_emailRememberMeKey) ?? false;
+    final phoneRememberMe = _storage.getIsChecked(_phoneRememberMeKey) ?? false;
 
     emit(
       SignInInitial(

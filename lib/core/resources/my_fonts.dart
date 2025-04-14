@@ -1,4 +1,4 @@
 class MyFonts{
-  static const kFont = 'Almarai';
+  static const font = 'Almarai';
 }
 

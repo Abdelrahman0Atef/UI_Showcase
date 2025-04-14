@@ -1,4 +1,4 @@
-part of sign_in;
+part of '../sign_in_imports.dart';
 
 class SignInEmailFormWidget extends StatefulWidget {
   final SignInInitial currentState;
@@ -59,7 +59,7 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
         children: [
           16.verticalSpace,
           CustomTextFieldWithTitle(
-            label: MyStrings.kUserName,
+            label: MyStrings.userName,
             validator: (value) => ValidationHelper.validateEmail(value as String?),
             focusNode: userNameFocusNode,
             controller: userNameController,
@@ -70,7 +70,7 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
           ),
           24.verticalSpace,
           CustomTextFieldWithTitle(
-            label: MyStrings.kPassword,
+            label: MyStrings.password,
             obscureText: !widget.currentState.passwordVisible,
             isPasswordVisible: widget.currentState.passwordVisible,
             onIconPressed: widget.cubit.togglePasswordVisibility,
@@ -100,14 +100,14 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
                 },
                 activeColor: Colors.red,
               ),
-              const Text(MyStrings.kRememberMe),
+              const Text(MyStrings.rememberMe),
             ],
           ),
           Align(
             alignment: Alignment.centerRight,
             child: AuthTextButton(
               textStyle: const TextStyle(color: Colors.grey),
-              text: MyStrings.kForgetPassword,
+              text: MyStrings.forgetPassword,
               onPressed: () {},
             ),
           ),
@@ -131,7 +131,7 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
               }
             },
             color: Colors.red,
-            text: MyStrings.kSignIn,
+            text: MyStrings.signIn,
             textColor: Colors.white,
             width: 0.w,
             borderColor: Colors.red,
@@ -146,14 +146,14 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
               );
             },
             color: Colors.white,
-            text: MyStrings.kCreateAccount,
+            text: MyStrings.createAccount,
             textColor: Colors.black,
             width: 1.w,
             borderColor: Colors.black,
           ),
           16.verticalSpace,
           AuthTextButton(
-            text: MyStrings.kGuest,
+            text: MyStrings.guest,
             onPressed: () {},
             textStyle: TextStyle(
               fontSize: 20.sp,
