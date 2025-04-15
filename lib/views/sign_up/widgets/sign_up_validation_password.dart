@@ -6,21 +6,16 @@ class SignUpValidationPassword extends StatelessWidget {
   final bool hasValidLength;
 
   const SignUpValidationPassword({
-    super.key,
-    required this.hasCapitalLetter,
-    required this.hasNumber,
-    required this.hasValidLength,
+    required this.hasCapitalLetter, required this.hasNumber, required this.hasValidLength, super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Padding(
+  Widget build(BuildContext context) => Padding(
       padding: EdgeInsets.symmetric(horizontal: 24.r),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
                 width: 7.w,
@@ -42,7 +37,6 @@ class SignUpValidationPassword extends StatelessWidget {
           ),
           16.verticalSpace,
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
                 width: 7.w,
@@ -64,7 +58,6 @@ class SignUpValidationPassword extends StatelessWidget {
           ),
           16.verticalSpace,
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
                 width: 7.w,
@@ -86,5 +79,4 @@ class SignUpValidationPassword extends StatelessWidget {
         ],
       ),
     );
-  }
 }

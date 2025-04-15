@@ -4,11 +4,10 @@ class SignInToggleButton extends StatelessWidget {
   final SignInInitial currentState;
   final SignInCubit cubit;
 
-  const SignInToggleButton({super.key, required this.currentState, required this.cubit});
+  const SignInToggleButton({required this.currentState, required this.cubit, super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
+  Widget build(BuildContext context) => Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
@@ -72,5 +71,4 @@ class SignInToggleButton extends StatelessWidget {
         SignInBody(currentState: currentState, cubit: cubit),
       ],
     );
-  }
 }

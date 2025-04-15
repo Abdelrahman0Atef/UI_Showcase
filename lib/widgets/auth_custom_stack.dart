@@ -6,8 +6,7 @@ class AuthCustomStack extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
+  Widget build(BuildContext context) => Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Stack(
@@ -16,7 +15,7 @@ class AuthCustomStack extends StatelessWidget {
               alignment: Alignment.topLeft,
               child: Image.asset(
                 MyAssets.halfCircle,
-                opacity: AlwaysStoppedAnimation(0.7),
+                opacity: const AlwaysStoppedAnimation(0.7),
               ),
             ),
             Positioned(
@@ -33,5 +32,4 @@ class AuthCustomStack extends StatelessWidget {
         ),
       ],
     );
-  }
 }

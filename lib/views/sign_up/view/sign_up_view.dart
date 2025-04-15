@@ -65,8 +65,7 @@ class SignUpViewState extends State<SignUpView> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
+  Widget build(BuildContext context) => BlocProvider(
       create: (context) => SignUpCubit(),
       child: BlocConsumer<SignUpCubit, SignUpState>(
         listener: (context, state) {
@@ -148,5 +147,4 @@ class SignUpViewState extends State<SignUpView> {
         },
       ),
     );
-  }
 }

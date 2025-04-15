@@ -2,9 +2,7 @@ part of '../sign_in_imports.dart';
 
 class SignInBody extends StatefulWidget {
   const SignInBody({
-    super.key,
-    required this.currentState,
-    required this.cubit,
+    required this.currentState, required this.cubit, super.key,
   });
 
   final SignInInitial currentState;
@@ -16,8 +14,7 @@ class SignInBody extends StatefulWidget {
 
 class SignInBodyState extends State<SignInBody> {
   @override
-  Widget build(BuildContext context) {
-    return Container(
+  Widget build(BuildContext context) => Container(
       padding: EdgeInsets.symmetric(horizontal: 24.w),
       child: AnimatedCrossFade(
         firstChild: SignInPhoneFormWidget(
@@ -34,5 +31,4 @@ class SignInBodyState extends State<SignInBody> {
         duration: const Duration(milliseconds: 10),
       ),
     );
-  }
 }

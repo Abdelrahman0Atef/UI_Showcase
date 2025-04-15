@@ -6,20 +6,16 @@ class AuthTextButton extends StatelessWidget {
   final TextStyle? textStyle;
 
   const AuthTextButton({
-    super.key,
-    required this.text,
-    required this.onPressed,
+    required this.text, required this.onPressed, super.key,
     this.textStyle
   });
 
   @override
-  Widget build(BuildContext context) {
-    return TextButton(
+  Widget build(BuildContext context) => TextButton(
       onPressed: onPressed,
       child: CustomText(
         text: text,
         textStyle: textStyle
       ),
     );
-  }
 }

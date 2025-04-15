@@ -1,28 +1,36 @@
-# This file configures the analyzer, which statically analyzes Dart code to
-# check for errors, warnings, and lints.
-#
-# The issues identified by the analyzer are surfaced in the UI of Dart-enabled
-# IDEs (https://dart.dev/tools#ides-and-editors). The analyzer can also be
-# invoked from the command line by running `flutter analyze`.
-
-# The following line activates a set of recommended lints for Flutter apps,
-# packages, and plugins designed to encourage good coding practices.
 include: package:flutter_lints/flutter.yaml
 
 linter:
-  # The lint rules applied to this project can be customized in the
-  # section below to disable rules from the `package:flutter_lints/flutter.yaml`
-  # included above or to enable additional rules. A list of all available lints
-  # and their documentation is published at https://dart.dev/lints.
-  #
-  # Instead of disabling a lint rule for the entire project in the
-  # section below, it can also be suppressed for a single line of code
-  # or a specific dart file by using the `// ignore: name_of_lint` and
-  # `// ignore_for_file: name_of_lint` syntax on the line or in the file
-  # producing the lint.
   rules:
-    # avoid_print: false  # Uncomment to disable the `avoid_print` rule
-    # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
 
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
+    # 💡 قواعد Dart عامة
+    always_declare_return_types: true        # اجبر المطور يحدد نوع القيمة المرجعة من الدوال
+    avoid_print: true                         # يمنع استخدام print() ويفضّل استخدام Logger
+    avoid_unnecessary_containers: true        # يمنع استخدام Container إذا ما له فائدة واضحة
+    avoid_empty_else: true                    # يمنع ترك else فاضية بدون أي كود
+    avoid_init_to_null: true                  # يمنع تهيئة المتغيرات بـ null لأن Dart تعملها تلقائيًا
+    avoid_returning_null_for_void: true       # لا ترجع null في دوال void
+    curly_braces_in_flow_control_structures: true  # يفرض استخدام الأقواس { } في if / else / for حتى لو سطر واحد
+    prefer_const_constructors: true           # يفضّل استخدام const إذا كان الكائن ثابت
+    prefer_const_literals_to_create_immutables: true  # يفضّل استخدام const مع القوائم والمجموعات الثابتة
+    prefer_final_fields: true                 # يفضّل جعل المتغيرات داخل الكلاس final إن لم تتغير
+    prefer_final_in_for_each: true            # يفضّل final في حلقات forEach لو القيمة ما تتغير
+    prefer_final_locals: true                 # يفضّل final للمتغيرات داخل الدوال إذا ما راح تتغير
+    prefer_single_quotes: true                # يفضّل استخدام ' بدلاً من " ما لم يكن هناك سبب لاستخدام "
+    unnecessary_this: true                    # يمنع استخدام this إذا لم يكن له داعٍ
+    use_key_in_widget_constructors: true      # يتأكد أنك تضيف Key في الكونستركتر للـ Widgets المخصصة
+    sort_child_properties_last: true          # يطلب ترتيب خاصية child في آخر خصائص الـ Widget
+    sized_box_for_whitespace: true            # يفضل استخدام SizedBox بدل Containers فاضية لمساحات بيضاء
+    avoid_redundant_argument_values: true     # يمنع تمرير قيم هي نفسها القيم الافتراضية
+
+    # 💡 قواعد Flutter خاصة
+    depend_on_referenced_packages: true       # يمنع استخدام مكتبات ما تم إضافتها في pubspec.yaml
+    always_put_required_named_parameters_first: true  # يطلب وضع المعاملات المطلوبة أولاً في قائمة المعاملات
+    prefer_const_constructors_in_immutables: true     # يفضّل استخدام const في الكلاسات غير القابلة للتغيير
+    avoid_types_as_parameter_names: true      # يمنع استخدام أسماء أنواع كأسماء للمعاملات (مثل String String)
+
+    # 💡 تحسينات على كتابة الكود
+    annotate_overrides: true                  # يجبرك تضيف @override عند إعادة تعريف دوال
+    unnecessary_overrides: true               # يمنع إعادة تعريف دوال بدون إضافة شيء جديد
+    avoid_renaming_method_parameters: true    # يمنع تغيير أسماء المعاملات بدون سبب عند التوريث
+    prefer_expression_function_bodies: true   # يفضل كتابة الدوال القصيرة كسطر واحد باستخدام =>

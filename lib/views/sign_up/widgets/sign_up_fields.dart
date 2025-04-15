@@ -15,24 +15,11 @@ class SignUpFields extends StatelessWidget {
   final TextEditingController passwordController;
 
   const SignUpFields({
-    super.key,
-    required this.currentState,
-    required this.cubit,
-    required this.firstNameFocusNode,
-    required this.lastNameFocusNode,
-    required this.phoneFocusNode,
-    required this.emailFocusNode,
-    required this.passwordFocusNode,
-    required this.firstNameController,
-    required this.lastNameController,
-    required this.phoneController,
-    required this.emailController,
-    required this.passwordController,
+    required this.currentState, required this.cubit, required this.firstNameFocusNode, required this.lastNameFocusNode, required this.phoneFocusNode, required this.emailFocusNode, required this.passwordFocusNode, required this.firstNameController, required this.lastNameController, required this.phoneController, required this.emailController, required this.passwordController, super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
+  Widget build(BuildContext context) => Column(
       children: [
         CustomTextFieldWithTitle(
           label: LocaleKeys.Auth_firstName.tr(),
@@ -96,7 +83,6 @@ class SignUpFields extends StatelessWidget {
         ),
       ],
     );
-  }
 
   void closeKeyboard(BuildContext context) {
     FocusScope.of(context).unfocus();

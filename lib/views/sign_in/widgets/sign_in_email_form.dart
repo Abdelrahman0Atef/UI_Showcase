@@ -5,9 +5,7 @@ class SignInEmailFormWidget extends StatefulWidget {
   final SignInCubit cubit;
 
   const SignInEmailFormWidget({
-    super.key,
-    required this.currentState,
-    required this.cubit,
+    required this.currentState, required this.cubit, super.key,
   });
 
   @override
@@ -51,8 +49,7 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Form(
+  Widget build(BuildContext context) => Form(
       key: emailFormKey,
       child: Column(
         //crossAxisAlignment: CrossAxisAlignment.center,
@@ -159,7 +156,6 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
         ],
       ),
     );
-  }
 
   @override
   void dispose() {

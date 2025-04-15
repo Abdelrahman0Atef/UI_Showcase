@@ -9,18 +9,13 @@ class CustomButton extends StatelessWidget {
   final Color? borderColor;
 
   const CustomButton({
-    super.key,
-    required this.onPressed,
-    required this.text,
-    required this.textColor,
-    required this.color,
+    required this.onPressed, required this.text, required this.textColor, required this.color, super.key,
     this.width,
     this.borderColor,
   });
 
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
+  Widget build(BuildContext context) => GestureDetector(
       onTap: onPressed,
       child: Container(
         height: 48.h,
@@ -29,7 +24,7 @@ class CustomButton extends StatelessWidget {
           color: color,
           border: Border.all(width: width ?? 0, color: borderColor ?? Colors.white),
           borderRadius: BorderRadius.circular(12.r),
-          boxShadow: [BoxShadow(blurRadius: 8.r,offset: Offset(0, 2),color: MyColors.buttonShadow,),],
+          boxShadow: [BoxShadow(blurRadius: 8.r,offset: const Offset(0, 2),color: MyColors.buttonShadow,),],
         ),
         child: Center(
           child: CustomText(
@@ -43,5 +38,4 @@ class CustomButton extends StatelessWidget {
         ),
       ),
     );
-  }
 }

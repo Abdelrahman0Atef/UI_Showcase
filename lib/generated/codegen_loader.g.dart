@@ -10,9 +10,7 @@ class CodegenLoader extends AssetLoader{
   const CodegenLoader();
 
   @override
-  Future<Map<String, dynamic>?> load(String path, Locale locale) {
-    return Future.value(mapLocales[locale.toString()]);
-  }
+  Future<Map<String, dynamic>?> load(String path, Locale locale) => Future.value(mapLocales[locale.toString()]);
 
   static const Map<String,dynamic> _ar = {
   "Auth": {

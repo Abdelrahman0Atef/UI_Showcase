@@ -6,7 +6,5 @@ abstract class BaseCubit<T> extends Cubit<T> {
 
   void togglePasswordVisibility();
 
-  bool validateForm(GlobalKey<FormState> formKey) {
-    return formKey.currentState!.validate();
-  }
+  bool validateForm(GlobalKey<FormState> formKey) => formKey.currentState!.validate();
 }

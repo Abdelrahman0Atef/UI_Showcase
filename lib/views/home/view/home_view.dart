@@ -6,9 +6,7 @@ class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => Scaffold(
       body: Center(child: Text(LocaleKeys.Auth_rememberMe.tr()),),
     );
-  }
 }

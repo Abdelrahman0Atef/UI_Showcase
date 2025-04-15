@@ -15,12 +15,12 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   runApp(
     EasyLocalization(
-        supportedLocales: [Locale('en'), Locale('ar')],
+        supportedLocales: const [Locale('en'), Locale('ar')],
         path: 'assets/translations',
-        fallbackLocale: Locale('en'),
-        startLocale: Locale('ar'),
-        assetLoader: CodegenLoader(),
-        child: MyApp()
+        fallbackLocale: const Locale('en'),
+        startLocale: const Locale('ar'),
+        assetLoader: const CodegenLoader(),
+        child: const MyApp()
     ),
   );
 }
@@ -29,22 +29,18 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return ScreenUtilInit(
+  Widget build(BuildContext context) => ScreenUtilInit(
       designSize: const Size(390, 844),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (_, child) {
-        return MaterialApp.router(
+      builder: (_, child) => MaterialApp.router(
           debugShowCheckedModeBanner: false,
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
           theme: ThemeData(fontFamily: MyFonts.font),
             routerConfig: AppRouter.router,
-        );
-      },
+        ),
       child: const SigInView(),
     );
-  }
 }

@@ -16,8 +16,7 @@ class CustomTextFieldWithTitle extends StatefulWidget {
   final bool isLastField;
 
   const CustomTextFieldWithTitle({
-    super.key,
-    required this.label,
+    required this.label, super.key,
     this.keyboardType = TextInputType.text,
     this.labelStyle,
     this.inputDecoration,
@@ -33,9 +32,7 @@ class CustomTextFieldWithTitle extends StatefulWidget {
   });
 
   @override
-  CustomTextFieldWithTitleState createState() {
-    return CustomTextFieldWithTitleState();
-  }
+  CustomTextFieldWithTitleState createState() => CustomTextFieldWithTitleState();
 }
 
 class CustomTextFieldWithTitleState extends State<CustomTextFieldWithTitle> {
@@ -57,8 +54,7 @@ class CustomTextFieldWithTitleState extends State<CustomTextFieldWithTitle> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Padding(
+  Widget build(BuildContext context) => Padding(
       padding: EdgeInsets.symmetric(horizontal: 24.r),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,5 +87,4 @@ class CustomTextFieldWithTitleState extends State<CustomTextFieldWithTitle> {
         ],
       ),
     );
-  }
 }

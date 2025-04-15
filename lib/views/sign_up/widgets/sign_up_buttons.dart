@@ -11,15 +11,7 @@ class SignUpButtons extends StatelessWidget {
   final TextEditingController passwordController;
 
   const SignUpButtons({
-    super.key,
-    required this.currentState,
-    required this.cubit,
-    required this.formKey,
-    required this.firstNameController,
-    required this.lastNameController,
-    required this.phoneController,
-    required this.emailController,
-    required this.passwordController,
+    required this.currentState, required this.cubit, required this.formKey, required this.firstNameController, required this.lastNameController, required this.phoneController, required this.emailController, required this.passwordController, super.key,
   });
 
   void closeKeyboard(BuildContext context) {
@@ -27,8 +19,7 @@ class SignUpButtons extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
+  Widget build(BuildContext context) => Column(
       children: [
         Center(
           child: CustomButton(
@@ -68,5 +59,4 @@ class SignUpButtons extends StatelessWidget {
         ),
       ],
     );
-  }
 }

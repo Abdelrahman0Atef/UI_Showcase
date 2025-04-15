@@ -13,7 +13,7 @@ class ValidationHelper {
 
   static String? validateEmail(String? email) {
     if (email == null || email.isEmpty) return LocaleKeys.Auth_pleaseEnterYourEmail.tr();
-    final emailRegex = RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+    final emailRegex = RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
     if (!emailRegex.hasMatch(email)) return LocaleKeys.Auth_pleaseEnterValidEmailAddress.tr();
     return null;
   }
@@ -35,15 +35,9 @@ class ValidationHelper {
     return null;
   }
 
-  static bool hasCapitalLetter(String password) {
-    return RegExp(r'[A-Z]').hasMatch(password);
-  }
+  static bool hasCapitalLetter(String password) => RegExp(r'[A-Z]').hasMatch(password);
 
-  static bool hasNumber(String password) {
-    return RegExp(r'[0-9]').hasMatch(password);
-  }
+  static bool hasNumber(String password) => RegExp(r'[0-9]').hasMatch(password);
 
-  static bool hasValidLength(String password) {
-    return password.length >= 8;
-  }
+  static bool hasValidLength(String password) => password.length >= 8;
 }

@@ -2,8 +2,7 @@ part of 'widgets_imports.dart';
 
 class CustomText extends StatelessWidget {
   const CustomText({
-    super.key,
-    required this.text,
+    required this.text, super.key,
     this.textStyle,
   });
 
@@ -11,13 +10,11 @@ class CustomText extends StatelessWidget {
   final TextStyle? textStyle;
 
   @override
-  Widget build(BuildContext context) {
-    return Text(
+  Widget build(BuildContext context) => Text(
       text,
       style: textStyle ??
-          TextStyle(
+          const TextStyle(
             fontWeight: FontWeight.bold,
           ),
     );
-  }
 }

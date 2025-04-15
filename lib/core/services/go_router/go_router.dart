@@ -9,15 +9,15 @@ class AppRouter {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => SigInView(),
+        builder: (context, state) => const SigInView(),
       ),
       GoRoute(
         path: '/signup',
-        builder: (context, state) => SignUpView(),
+        builder: (context, state) => const SignUpView(),
       ),
       GoRoute(
         path: '/home',
-        builder: (context, state) => HomeView(),
+        builder: (context, state) => const HomeView(),
       ),
     ],
   );

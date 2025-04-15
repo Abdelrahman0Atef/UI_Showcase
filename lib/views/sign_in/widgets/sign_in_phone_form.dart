@@ -5,9 +5,7 @@ class SignInPhoneFormWidget extends StatefulWidget {
   final SignInCubit cubit;
 
   const SignInPhoneFormWidget({
-    super.key,
-    required this.currentState,
-    required this.cubit,
+    required this.currentState, required this.cubit, super.key,
   });
 
   @override
@@ -15,7 +13,7 @@ class SignInPhoneFormWidget extends StatefulWidget {
 }
 
 class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
-  late final SignInCubit _cubit;
+  late final SignInCubit cubit;
   final GlobalKey<FormState> phoneFormKey = GlobalKey<FormState>();
   final TextEditingController phoneController = TextEditingController();
   final FocusNode phoneFocusNode = FocusNode();
@@ -23,7 +21,7 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
   @override
   void initState() {
     super.initState();
-    _cubit = getIt<SignInCubit>();
+    cubit = getIt<SignInCubit>();
     _loadCredentialsFromState();
   }
 
@@ -47,8 +45,7 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Form(
+  Widget build(BuildContext context) => Form(
       key: phoneFormKey,
       child: Column(
         children: [
@@ -130,7 +127,6 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
         ],
       ),
     );
-  }
 
   @override
   void dispose() {
