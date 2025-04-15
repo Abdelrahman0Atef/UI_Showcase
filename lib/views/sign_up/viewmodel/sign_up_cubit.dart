@@ -58,7 +58,7 @@ class SignUpCubit extends BaseCubit<SignUpState> {
         emailError != null ||
         passwordError != null ||
         !currentState.isPasswordValid) {
-      emit(const SignUpFailure(MyStrings.dataValidation));
+      emit(SignUpFailure(LocaleKeys.Auth_thereIsAnErrorInTheData.tr()));
     } else {
       emit(SignUpSuccess());
       Future.delayed(Duration.zero, () => emit(const SignUpInitial()));

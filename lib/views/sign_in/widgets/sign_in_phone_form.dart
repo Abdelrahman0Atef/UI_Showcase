@@ -54,10 +54,10 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
         children: [
           16.verticalSpace,
           CustomTextFieldWithTitle(
-            label: MyStrings.phoneNumber,
+            label: LocaleKeys.Auth_enterPhoneNumber.tr(),
             keyboardType: TextInputType.phone,
-            validator: (value) =>
-                ValidationHelper.validatePhone(value as String?),
+            validator:
+                (value) => ValidationHelper.validatePhone(value as String?),
             focusNode: phoneFocusNode,
             controller: phoneController,
             isLastField: true,
@@ -81,7 +81,7 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
                 },
                 activeColor: Colors.red,
               ),
-              const Text(MyStrings.rememberMe),
+              Text(LocaleKeys.Auth_rememberMe.tr()),
             ],
           ),
           62.verticalSpace,
@@ -95,14 +95,11 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
                   phoneFocusNode: phoneFocusNode,
                   rememberMe: widget.currentState.isPhoneRememberMeChecked,
                 );
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomeView()),
-                );
+                context.go('/home');
               }
             },
             color: Colors.red,
-            text: MyStrings.sendOTP,
+            text: LocaleKeys.Auth_sendConfirmationCode.tr(),
             textColor: Colors.white,
             width: 0.w,
             borderColor: Colors.red,
@@ -111,20 +108,17 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
           CustomButton(
             onPressed: () {
               widget.cubit.signUp();
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SignUpView()),
-              );
+              context.push('/signup');
             },
             color: Colors.white,
-            text: MyStrings.createAccount,
+            text: LocaleKeys.Auth_createAnAccount.tr(),
             textColor: Colors.black,
             width: 1.w,
             borderColor: Colors.black,
           ),
           16.verticalSpace,
           AuthTextButton(
-            text: MyStrings.guest,
+            text: LocaleKeys.Auth_signInAsGuest.tr(),
             onPressed: () {},
             textStyle: TextStyle(
               fontSize: 20.sp,

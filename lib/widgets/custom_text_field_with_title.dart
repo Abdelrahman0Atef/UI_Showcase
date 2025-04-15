@@ -63,21 +63,17 @@ class CustomTextFieldWithTitleState extends State<CustomTextFieldWithTitle> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Align(
-            alignment: Alignment.centerRight,
-            child: CustomText(text: widget.label, textStyle: widget.labelStyle),
-          ),
+          CustomText(text: widget.label, textStyle: widget.labelStyle),
           TextFormField(
             controller: _controller,
             focusNode: _focusNode,
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            textDirection: TextDirection.rtl,
             validator: widget.validator,
             obscureText: widget.obscureText && !widget.isPasswordVisible,
             textInputAction: widget.isLastField ? TextInputAction.done : TextInputAction.next,
             decoration: widget.inputDecoration ??
                 InputDecoration(
-                  prefixIcon: widget.onIconPressed != null
+                  suffixIcon: widget.onIconPressed != null
                       ? IconButton(
                     onPressed: widget.onIconPressed,
                     icon: Icon(

@@ -38,7 +38,7 @@ class SignInToggleButton extends StatelessWidget {
                   ),
                   padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0).w,
                   child: CustomText(
-                    text: MyStrings.phoneSignIn,
+                    text: LocaleKeys.Auth_signInWithPhoneNumber.tr(),
                     textStyle: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: currentState.selectedIndex == 0 ? Colors.white : Colors.black,
@@ -57,7 +57,7 @@ class SignInToggleButton extends StatelessWidget {
                   ),
                   padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                   child: CustomText(
-                    text: MyStrings.userNameSignIn,
+                    text: LocaleKeys.Auth_signIn.tr(),
                     textStyle: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: currentState.selectedIndex == 1 ? Colors.white : Colors.black,

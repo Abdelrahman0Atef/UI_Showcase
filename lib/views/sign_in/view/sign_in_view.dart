@@ -10,8 +10,19 @@ class SigInView extends StatelessWidget {
       child: BlocBuilder<SignInCubit, SignInState>(
         builder: (context, state) {
           final cubit = context.read<SignInCubit>();
-          final currentState = state is SignInInitial ? state : const SignInInitial(1, false);
+          final currentState =
+              state is SignInInitial ? state : const SignInInitial(1, false);
           return Scaffold(
+            floatingActionButton: FloatingActionButton(
+              child: Icon(Icons.language),
+              onPressed: () {
+                if (context.locale == Locale('en')) {
+                  context.setLocale(Locale('ar'));
+                } else {
+                  context.setLocale(Locale('en'));
+                }
+              },
+            ),
             body: SingleChildScrollView(
               child: Column(
                 children: [

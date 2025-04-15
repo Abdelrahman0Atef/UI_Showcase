@@ -17,66 +17,68 @@ class SignUpValidationPassword extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 24.r),
       child: Column(
-        //crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              CustomText(
-                text: MyStrings.passwordHaveCapitalLetter,
-                textStyle: TextStyle(
-                  color: hasCapitalLetter ? Colors.green : Colors.black,
-                ),
-              ),
               Container(
                 width: 7.w,
                 height: 7.h,
-                margin: const EdgeInsets.only(left: 8),
+                margin: const EdgeInsets.symmetric(horizontal: 8).w,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: hasCapitalLetter ? Colors.green : Colors.grey,
                 ),
               ),
+              CustomText(
+                text: LocaleKeys.Auth_atLeastItContainsCapitalLetter.tr(),
+                textStyle: TextStyle(
+                  color: hasCapitalLetter ? Colors.green : Colors.black,
+                ),
+              ),
+
             ],
           ),
           16.verticalSpace,
           Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              CustomText(
-                text: MyStrings.passwordHaveNumber,
-                textStyle: TextStyle(
-                  color: hasNumber ? Colors.green : Colors.black,
-                ),
-              ),
               Container(
                 width: 7.w,
                 height: 7.h,
-                margin: const EdgeInsets.only(left: 8),
+                margin: const EdgeInsets.symmetric(horizontal: 8).w,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: hasNumber ? Colors.green : Colors.grey,
                 ),
               ),
+              CustomText(
+                text: LocaleKeys.Auth_atLeastItContainsOneNumber.tr(),
+                textStyle: TextStyle(
+                  color: hasNumber ? Colors.green : Colors.black,
+                ),
+              ),
+
             ],
           ),
           16.verticalSpace,
           Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              CustomText(
-                text: MyStrings.passwordLength,
-                textStyle: TextStyle(
-                  color: hasValidLength ? Colors.green : Colors.black,
-                ),
-              ),
               Container(
                 width: 7.w,
                 height: 7.h,
-                margin: const EdgeInsets.only(left: 8),
+                margin: const EdgeInsets.symmetric(horizontal: 8).w,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: hasValidLength ? Colors.green : Colors.grey,
+                ),
+              ),
+              CustomText(
+                text: LocaleKeys.Auth_atLeast8Letters.tr(),
+                textStyle: TextStyle(
+                  color: hasValidLength ? Colors.green : Colors.black,
                 ),
               ),
             ],

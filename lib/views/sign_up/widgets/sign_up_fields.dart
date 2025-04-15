@@ -35,7 +35,7 @@ class SignUpFields extends StatelessWidget {
     return Column(
       children: [
         CustomTextFieldWithTitle(
-          label: MyStrings.firstName,
+          label: LocaleKeys.Auth_firstName.tr(),
           validator: (value) => ValidationHelper.validateName(value as String?),
           focusNode: firstNameFocusNode,
           controller: firstNameController,
@@ -46,7 +46,7 @@ class SignUpFields extends StatelessWidget {
         ),
         16.verticalSpace,
         CustomTextFieldWithTitle(
-          label: MyStrings.lastName,
+          label: LocaleKeys.Auth_LastName.tr(),
           validator: (value) => ValidationHelper.validateName(value as String?),
           focusNode: lastNameFocusNode,
           controller: lastNameController,
@@ -57,7 +57,7 @@ class SignUpFields extends StatelessWidget {
         ),
         16.verticalSpace,
         CustomTextFieldWithTitle(
-          label: MyStrings.phone,
+          label: LocaleKeys.Auth_phoneNumber.tr(),
           validator: (value) => ValidationHelper.validatePhone(value as String?),
           focusNode: phoneFocusNode,
           controller: phoneController,
@@ -68,7 +68,7 @@ class SignUpFields extends StatelessWidget {
         ),
         16.verticalSpace,
         CustomTextFieldWithTitle(
-          label: MyStrings.email,
+          label: LocaleKeys.Auth_email.tr(),
           validator: (value) => ValidationHelper.validateEmail(value as String?),
           focusNode: emailFocusNode,
           controller: emailController,
@@ -79,7 +79,7 @@ class SignUpFields extends StatelessWidget {
         ),
         16.verticalSpace,
         CustomTextFieldWithTitle(
-          label: MyStrings.password,
+          label: LocaleKeys.Auth_Password.tr(),
           obscureText: !currentState.isPasswordVisible,
           isPasswordVisible: currentState.isPasswordVisible,
           onIconPressed: cubit.togglePasswordVisibility,

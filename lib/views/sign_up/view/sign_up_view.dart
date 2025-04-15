@@ -92,10 +92,7 @@ class SignUpViewState extends State<SignUpView> {
             }
             //showSnackBar(MyStrings.dataValidation);
           } else if (state is SignUpSuccess) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const HomeView()),
-            );
+            context.go('/home');
           }
         },
         builder: (context, state) {

@@ -55,11 +55,11 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
     return Form(
       key: emailFormKey,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        //crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           16.verticalSpace,
           CustomTextFieldWithTitle(
-            label: MyStrings.userName,
+            label: LocaleKeys.Auth_userName.tr(),
             validator: (value) => ValidationHelper.validateEmail(value as String?),
             focusNode: userNameFocusNode,
             controller: userNameController,
@@ -70,7 +70,7 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
           ),
           24.verticalSpace,
           CustomTextFieldWithTitle(
-            label: MyStrings.password,
+            label: LocaleKeys.Auth_Password.tr(),
             obscureText: !widget.currentState.passwordVisible,
             isPasswordVisible: widget.currentState.passwordVisible,
             onIconPressed: widget.cubit.togglePasswordVisibility,
@@ -100,14 +100,14 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
                 },
                 activeColor: Colors.red,
               ),
-              const Text(MyStrings.rememberMe),
+              Text(LocaleKeys.Auth_rememberMe.tr()),
             ],
           ),
           Align(
             alignment: Alignment.centerRight,
             child: AuthTextButton(
               textStyle: const TextStyle(color: Colors.grey),
-              text: MyStrings.forgetPassword,
+              text: LocaleKeys.Auth_forgotYourPassword.tr(),
               onPressed: () {},
             ),
           ),
@@ -124,14 +124,11 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
                   passwordFocusNode: passwordFocusNode,
                   rememberMe: widget.currentState.isEmailRememberMeChecked,
                 );
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomeView()),
-                );
+                context.go('/home');
               }
             },
             color: Colors.red,
-            text: MyStrings.signIn,
+            text: LocaleKeys.Auth_signIn.tr(),
             textColor: Colors.white,
             width: 0.w,
             borderColor: Colors.red,
@@ -140,20 +137,17 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
           CustomButton(
             onPressed: () {
               widget.cubit.signUp();
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SignUpView()),
-              );
+              context.push('/signup');
             },
             color: Colors.white,
-            text: MyStrings.createAccount,
+            text: LocaleKeys.Auth_createAnAccount.tr(),
             textColor: Colors.black,
             width: 1.w,
             borderColor: Colors.black,
           ),
           16.verticalSpace,
           AuthTextButton(
-            text: MyStrings.guest,
+            text: LocaleKeys.Auth_signInAsGuest.tr(),
             onPressed: () {},
             textStyle: TextStyle(
               fontSize: 20.sp,

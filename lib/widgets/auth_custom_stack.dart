@@ -12,9 +12,12 @@ class AuthCustomStack extends StatelessWidget {
       children: [
         Stack(
           children: [
-            Image.asset(
-              MyAssets.halfCircle,
-              opacity: AlwaysStoppedAnimation(0.7),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Image.asset(
+                MyAssets.halfCircle,
+                opacity: AlwaysStoppedAnimation(0.7),
+              ),
             ),
             Positioned(
               top: 85.h,
