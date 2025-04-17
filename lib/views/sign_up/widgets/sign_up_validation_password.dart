@@ -23,13 +23,13 @@ class SignUpValidationPassword extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 8).w,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: hasCapitalLetter ? Colors.green : Colors.grey,
+                  color: hasCapitalLetter ? MyColors.myGreen : MyColors.myGrey,
                 ),
               ),
               CustomText(
-                text: LocaleKeys.Auth_atLeastItContainsCapitalLetter.tr(),
+                text: MyStrings.atLeastItContainsCapitalLetter,
                 textStyle: TextStyle(
-                  color: hasCapitalLetter ? Colors.green : Colors.black,
+                  color: hasCapitalLetter ? MyColors.myGreen : MyColors.myBlack,
                 ),
               ),
 
@@ -44,13 +44,13 @@ class SignUpValidationPassword extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 8).w,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: hasNumber ? Colors.green : Colors.grey,
+                  color: hasNumber ? MyColors.myGreen : MyColors.myGrey,
                 ),
               ),
               CustomText(
-                text: LocaleKeys.Auth_atLeastItContainsOneNumber.tr(),
+                text: MyStrings.atLeastItContainsOneNumber,
                 textStyle: TextStyle(
-                  color: hasNumber ? Colors.green : Colors.black,
+                  color: hasNumber ? MyColors.myGreen : MyColors.myBlack,
                 ),
               ),
 
@@ -65,13 +65,13 @@ class SignUpValidationPassword extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 8).w,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: hasValidLength ? Colors.green : Colors.grey,
+                  color: hasValidLength ? MyColors.myGreen : MyColors.myGrey,
                 ),
               ),
               CustomText(
-                text: LocaleKeys.Auth_atLeast8Letters.tr(),
+                text: MyStrings.atLeast8Letters,
                 textStyle: TextStyle(
-                  color: hasValidLength ? Colors.green : Colors.black,
+                  color: hasValidLength ? MyColors.myGreen : MyColors.myBlack,
                 ),
               ),
             ],

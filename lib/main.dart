@@ -1,46 +1,50 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:untitled/core/resources/my_fonts.dart';
-import 'package:untitled/core/services/go_router/go_router.dart';
+import 'package:untitled/core/resources/my_routs.dart';
+import 'package:untitled/core/resources/my_translations.dart';
+import 'package:untitled/core/resources/shared_keys.dart';
+import 'package:untitled/core/services/local_storage_data/local_storage_data.dart';
 import 'package:untitled/core/services/local_storage_data/setup_services.dart';
-import 'package:untitled/generated/codegen_loader.g.dart';
-import 'package:untitled/views/sign_in/sign_in_imports.dart';
-
-
+import 'package:untitled/my_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setupServices();
   await EasyLocalization.ensureInitialized();
+
+  final initialRoute = await determineInitialRoute();
+
   runApp(
     EasyLocalization(
-        supportedLocales: const [Locale('en'), Locale('ar')],
-        path: 'assets/translations',
-        fallbackLocale: const Locale('en'),
-        startLocale: const Locale('ar'),
-        assetLoader: const CodegenLoader(),
-        child: const MyApp()
+      supportedLocales: MyTranslations.supportedLocales,
+      path: MyTranslations.translationsPath,
+      fallbackLocale: MyTranslations.arabicTranslations,
+      child: MyApp(initialRoute: initialRoute),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+Future<String> determineInitialRoute() async {
+  final storageService = getIt<LocalStorageService>();
 
-  @override
-  Widget build(BuildContext context) => ScreenUtilInit(
-      designSize: const Size(390, 844),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (_, child) => MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
-          theme: ThemeData(fontFamily: MyFonts.font),
-            routerConfig: AppRouter.router,
-        ),
-      child: const SigInView(),
-    );
+  final emailRememberMe =
+      storageService.getIsChecked(SharedKeys.emailRememberMeKey) ?? false;
+  if (emailRememberMe) {
+    final email = storageService.getString(SharedKeys.emailKey) ?? '';
+    final password = storageService.getString(SharedKeys.passwordKey) ?? '';
+
+    if (email.isNotEmpty && password.isNotEmpty) {
+      return MyRouts.homeView;
+    }
+  }
+  final phoneRememberMe =
+      storageService.getIsChecked(SharedKeys.phoneRememberMeKey) ?? false;
+  if (phoneRememberMe) {
+    final phone = storageService.getString(SharedKeys.phoneKey) ?? '';
+
+    if (phone.isNotEmpty) {
+      return MyRouts.homeView;
+    }
+  }
+  return MyRouts.signInView;
 }

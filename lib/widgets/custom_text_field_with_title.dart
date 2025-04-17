@@ -14,6 +14,7 @@ class CustomTextFieldWithTitle extends StatefulWidget {
   final ValueChanged<String>? onSubmitted;
   final void Function(String)? onChanged;
   final bool isLastField;
+  final bool isPhoneField;
 
   const CustomTextFieldWithTitle({
     required this.label, super.key,
@@ -29,6 +30,7 @@ class CustomTextFieldWithTitle extends StatefulWidget {
     this.onSubmitted,
     this.onChanged,
     this.isLastField = false,
+    this.isPhoneField = false,
   });
 
   @override
@@ -61,6 +63,9 @@ class CustomTextFieldWithTitleState extends State<CustomTextFieldWithTitle> {
         children: [
           CustomText(text: widget.label, textStyle: widget.labelStyle),
           TextFormField(
+            inputFormatters: widget.isPhoneField ? [
+              LengthLimitingTextInputFormatter(11),
+            ] : [],
             controller: _controller,
             focusNode: _focusNode,
             autovalidateMode: AutovalidateMode.onUserInteraction,

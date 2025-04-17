@@ -1,38 +1,41 @@
-class MyStrings {
-  // static const phoneSignIn = 'الدخول برقم الهاتف';
-  // static const userNameSignIn = 'تسجيل الدخول';
-  // static const phoneNumber = 'ادخل رقم الهاتف';
-  // static const sendOTP = 'ارسال رمز التأكيد';
-  // static const createAccount = 'انشاء حساب';
-  // static const guest = 'الدخول كزائر';
-  // static const userName = 'اسم المستخدم';
-  // static const password = 'الرقم السري';
-  // static const forgetPassword = 'هل نسيت كلمة السر؟';
-  // static const signIn = 'الدخول';
-  // static const enterPhoneNumber = 'يرجى إدخال رقم الهاتف';
-  // static const phoneNumbersCheck = 'رقم الهاتف يجب أن يحتوي على 11 رقمًا';
-  // static const phoneNumberStart = 'رقم الهاتف يجب أن يبدأ بـ 01';
-  // static const phoneNumberHaveOnlyNumbers = 'رقم الهاتف يجب أن يحتوي على أرقام فقط';
-  // static const enterEmail = 'يرجى إدخال البريد الإلكتروني';
-  // static const emailCheck = 'يرجى إدخال بريد إلكتروني صحيح';
-  // static const firstName = 'الاسم الاول';
-  // static const lastName = 'الاسم الاخير';
-  // static const email = 'البريد الالكتروني';
-  // static const phone = 'رقم الهاتف';
-  // static const passwordHaveCapitalLetter = 'علي الاقل يحتوي علي حرف كبير';
-  // static const passwordHaveNumber = 'علي الاقل يحتوي علي رقم واحد';
-  // static const passwordLength = 'علي الاقل مكون من 8 حروف';
-  // static const passwordEmpty = 'كلمة السر لا يمكن أن تكون فارغه';
-  // static const nameEmpty = 'الاسم لا يمكن أن يكون فارغا';
-  // static const nameHaveOnlyLetters = 'الاسم يجب أن يحتوي على حروف فقط';
-  // static const dataValidation = 'فيه خطأ في البيانات من فضلك راجع الحقول';
-  // static const rememberMe = 'تذكرني';
-  // static const loginSuccessful = 'تم تسجيل الدخول بنجاح';
+import 'package:easy_localization/easy_localization.dart';
 
-  //SharedPrefsKeys
-  static const emailKey = 'saved_email';
-  static const passwordKey = 'saved_password';
-  static const phoneKey = 'saved_phone';
-  static const emailRememberMeKey = 'email_remember_me';
-  static const phoneRememberMeKey = 'phone_remember_me';
+class MyStrings {
+  static String get signInWithPhoneNumber => 'signInWithPhoneNumber'.tr();
+  static String get signIn => 'signIn'.tr();
+  static String get enterPhoneNumber => 'enterPhoneNumber'.tr();
+  static String get sendConfirmationCode => 'sendConfirmationCode'.tr();
+  static String get createAnAccount => 'createAnAccount'.tr();
+  static String get signInAsGuest => 'signInAsGuest'.tr();
+  static String get userName => 'userName'.tr();
+  static String get password => 'Password'.tr();
+  static String get forgotYourPassword => 'forgotYourPassword'.tr();
+  static String get pleaseEnterPhoneNumber => 'pleaseEnterPhoneNumber'.tr();
+  static String get phoneNumberMustContain11Digits => 'phoneNumberMustContain11Digits'.tr();
+  static String get phoneNumberMustStartWith01 => 'phoneNumberMustStartWith01'.tr();
+  static String get phoneNumberMustContainNumbersOnly => 'phoneNumberMustContainNumbersOnly'.tr();
+  static String get pleaseEnterYourEmail => 'pleaseEnterYourEmail'.tr();
+  static String get pleaseEnterValidEmailAddress => 'pleaseEnterValidEmailAddress'.tr();
+  static String get firstName => 'firstName'.tr();
+  static String get lastName => 'LastName'.tr();
+  static String get email => 'email'.tr();
+  static String get phone => 'phoneNumber'.tr();
+  static String get atLeastItContainsCapitalLetter => 'atLeastItContainsCapitalLetter'.tr();
+  static String get atLeastItContainsOneNumber => 'atLeastItContainsOneNumber'.tr();
+  static String get atLeast8Letters => 'atLeast8Letters'.tr();
+  static String get passwordCannotBeEmpty => 'passwordCannotBeEmpty'.tr();
+  static String get nameCannotBeEmpty => 'nameCannotBeEmpty'.tr();
+  static String get nameMustContainOnlyLetters => 'nameMustContainOnlyLetters'.tr();
+  static String get thereIsAnErrorInTheData => 'thereIsAnErrorInTheData'.tr();
+  static String get rememberMe => 'rememberMe'.tr();
+  static String get youHaveBeenLoggedInSuccessfully => 'youHaveBeenLoggedInSuccessfully'.tr();
+  static String get signOut => 'signOut'.tr();
+  static String get welcomeGeneric => 'welcomeGeneric'.tr();
+  static String get welcomeRegisteredUser => 'welcomeRegisteredUser'.tr();
+  static String get title => 'title'.tr();
+  static String get welcomeEmailUser => 'welcomeEmailUser'.tr();
+  static String get welcomePhoneUser => 'welcomePhoneUser'.tr();
+
+  static const String signOutError = 'حدث خطأ أثناء تسجيل الخروج';
+  static const String loadDataError = 'حدث خطأ أثناء تحميل بيانات المستخدم';
 }

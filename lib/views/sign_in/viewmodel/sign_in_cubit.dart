@@ -7,11 +7,20 @@ class SignInCubit extends BaseCubit<SignInState> {
     _loadSavedCredentials();
   }
 
-  static const String _emailKey = MyStrings.emailKey;
-  static const String _passwordKey = MyStrings.passwordKey;
-  static const String _phoneKey = MyStrings.phoneKey;
-  static const String _emailRememberMeKey = MyStrings.emailRememberMeKey;
-  static const String _phoneRememberMeKey = MyStrings.phoneRememberMeKey;
+  static const String _emailKey = SharedKeys.emailKey;
+  static const String _passwordKey = SharedKeys.passwordKey;
+  static const String _phoneKey = SharedKeys.phoneKey;
+  static const String _emailRememberMeKey = SharedKeys.emailRememberMeKey;
+  static const String _phoneRememberMeKey = SharedKeys.phoneRememberMeKey;
+
+
+  void changeTranslations(BuildContext context) async{
+    final newLocale = context.locale == MyTranslations.englishTranslations
+        ? MyTranslations.arabicTranslations
+        : MyTranslations.englishTranslations;
+
+    await context.setLocale(newLocale);
+  }
 
   Future<void> saveEmailCredentials(
       String email,
@@ -87,6 +96,31 @@ class SignInCubit extends BaseCubit<SignInState> {
         savedPhone: phone,
       ),
     );
+  }
+
+  // New method to check if saved credentials are valid
+  bool areCredentialsValid() {
+    final email = _storage.getString(_emailKey) ?? '';
+    final password = _storage.getString(_passwordKey) ?? '';
+    final phone = _storage.getString(_phoneKey) ?? '';
+    final emailRememberMe = _storage.getIsChecked(_emailRememberMeKey) ?? false;
+    final phoneRememberMe = _storage.getIsChecked(_phoneRememberMeKey) ?? false;
+
+    if (emailRememberMe &&
+        email.isNotEmpty &&
+        password.isNotEmpty &&
+        ValidationHelper.validateEmail(email) == null &&
+        ValidationHelper.validatePassword(password) == null) {
+      return true;
+    }
+
+    if (phoneRememberMe &&
+        phone.isNotEmpty &&
+        ValidationHelper.validatePhone(phone) == null) {
+      return true;
+    }
+
+    return false;
   }
 
   void toggleSignInMethod(int index) {

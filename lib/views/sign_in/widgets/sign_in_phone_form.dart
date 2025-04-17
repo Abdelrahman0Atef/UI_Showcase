@@ -5,7 +5,9 @@ class SignInPhoneFormWidget extends StatefulWidget {
   final SignInCubit cubit;
 
   const SignInPhoneFormWidget({
-    required this.currentState, required this.cubit, super.key,
+    required this.currentState,
+    required this.cubit,
+    super.key,
   });
 
   @override
@@ -46,87 +48,85 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
 
   @override
   Widget build(BuildContext context) => Form(
-      key: phoneFormKey,
-      child: Column(
-        children: [
-          16.verticalSpace,
-          CustomTextFieldWithTitle(
-            label: LocaleKeys.Auth_enterPhoneNumber.tr(),
-            keyboardType: TextInputType.phone,
-            validator:
-                (value) => ValidationHelper.validatePhone(value as String?),
-            focusNode: phoneFocusNode,
-            controller: phoneController,
-            isLastField: true,
-          ),
-          8.verticalSpace,
-          Row(
-            children: [
-              Checkbox(
-                value: widget.currentState.isPhoneRememberMeChecked,
-                onChanged: (value) {
-                  widget.cubit.togglePhoneRememberMe(
-                    value ?? false,
-                    phoneController.text,
-                  );
-                  if (value == true) {
-                    widget.cubit.savePhoneCredentials(
-                      phoneController.text,
-                      true,
-                    );
-                  }
-                },
-                activeColor: Colors.red,
-              ),
-              Text(LocaleKeys.Auth_rememberMe.tr()),
-            ],
-          ),
-          62.verticalSpace,
-          CustomButton(
-            onPressed: () {
-              _closeKeyboard();
-              if (phoneFormKey.currentState!.validate()) {
-                widget.cubit.validatePhoneSignIn(
-                  formKey: phoneFormKey,
-                  phone: phoneController.text,
-                  phoneFocusNode: phoneFocusNode,
-                  rememberMe: widget.currentState.isPhoneRememberMeChecked,
+    key: phoneFormKey,
+    child: Column(
+      children: [
+        16.verticalSpace,
+        CustomTextFieldWithTitle(
+          isPhoneField: true,
+          label: MyStrings.phone,
+          keyboardType: TextInputType.phone,
+          validator:
+              (value) => ValidationHelper.validatePhone(value as String?),
+          focusNode: phoneFocusNode,
+          controller: phoneController,
+          isLastField: true,
+        ),
+        8.verticalSpace,
+        Row(
+          children: [
+            Checkbox(
+              value: widget.currentState.isPhoneRememberMeChecked,
+              onChanged: (value) {
+                widget.cubit.togglePhoneRememberMe(
+                  value ?? false,
+                  phoneController.text,
                 );
-                context.go('/home');
-              }
-            },
-            color: Colors.red,
-            text: LocaleKeys.Auth_sendConfirmationCode.tr(),
-            textColor: Colors.white,
-            width: 0.w,
-            borderColor: Colors.red,
-          ),
-          16.verticalSpace,
-          CustomButton(
-            onPressed: () {
-              widget.cubit.signUp();
-              context.push('/signup');
-            },
-            color: Colors.white,
-            text: LocaleKeys.Auth_createAnAccount.tr(),
-            textColor: Colors.black,
-            width: 1.w,
-            borderColor: Colors.black,
-          ),
-          16.verticalSpace,
-          AuthTextButton(
-            text: LocaleKeys.Auth_signInAsGuest.tr(),
-            onPressed: () {},
-            textStyle: TextStyle(
-              fontSize: 20.sp,
-              decoration: TextDecoration.underline,
-              color: Colors.grey,
-              decorationColor: Colors.grey,
+                if (value == true) {
+                  widget.cubit.savePhoneCredentials(phoneController.text, true);
+                }
+              },
+              activeColor: MyColors.myRed,
             ),
+            Text(MyStrings.rememberMe),
+          ],
+        ),
+        62.verticalSpace,
+        CustomButton(
+          onPressed: () {
+            _closeKeyboard();
+            if (phoneFormKey.currentState!.validate()) {
+              widget.cubit.validatePhoneSignIn(
+                formKey: phoneFormKey,
+                phone: phoneController.text,
+                phoneFocusNode: phoneFocusNode,
+                rememberMe: widget.currentState.isPhoneRememberMeChecked,
+              );
+              context.replaceNamed(MyRouts.homeView);
+            }
+          },
+          color: MyColors.myRed,
+          text: MyStrings.sendConfirmationCode,
+          textColor: MyColors.myWhite,
+          width: 0.w,
+          borderColor: MyColors.myRed,
+        ),
+        16.verticalSpace,
+        CustomButton(
+          onPressed: () {
+            widget.cubit.signUp();
+            context.pushNamed(MyRouts.signUpView);
+          },
+          color: MyColors.myWhite,
+          text: MyStrings.createAnAccount,
+          textColor: Colors.black,
+          width: 1.w,
+          borderColor: Colors.black,
+        ),
+        16.verticalSpace,
+        AuthTextButton(
+          text: MyStrings.signInAsGuest,
+          onPressed: () {},
+          textStyle: TextStyle(
+            fontSize: 20.sp,
+            decoration: TextDecoration.underline,
+            color: MyColors.myGrey,
+            decorationColor: MyColors.myGrey,
           ),
-        ],
-      ),
-    );
+        ),
+      ],
+    ),
+  );
 
   @override
   void dispose() {

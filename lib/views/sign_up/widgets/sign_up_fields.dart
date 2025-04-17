@@ -22,7 +22,7 @@ class SignUpFields extends StatelessWidget {
   Widget build(BuildContext context) => Column(
       children: [
         CustomTextFieldWithTitle(
-          label: LocaleKeys.Auth_firstName.tr(),
+          label: MyStrings.firstName,
           validator: (value) => ValidationHelper.validateName(value as String?),
           focusNode: firstNameFocusNode,
           controller: firstNameController,
@@ -33,7 +33,7 @@ class SignUpFields extends StatelessWidget {
         ),
         16.verticalSpace,
         CustomTextFieldWithTitle(
-          label: LocaleKeys.Auth_LastName.tr(),
+          label: MyStrings.lastName,
           validator: (value) => ValidationHelper.validateName(value as String?),
           focusNode: lastNameFocusNode,
           controller: lastNameController,
@@ -44,7 +44,8 @@ class SignUpFields extends StatelessWidget {
         ),
         16.verticalSpace,
         CustomTextFieldWithTitle(
-          label: LocaleKeys.Auth_phoneNumber.tr(),
+          isPhoneField: true,
+          label: MyStrings.phone,
           validator: (value) => ValidationHelper.validatePhone(value as String?),
           focusNode: phoneFocusNode,
           controller: phoneController,
@@ -52,10 +53,11 @@ class SignUpFields extends StatelessWidget {
             phoneFocusNode.unfocus();
             emailFocusNode.requestFocus();
           },
+          keyboardType: TextInputType.number,
         ),
         16.verticalSpace,
         CustomTextFieldWithTitle(
-          label: LocaleKeys.Auth_email.tr(),
+          label: MyStrings.email,
           validator: (value) => ValidationHelper.validateEmail(value as String?),
           focusNode: emailFocusNode,
           controller: emailController,
@@ -66,7 +68,7 @@ class SignUpFields extends StatelessWidget {
         ),
         16.verticalSpace,
         CustomTextFieldWithTitle(
-          label: LocaleKeys.Auth_Password.tr(),
+          label: MyStrings.password,
           obscureText: !currentState.isPasswordVisible,
           isPasswordVisible: currentState.isPasswordVisible,
           onIconPressed: cubit.togglePasswordVisibility,

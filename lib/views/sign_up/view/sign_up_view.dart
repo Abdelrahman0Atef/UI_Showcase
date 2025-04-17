@@ -54,16 +54,6 @@ class SignUpViewState extends State<SignUpView> {
     FocusScope.of(context).unfocus();
   }
 
-  void showSnackBar(String message, {Color backgroundColor = Colors.red}) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        backgroundColor: backgroundColor,
-        duration: const Duration(seconds: 3),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) => BlocProvider(
       create: (context) => SignUpCubit(),
@@ -89,7 +79,6 @@ class SignUpViewState extends State<SignUpView> {
                     null) {
               passwordFocusNode.requestFocus();
             }
-            //showSnackBar(MyStrings.dataValidation);
           } else if (state is SignUpSuccess) {
             context.go('/home');
           }

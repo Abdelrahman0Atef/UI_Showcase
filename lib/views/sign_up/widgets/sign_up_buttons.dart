@@ -32,24 +32,24 @@ class SignUpButtons extends StatelessWidget {
                 lastName: lastNameController.text,
                 phone: phoneController.text,
                 email: emailController.text,
-                password: passwordController.text,
+                password: passwordController.text, context: context,
               );
               cubit.updatePasswordValidation(passwordController.text);
             }
                 : () {},
-            text: LocaleKeys.Auth_createAnAccount.tr(),
-            textColor: Colors.white,
-            color: currentState.isPasswordValid ? Colors.red : Colors.grey,
+            text: MyStrings.createAnAccount,
+            textColor: MyColors.myWhite,
+            color: currentState.isPasswordValid ? MyColors.myRed : MyColors.myGrey,
             width: 0.w,
-            borderColor: currentState.isPasswordValid ? Colors.red : Colors.grey,
+            borderColor: currentState.isPasswordValid ? MyColors.myRed : MyColors.myGrey,
           ),
         ),
         8.verticalSpace,
         Center(
           child: AuthTextButton(
-            text: LocaleKeys.Auth_signIn.tr(),
+            text: MyStrings.signIn,
             onPressed: () {
-              context.go('/');
+              context.pushNamed(MyRouts.signInView);
             },
             textStyle: const TextStyle(
               color: Colors.black,
