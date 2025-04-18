@@ -4,33 +4,33 @@ linter:
   rules:
 
     # 💡 قواعد Dart عامة
-    always_declare_return_types: true        # اجبر المطور يحدد نوع القيمة المرجعة من الدوال
-    avoid_print: true                         # يمنع استخدام print() ويفضّل استخدام Logger
-    avoid_unnecessary_containers: true        # يمنع استخدام Container إذا ما له فائدة واضحة
-    avoid_empty_else: true                    # يمنع ترك else فاضية بدون أي كود
-    avoid_init_to_null: true                  # يمنع تهيئة المتغيرات بـ null لأن Dart تعملها تلقائيًا
-    avoid_returning_null_for_void: true       # لا ترجع null في دوال void
-    curly_braces_in_flow_control_structures: true  # يفرض استخدام الأقواس { } في if / else / for حتى لو سطر واحد
-    prefer_const_constructors: true           # يفضّل استخدام const إذا كان الكائن ثابت
-    prefer_const_literals_to_create_immutables: true  # يفضّل استخدام const مع القوائم والمجموعات الثابتة
-    prefer_final_fields: true                 # يفضّل جعل المتغيرات داخل الكلاس final إن لم تتغير
-    prefer_final_in_for_each: true            # يفضّل final في حلقات forEach لو القيمة ما تتغير
-    prefer_final_locals: true                 # يفضّل final للمتغيرات داخل الدوال إذا ما راح تتغير
-    prefer_single_quotes: true                # يفضّل استخدام ' بدلاً من " ما لم يكن هناك سبب لاستخدام "
-    unnecessary_this: true                    # يمنع استخدام this إذا لم يكن له داعٍ
-    use_key_in_widget_constructors: true      # يتأكد أنك تضيف Key في الكونستركتر للـ Widgets المخصصة
-    sort_child_properties_last: true          # يطلب ترتيب خاصية child في آخر خصائص الـ Widget
-    sized_box_for_whitespace: true            # يفضل استخدام SizedBox بدل Containers فاضية لمساحات بيضاء
-    avoid_redundant_argument_values: true     # يمنع تمرير قيم هي نفسها القيم الافتراضية
+    always_declare_return_types: true        
+    avoid_print: true                        
+    avoid_unnecessary_containers: true       
+    avoid_empty_else: true                   
+    avoid_init_to_null: true                 
+    avoid_returning_null_for_void: true      
+    curly_braces_in_flow_control_structures: true  
+    prefer_const_constructors: true          
+    prefer_const_literals_to_create_immutables: true  
+    prefer_final_fields: true                 
+    prefer_final_in_for_each: true            
+    prefer_final_locals: true                 
+    prefer_single_quotes: true               
+    unnecessary_this: true                    
+    use_key_in_widget_constructors: true     
+    sort_child_properties_last: true          
+    sized_box_for_whitespace: true            
+    avoid_redundant_argument_values: true     
 
     # 💡 قواعد Flutter خاصة
-    depend_on_referenced_packages: true       # يمنع استخدام مكتبات ما تم إضافتها في pubspec.yaml
-    always_put_required_named_parameters_first: true  # يطلب وضع المعاملات المطلوبة أولاً في قائمة المعاملات
-    prefer_const_constructors_in_immutables: true     # يفضّل استخدام const في الكلاسات غير القابلة للتغيير
-    avoid_types_as_parameter_names: true      # يمنع استخدام أسماء أنواع كأسماء للمعاملات (مثل String String)
+    depend_on_referenced_packages: true       
+    always_put_required_named_parameters_first: true  
+    prefer_const_constructors_in_immutables: true     
+    avoid_types_as_parameter_names: true      
 
     # 💡 تحسينات على كتابة الكود
-    annotate_overrides: true                  # يجبرك تضيف @override عند إعادة تعريف دوال
-    unnecessary_overrides: true               # يمنع إعادة تعريف دوال بدون إضافة شيء جديد
-    avoid_renaming_method_parameters: true    # يمنع تغيير أسماء المعاملات بدون سبب عند التوريث
-    prefer_expression_function_bodies: true   # يفضل كتابة الدوال القصيرة كسطر واحد باستخدام =>
+    annotate_overrides: true                  
+    unnecessary_overrides: true               
+    avoid_renaming_method_parameters: true   
+    prefer_expression_function_bodies: true   
