@@ -3,7 +3,6 @@ include: package:flutter_lints/flutter.yaml
 linter:
   rules:
 
-    # 💡 قواعد Dart عامة
     always_declare_return_types: true        
     avoid_print: true                        
     avoid_unnecessary_containers: true       
@@ -23,13 +22,11 @@ linter:
     sized_box_for_whitespace: true            
     avoid_redundant_argument_values: true     
 
-    # 💡 قواعد Flutter خاصة
     depend_on_referenced_packages: true       
     always_put_required_named_parameters_first: true  
     prefer_const_constructors_in_immutables: true     
     avoid_types_as_parameter_names: true      
 
-    # 💡 تحسينات على كتابة الكود
     annotate_overrides: true                  
     unnecessary_overrides: true               
     avoid_renaming_method_parameters: true   
