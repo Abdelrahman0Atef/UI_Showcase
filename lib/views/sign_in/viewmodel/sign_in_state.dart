@@ -24,6 +24,24 @@ class SignInInitial extends SignInState {
       });
 
   bool get isPasswordVisible => passwordVisible;
+
+  SignInInitial copyWith({
+    int? selectedIndex,
+    bool? passwordVisible,
+    bool? isEmailRememberMeChecked,
+    bool? isPhoneRememberMeChecked,
+    String? savedEmail,
+    String? savedPassword,
+    String? savedPhone,
+  }) => SignInInitial(
+      selectedIndex ?? this.selectedIndex,
+      passwordVisible ?? this.passwordVisible,
+      isEmailRememberMeChecked: isEmailRememberMeChecked ?? this.isEmailRememberMeChecked,
+      isPhoneRememberMeChecked: isPhoneRememberMeChecked ?? this.isPhoneRememberMeChecked,
+      savedEmail: savedEmail ?? this.savedEmail,
+      savedPassword: savedPassword ?? this.savedPassword,
+      savedPhone: savedPhone ?? this.savedPhone,
+    );
 }
 
 class SignInLoading extends SignInState {}

@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:untitled/core/base/go_router/go_router.dart';
 import 'package:untitled/core/resources/app_settings.dart';
 import 'package:untitled/core/resources/my_fonts.dart';
-import 'package:untitled/core/services/go_router/go_router.dart';
 
 class MyApp extends StatelessWidget {
   final String initialRoute;
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       theme: ThemeData(fontFamily: MyFonts.font),
-      routerConfig: AppRouter.createRouter(initialRoute),
+      routerConfig: AppRouter.router,
     ),
   );
 }

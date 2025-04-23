@@ -8,7 +8,7 @@ import 'package:untitled/core/resources/my_routs.dart';
 import 'package:untitled/core/resources/my_strings.dart';
 import 'package:untitled/core/resources/shared_keys.dart';
 import 'package:untitled/core/services/local_storage_data/local_storage_data.dart';
-import 'package:untitled/core/services/local_storage_data/setup_services.dart';
+import 'package:untitled/core/services/locator_services/locator_services.dart';
 import 'package:untitled/widgets/widgets_imports.dart';
 import 'package:untitled/core/base/cubit/base_cubit.dart';
 import 'package:untitled/core/base/cubit/base_state.dart';

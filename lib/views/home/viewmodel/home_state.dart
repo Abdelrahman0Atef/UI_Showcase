@@ -5,33 +5,36 @@ class HomeInitial extends HomeState {}
 class HomeLoading extends HomeState {}
 
 class HomeLoaded extends HomeState {
-  final String? userFullName;
+  final bool isRegisteredUser;
   final String? userEmail;
   final String? userPhone;
-  final bool isRegisteredUser;
+  final String? userFullName;
+  final int selectedIndex;
 
   HomeLoaded({
-    this.userFullName,
+    this.isRegisteredUser = false,
     this.userEmail,
     this.userPhone,
-    this.isRegisteredUser = false,
+    this.userFullName,
+    this.selectedIndex = 0,
   });
 
   HomeLoaded copyWith({
-    String? userFullName,
+    bool? isRegisteredUser,
     String? userEmail,
     String? userPhone,
-    bool? isRegisteredUser,
+    String? userFullName,
+    int? selectedIndex,
   }) => HomeLoaded(
-      userFullName: userFullName ?? this.userFullName,
+      isRegisteredUser: isRegisteredUser ?? this.isRegisteredUser,
       userEmail: userEmail ?? this.userEmail,
       userPhone: userPhone ?? this.userPhone,
-      isRegisteredUser: isRegisteredUser ?? this.isRegisteredUser,
+      userFullName: userFullName ?? this.userFullName,
+      selectedIndex: selectedIndex ?? this.selectedIndex,
     );
 }
 
 class HomeError extends HomeState {
   final String message;
-
   HomeError(this.message);
 }

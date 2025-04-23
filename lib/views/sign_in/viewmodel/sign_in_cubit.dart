@@ -7,218 +7,74 @@ class SignInCubit extends BaseCubit<SignInState> {
     _loadSavedCredentials();
   }
 
-  static const String _emailKey = SharedKeys.emailKey;
-  static const String _passwordKey = SharedKeys.passwordKey;
-  static const String _phoneKey = SharedKeys.phoneKey;
-  static const String _emailRememberMeKey = SharedKeys.emailRememberMeKey;
-  static const String _phoneRememberMeKey = SharedKeys.phoneRememberMeKey;
-
-
-  void changeTranslations(BuildContext context) async{
-    final newLocale = context.locale == MyTranslations.englishTranslations
-        ? MyTranslations.arabicTranslations
-        : MyTranslations.englishTranslations;
-
-    await context.setLocale(newLocale);
-  }
-
-  Future<void> saveEmailCredentials(
-      String email,
-      String password,
-      bool rememberMe,
-      ) async {
-    if (rememberMe) {
-      await _storage.setString(_emailKey, email);
-      await _storage.setString(_passwordKey, password);
-      await _storage.setIsChecked(_emailRememberMeKey, true);
-    } else {
-      await _storage.remove(_emailKey);
-      await _storage.remove(_passwordKey);
-      await _storage.setIsChecked(_emailRememberMeKey, false);
-    }
-
-    if (state is SignInInitial) {
-      final currentState = state as SignInInitial;
-      emit(
-        SignInInitial(
-          currentState.selectedIndex,
-          currentState.passwordVisible,
-          isEmailRememberMeChecked: rememberMe,
-          isPhoneRememberMeChecked: currentState.isPhoneRememberMeChecked,
-          savedEmail: rememberMe ? email : '',
-          savedPassword: rememberMe ? password : '',
-          savedPhone: currentState.savedPhone,
-        ),
-      );
-    }
-  }
-
-  Future<void> savePhoneCredentials(String phone, bool rememberMe) async {
-    if (rememberMe) {
-      await _storage.setString(_phoneKey, phone);
-      await _storage.setIsChecked(_phoneRememberMeKey, true);
-    } else {
-      await _storage.remove(_phoneKey);
-      await _storage.setIsChecked(_phoneRememberMeKey, false);
-    }
-
-    if (state is SignInInitial) {
-      final currentState = state as SignInInitial;
-      emit(
-        SignInInitial(
-          currentState.selectedIndex,
-          currentState.passwordVisible,
-          isEmailRememberMeChecked: currentState.isEmailRememberMeChecked,
-          isPhoneRememberMeChecked: rememberMe,
-          savedEmail: currentState.savedEmail,
-          savedPassword: currentState.savedPassword,
-          savedPhone: rememberMe ? phone : '',
-        ),
-      );
-    }
-  }
+  static const _emailKey = SharedKeys.email;
+  static const _passwordKey = SharedKeys.password;
+  static const _phoneKey = SharedKeys.phone;
+  static const _emailRememberKey = SharedKeys.emailRememberMe;
+  static const _phoneRememberKey = SharedKeys.phoneRememberMe;
 
   Future<void> _loadSavedCredentials() async {
     final email = _storage.getString(_emailKey) ?? '';
     final password = _storage.getString(_passwordKey) ?? '';
     final phone = _storage.getString(_phoneKey) ?? '';
-    final emailRememberMe = _storage.getIsChecked(_emailRememberMeKey) ?? false;
-    final phoneRememberMe = _storage.getIsChecked(_phoneRememberMeKey) ?? false;
+    final emailRemember = _storage.getIsChecked(_emailRememberKey) ?? false;
+    final phoneRemember = _storage.getIsChecked(_phoneRememberKey) ?? false;
 
-    emit(
-      SignInInitial(
-        1,
-        false,
-        isEmailRememberMeChecked: emailRememberMe,
-        isPhoneRememberMeChecked: phoneRememberMe,
-        savedEmail: email,
-        savedPassword: password,
-        savedPhone: phone,
-      ),
-    );
+    final current = state is SignInInitial ? state as SignInInitial : const SignInInitial(1, false);
+
+    emit(current.copyWith(
+      savedEmail: email,
+      savedPassword: password,
+      savedPhone: phone,
+      isEmailRememberMeChecked: emailRemember,
+      isPhoneRememberMeChecked: phoneRemember,
+    ));
   }
 
-  // New method to check if saved credentials are valid
-  bool areCredentialsValid() {
-    final email = _storage.getString(_emailKey) ?? '';
-    final password = _storage.getString(_passwordKey) ?? '';
-    final phone = _storage.getString(_phoneKey) ?? '';
-    final emailRememberMe = _storage.getIsChecked(_emailRememberMeKey) ?? false;
-    final phoneRememberMe = _storage.getIsChecked(_phoneRememberMeKey) ?? false;
-
-    if (emailRememberMe &&
-        email.isNotEmpty &&
-        password.isNotEmpty &&
-        ValidationHelper.validateEmail(email) == null &&
-        ValidationHelper.validatePassword(password) == null) {
-      return true;
+  Future<void> saveEmailCredentials(String email, String password, bool rememberMe) async {
+    if (rememberMe) {
+      await _storage.setString(_emailKey, email);
+      await _storage.setString(_passwordKey, password);
+      await _storage.setIsChecked(_emailRememberKey, true);
+    } else {
+      await _storage.remove(_emailKey);
+      await _storage.remove(_passwordKey);
+      await _storage.setIsChecked(_emailRememberKey, false);
     }
+    _loadSavedCredentials();
+  }
 
-    if (phoneRememberMe &&
-        phone.isNotEmpty &&
-        ValidationHelper.validatePhone(phone) == null) {
-      return true;
+  Future<void> savePhoneCredentials(String phone, bool rememberMe) async {
+    if (rememberMe) {
+      await _storage.setString(_phoneKey, phone);
+      await _storage.setIsChecked(_phoneRememberKey, true);
+    } else {
+      await _storage.remove(_phoneKey);
+      await _storage.setIsChecked(_phoneRememberKey, false);
     }
-
-    return false;
+    _loadSavedCredentials();
   }
 
   void toggleSignInMethod(int index) {
     if (state is SignInInitial) {
-      final currentState = state as SignInInitial;
-      emit(
-        SignInInitial(
-          index,
-          currentState.passwordVisible,
-          isEmailRememberMeChecked: currentState.isEmailRememberMeChecked,
-          isPhoneRememberMeChecked: currentState.isPhoneRememberMeChecked,
-          savedEmail: currentState.savedEmail,
-          savedPassword: currentState.savedPassword,
-          savedPhone: currentState.savedPhone,
-        ),
-      );
-    } else {
-      emit(const SignInInitial(1, false));
+      emit((state as SignInInitial).copyWith(selectedIndex: index));
     }
   }
 
   @override
   void togglePasswordVisibility() {
     if (state is SignInInitial) {
-      final currentState = state as SignInInitial;
-      emit(
-        SignInInitial(
-          currentState.selectedIndex,
-          !currentState.passwordVisible,
-          isEmailRememberMeChecked: currentState.isEmailRememberMeChecked,
-          isPhoneRememberMeChecked: currentState.isPhoneRememberMeChecked,
-          savedEmail: currentState.savedEmail,
-          savedPassword: currentState.savedPassword,
-          savedPhone: currentState.savedPhone,
-        ),
-      );
-    } else {
-      emit(const SignInInitial(1, false));
+      final current = state as SignInInitial;
+      emit(current.copyWith(passwordVisible: !current.passwordVisible));
     }
   }
 
   void toggleEmailRememberMe(bool value, String email, String password) {
-    if (state is SignInInitial) {
-      final currentState = state as SignInInitial;
-      emit(
-        SignInInitial(
-          currentState.selectedIndex,
-          currentState.passwordVisible,
-          isEmailRememberMeChecked: value,
-          isPhoneRememberMeChecked: currentState.isPhoneRememberMeChecked,
-          savedEmail: value ? email : currentState.savedEmail,
-          savedPassword: value ? password : currentState.savedPassword,
-          savedPhone: currentState.savedPhone,
-        ),
-      );
-    } else {
-      emit(SignInInitial(1, false, isEmailRememberMeChecked: value));
-    }
+    saveEmailCredentials(email, password, value);
   }
 
   void togglePhoneRememberMe(bool value, String phone) {
-    if (state is SignInInitial) {
-      final currentState = state as SignInInitial;
-      emit(
-        SignInInitial(
-          currentState.selectedIndex,
-          currentState.passwordVisible,
-          isEmailRememberMeChecked: currentState.isEmailRememberMeChecked,
-          isPhoneRememberMeChecked: value,
-          savedEmail: currentState.savedEmail,
-          savedPassword: currentState.savedPassword,
-          savedPhone: value ? phone : currentState.savedPhone,
-        ),
-      );
-    } else {
-      emit(SignInInitial(1, false, isPhoneRememberMeChecked: value));
-    }
-  }
-
-  void signUp() {
-    emit(SignInSuccess());
-    Future.delayed(Duration.zero, () => _loadSavedCredentials());
-  }
-
-  void validatePhoneSignIn({
-    required GlobalKey<FormState> formKey,
-    required String phone,
-    required FocusNode phoneFocusNode,
-    required bool rememberMe,
-  }) {
-    if (!formKey.currentState!.validate()) {
-      if (phone.isNotEmpty && ValidationHelper.validatePhone(phone) != null) {
-        phoneFocusNode.requestFocus();
-      }
-    } else {
-      savePhoneCredentials(phone, rememberMe);
-      emit(SignInSuccess());
-    }
+    savePhoneCredentials(phone, value);
   }
 
   void validateEmailSignIn({
@@ -230,15 +86,37 @@ class SignInCubit extends BaseCubit<SignInState> {
     required bool rememberMe,
   }) {
     if (!formKey.currentState!.validate()) {
-      if (email.isNotEmpty && ValidationHelper.validateEmail(email) != null) {
+      if (ValidationHelper.validateEmail(email) != null) {
         emailFocusNode.requestFocus();
-      } else if (password.isNotEmpty &&
-          ValidationHelper.validatePassword(password) != null) {
+      } else if (ValidationHelper.validatePassword(password) != null) {
         passwordFocusNode.requestFocus();
       }
-    } else {
-      saveEmailCredentials(email, password, rememberMe);
-      emit(SignInSuccess());
+      return;
     }
+
+    saveEmailCredentials(email, password, rememberMe);
+    emit(SignInSuccess());
+  }
+
+  void validatePhoneSignIn({
+    required GlobalKey<FormState> formKey,
+    required String phone,
+    required FocusNode phoneFocusNode,
+    required bool rememberMe,
+  }) {
+    if (!formKey.currentState!.validate()) {
+      if (ValidationHelper.validatePhone(phone) != null) {
+        phoneFocusNode.requestFocus();
+      }
+      return;
+    }
+
+    savePhoneCredentials(phone, rememberMe);
+    emit(SignInSuccess());
+  }
+
+  void signUp() {
+    emit(SignInSuccess());
+    Future.delayed(Duration.zero, _loadSavedCredentials);
   }
 }

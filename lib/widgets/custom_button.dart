@@ -24,7 +24,7 @@ class CustomButton extends StatelessWidget {
           color: color,
           border: Border.all(width: width ?? 0, color: borderColor ?? Colors.white),
           borderRadius: BorderRadius.circular(12.r),
-          boxShadow: [BoxShadow(blurRadius: 8.r,offset: const Offset(0, 2),color: MyColors.buttonShadow,),],
+          boxShadow: [BoxShadow(blurRadius: 8.r,offset: const Offset(0, 2),color: MyColors.darkBlue,),],
         ),
         child: Center(
           child: CustomText(

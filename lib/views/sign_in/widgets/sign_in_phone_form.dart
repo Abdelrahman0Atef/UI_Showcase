@@ -23,7 +23,7 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
   @override
   void initState() {
     super.initState();
-    cubit = getIt<SignInCubit>();
+    //cubit = getIt<SignInCubit>();
     _loadCredentialsFromState();
   }
 
@@ -76,7 +76,7 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
                   widget.cubit.savePhoneCredentials(phoneController.text, true);
                 }
               },
-              activeColor: MyColors.myRed,
+              activeColor: MyColors.red,
             ),
             Text(MyStrings.rememberMe),
           ],
@@ -86,28 +86,31 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
           onPressed: () {
             _closeKeyboard();
             if (phoneFormKey.currentState!.validate()) {
-              widget.cubit.validatePhoneSignIn(
-                formKey: phoneFormKey,
-                phone: phoneController.text,
-                phoneFocusNode: phoneFocusNode,
-                rememberMe: widget.currentState.isPhoneRememberMeChecked,
+              if (widget.currentState.isPhoneRememberMeChecked) {
+                widget.cubit.savePhoneCredentials(phoneController.text, true);
+              }
+              context.goNamed(
+                  MyRouts.home,
+                  extra: {
+                    SharedKeys.phone: phoneController.text,
+                    SharedKeys.isRegisteredUser: false,
+                  }
               );
-              context.replaceNamed(MyRouts.homeView);
             }
           },
-          color: MyColors.myRed,
+          color: MyColors.red,
           text: MyStrings.sendConfirmationCode,
-          textColor: MyColors.myWhite,
+          textColor: MyColors.white,
           width: 0.w,
-          borderColor: MyColors.myRed,
+          borderColor: MyColors.red,
         ),
         16.verticalSpace,
         CustomButton(
           onPressed: () {
             widget.cubit.signUp();
-            context.pushNamed(MyRouts.signUpView);
+            context.pushNamed(MyRouts.signUp);
           },
-          color: MyColors.myWhite,
+          color: MyColors.white,
           text: MyStrings.createAnAccount,
           textColor: Colors.black,
           width: 1.w,
@@ -120,8 +123,8 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
           textStyle: TextStyle(
             fontSize: 20.sp,
             decoration: TextDecoration.underline,
-            color: MyColors.myGrey,
-            decorationColor: MyColors.myGrey,
+            color: MyColors.grey,
+            decorationColor: MyColors.grey,
           ),
         ),
       ],

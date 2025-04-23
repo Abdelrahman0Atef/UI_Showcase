@@ -47,23 +47,23 @@ class SignUpCubit extends BaseCubit<SignUpState> {
   }) async {
     // Save full name (combining first and last name)
     final fullName = '$firstName $lastName';
-    await _storageService.setString(SharedKeys.userFullNameKey, fullName);
+    await _storageService.setString(SharedKeys.userFullName, fullName);
 
     // Save email, phone and password
-    await _storageService.setString(SharedKeys.userEmailKey, email);
-    await _storageService.setString(SharedKeys.userPhoneKey, phone);
-    await _storageService.setString(SharedKeys.passwordKey, password);
+    await _storageService.setString(SharedKeys.userEmail, email);
+    await _storageService.setString(SharedKeys.userPhone, phone);
+    await _storageService.setString(SharedKeys.password, password);
 
     // Mark as registered user
-    await _storageService.setIsChecked(SharedKeys.isRegisteredUserKey, true);
+    await _storageService.setIsChecked(SharedKeys.isRegisteredUser, true);
 
     // Set remember me flags
-    await _storageService.setIsChecked(SharedKeys.emailRememberMeKey, true);
-    await _storageService.setIsChecked(SharedKeys.phoneRememberMeKey, true);
+    await _storageService.setIsChecked(SharedKeys.emailRememberMe, true);
+    await _storageService.setIsChecked(SharedKeys.phoneRememberMe, true);
 
     // Save email and phone in their respective keys as well
-    await _storageService.setString(SharedKeys.emailKey, email);
-    await _storageService.setString(SharedKeys.phoneKey, phone);
+    await _storageService.setString(SharedKeys.email, email);
+    await _storageService.setString(SharedKeys.phone, phone);
   }
 
   void validateAndProceed({
@@ -104,7 +104,7 @@ class SignUpCubit extends BaseCubit<SignUpState> {
 
       // Navigate to home screen after successful registration
       if (context.mounted) {
-        context.goNamed(MyRouts.homeView);
+        context.goNamed(MyRouts.home);
       }
 
       Future.delayed(Duration.zero, () => emit(const SignUpInitial()));

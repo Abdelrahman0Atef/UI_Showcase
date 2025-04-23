@@ -1,5 +1,6 @@
 class MyRouts{
-  static const signInView = '/';
-  static const signUpView = '/signup';
-  static const homeView = '/home';
+  static const signIn = '/';
+  static const signUp = 'signup';
+  static const home = 'home';
+  static const splash = 'splash';
 }

@@ -38,10 +38,10 @@ class SignUpButtons extends StatelessWidget {
             }
                 : () {},
             text: MyStrings.createAnAccount,
-            textColor: MyColors.myWhite,
-            color: currentState.isPasswordValid ? MyColors.myRed : MyColors.myGrey,
+            textColor: MyColors.white,
+            color: currentState.isPasswordValid ? MyColors.red : MyColors.grey,
             width: 0.w,
-            borderColor: currentState.isPasswordValid ? MyColors.myRed : MyColors.myGrey,
+            borderColor: currentState.isPasswordValid ? MyColors.red : MyColors.grey,
           ),
         ),
         8.verticalSpace,
@@ -49,7 +49,7 @@ class SignUpButtons extends StatelessWidget {
           child: AuthTextButton(
             text: MyStrings.signIn,
             onPressed: () {
-              context.pushNamed(MyRouts.signInView);
+              context.pushNamed(MyRouts.signIn);
             },
             textStyle: const TextStyle(
               color: Colors.black,

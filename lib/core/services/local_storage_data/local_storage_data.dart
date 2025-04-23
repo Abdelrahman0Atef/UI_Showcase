@@ -1,5 +1,4 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:get_it/get_it.dart';
 
 class LocalStorageService {
   final SharedPreferences _prefs;
@@ -22,8 +21,8 @@ class LocalStorageService {
     await _prefs.remove(key);
   }
 
-  static Future<void> initAndRegister() async {
+  static Future<LocalStorageService> init() async {
     final prefs = await SharedPreferences.getInstance();
-    GetIt.I.registerSingleton<LocalStorageService>(LocalStorageService(prefs));
+    return LocalStorageService(prefs);
   }
 }

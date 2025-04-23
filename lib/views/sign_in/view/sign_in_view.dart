@@ -15,7 +15,10 @@ class SigInView extends StatelessWidget {
           floatingActionButton: FloatingActionButton(
             child: const Icon(Icons.language),
             onPressed: () {
-              cubit.changeTranslations(context);
+              final newLocale = context.locale == AppLanguage.english
+                  ? AppLanguage.arabic
+                  : AppLanguage.english;
+              context.setLocale(newLocale);
             },
           ),
           body: SingleChildScrollView(

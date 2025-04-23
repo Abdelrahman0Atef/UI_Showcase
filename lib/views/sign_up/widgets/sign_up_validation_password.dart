@@ -23,13 +23,13 @@ class SignUpValidationPassword extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 8).w,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: hasCapitalLetter ? MyColors.myGreen : MyColors.myGrey,
+                  color: hasCapitalLetter ? MyColors.green : MyColors.grey,
                 ),
               ),
               CustomText(
                 text: MyStrings.atLeastItContainsCapitalLetter,
                 textStyle: TextStyle(
-                  color: hasCapitalLetter ? MyColors.myGreen : MyColors.myBlack,
+                  color: hasCapitalLetter ? MyColors.green : MyColors.black,
                 ),
               ),
 
@@ -44,13 +44,13 @@ class SignUpValidationPassword extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 8).w,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: hasNumber ? MyColors.myGreen : MyColors.myGrey,
+                  color: hasNumber ? MyColors.green : MyColors.grey,
                 ),
               ),
               CustomText(
                 text: MyStrings.atLeastItContainsOneNumber,
                 textStyle: TextStyle(
-                  color: hasNumber ? MyColors.myGreen : MyColors.myBlack,
+                  color: hasNumber ? MyColors.green : MyColors.black,
                 ),
               ),
 
@@ -65,13 +65,13 @@ class SignUpValidationPassword extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 8).w,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: hasValidLength ? MyColors.myGreen : MyColors.myGrey,
+                  color: hasValidLength ? MyColors.green : MyColors.grey,
                 ),
               ),
               CustomText(
                 text: MyStrings.atLeast8Letters,
                 textStyle: TextStyle(
-                  color: hasValidLength ? MyColors.myGreen : MyColors.myBlack,
+                  color: hasValidLength ? MyColors.green : MyColors.black,
                 ),
               ),
             ],

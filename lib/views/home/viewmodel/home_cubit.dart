@@ -1,69 +1,103 @@
 part of '../home_imports.dart';
 
-
 class HomeCubit extends Cubit<HomeState> {
   final LocalStorageService _storageService = getIt<LocalStorageService>();
 
   HomeCubit() : super(HomeInitial());
 
-  Future<void> loadUserInfo() async {
+  Future<void> loadUserInfo([Map<String, dynamic>? userData]) async {
     emit(HomeLoading());
 
     try {
-      final isRegistered =
-          _storageService.getIsChecked(SharedKeys.isRegisteredUserKey) ?? false;
+      bool isRegistered = false;
+      String? fullName;
+      String? email;
+      String? phone;
 
-      if (isRegistered) {
-        final fullName = _storageService.getString(SharedKeys.userFullNameKey);
-        final email = _storageService.getString(SharedKeys.userEmailKey);
-        final phone = _storageService.getString(SharedKeys.userPhoneKey);
+      if (userData != null) {
+        userData.forEach((key, value) {
+        });
+      }
 
-        emit(HomeLoaded(
-          isRegisteredUser: isRegistered,
-          userFullName: fullName,
-          userEmail: email,
-          userPhone: phone,
-        ));
-      } else {
-        final emailRememberMe =
-            _storageService.getIsChecked(SharedKeys.emailRememberMeKey) ?? false;
-        final phoneRememberMe =
-            _storageService.getIsChecked(SharedKeys.phoneRememberMeKey) ?? false;
+      if (userData != null) {
+        isRegistered = userData[SharedKeys.isRegisteredUser] ?? false;
+        email = userData[SharedKeys.userEmail] ?? userData[SharedKeys.email];
+        phone = userData[SharedKeys.userPhone] ?? userData[SharedKeys.phone];
+        fullName = userData[SharedKeys.userFullName];
 
-        String? email;
-        String? phone;
+        await _storageService.setIsChecked(SharedKeys.isRegisteredUser, isRegistered);
 
-        if (emailRememberMe) {
-          email = _storageService.getString(SharedKeys.emailKey);
-        } else if (phoneRememberMe) {
-          phone = _storageService.getString(SharedKeys.phoneKey);
+        if (fullName != null && fullName.isNotEmpty) {
+          await _storageService.setString(SharedKeys.userFullName, fullName);
         }
 
-        emit(HomeLoaded(
-          userEmail: email,
-          userPhone: phone,
-        ));
+        if (email != null && email.isNotEmpty) {
+          await _storageService.setString(SharedKeys.userEmail, email);
+          await _storageService.setString(SharedKeys.email, email);
+        }
+
+        if (phone != null && phone.isNotEmpty) {
+          await _storageService.setString(SharedKeys.userPhone, phone);
+          await _storageService.setString(SharedKeys.phone, phone);
+        }
+      } else {
+        isRegistered = _storageService.getIsChecked(SharedKeys.isRegisteredUser) ?? false;
+        fullName = _storageService.getString(SharedKeys.userFullName);
+
+        email = _storageService.getString(SharedKeys.userEmail);
+        if (email == null || email.isEmpty) {
+          email = _storageService.getString(SharedKeys.email);
+        }
+
+        phone = _storageService.getString(SharedKeys.userPhone);
+        if (phone == null || phone.isEmpty) {
+          phone = _storageService.getString(SharedKeys.phone);
+        }
       }
+
+      emit(HomeLoaded(
+        isRegisteredUser: isRegistered,
+        userFullName: fullName,
+        userEmail: email,
+        userPhone: phone,
+      ));
     } catch (e) {
-      emit(HomeError(MyStrings.loadDataError));
+      emit(HomeError(e.toString()));
     }
   }
 
-  Future<void> logout() async {
+  void updateSelectedIndex(int index) {
+    if (state is HomeLoaded) {
+      final currentState = state as HomeLoaded;
+      emit(currentState.copyWith(selectedIndex: index));
+    }
+  }
+
+  Future<void> signOut() async {
     try {
-      await _storageService.remove(SharedKeys.emailKey);
-      await _storageService.remove(SharedKeys.passwordKey);
-      await _storageService.remove(SharedKeys.phoneKey);
-      await _storageService.remove(SharedKeys.userFullNameKey);
-      await _storageService.remove(SharedKeys.userEmailKey);
-      await _storageService.remove(SharedKeys.userPhoneKey);
-      await _storageService.remove(SharedKeys.isRegisteredUserKey);
-      await _storageService.setIsChecked(SharedKeys.emailRememberMeKey, false);
-      await _storageService.setIsChecked(SharedKeys.phoneRememberMeKey, false);
+      final emailRememberMe = _storageService.getIsChecked(SharedKeys.emailRememberMe) ?? false;
+      final phoneRememberMe = _storageService.getIsChecked(SharedKeys.phoneRememberMe) ?? false;
+
+      // Clear registration status
+      await _storageService.setIsChecked(SharedKeys.isRegisteredUser, false);
+
+      // Clear user specific data
+      await _storageService.remove(SharedKeys.userFullName);
+      await _storageService.remove(SharedKeys.userEmail);
+      await _storageService.remove(SharedKeys.userPhone);
+
+      // Only clear general data if remember me is false
+      if (!emailRememberMe) {
+        await _storageService.remove(SharedKeys.email);
+      }
+
+      if (!phoneRememberMe) {
+        await _storageService.remove(SharedKeys.phone);
+      }
 
       emit(HomeInitial());
     } catch (e) {
-      emit(HomeError(MyStrings.signOutError));
+      emit(HomeError(e.toString()));
     }
   }
 }

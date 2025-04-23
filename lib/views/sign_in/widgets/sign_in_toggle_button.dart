@@ -18,10 +18,10 @@ class SignInToggleButton extends StatelessWidget {
         height: 48.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50.r),
-          color: MyColors.myWhite,
+          color: MyColors.white,
           boxShadow: const [
             BoxShadow(
-              color: MyColors.toggleShadow,
+              color: MyColors.darkYellow,
               offset: Offset(0, 1),
               blurRadius: 8.0,
             ),
@@ -55,7 +55,7 @@ class SignInToggleButton extends StatelessWidget {
         height: 48.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50.r),
-          color: currentState.selectedIndex == index ? MyColors.myRed : MyColors.myWhite,
+          color: currentState.selectedIndex == index ? MyColors.red : MyColors.white,
         ),
         alignment: Alignment.center,
         child: Padding(
@@ -65,7 +65,7 @@ class SignInToggleButton extends StatelessWidget {
             textStyle: TextStyle(
               fontSize: 12.sp,
               fontWeight: FontWeight.bold,
-              color: currentState.selectedIndex == index ? MyColors.myWhite: MyColors.myBlack,
+              color: currentState.selectedIndex == index ? MyColors.white: MyColors.black,
               overflow: TextOverflow.visible,
             ),
           ),

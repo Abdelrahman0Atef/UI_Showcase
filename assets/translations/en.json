@@ -32,5 +32,9 @@
   "title": "Home Screen",
   "welcomeEmailUser": "Welcome, logged in with email:",
   "welcomePhoneUser": "Welcome, logged in with phone number:",
-  "welcomeGeneric": "Welcome to the Home Screen"
+  "welcomeGeneric": "Welcome to the Home Screen",
+  "home": "home",
+  "categories": "categories",
+  "cart":"cart",
+  "profile": "profile"
 }

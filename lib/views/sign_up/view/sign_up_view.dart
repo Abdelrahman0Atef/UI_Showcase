@@ -56,84 +56,96 @@ class SignUpViewState extends State<SignUpView> {
 
   @override
   Widget build(BuildContext context) => BlocProvider(
-      create: (context) => SignUpCubit(),
-      child: BlocConsumer<SignUpCubit, SignUpState>(
-        listener: (context, state) {
-          if (state is SignUpFailure) {
-            if (firstNameController.text.isNotEmpty &&
-                ValidationHelper.validateName(firstNameController.text) !=
-                    null) {
-              firstNameFocusNode.requestFocus();
-            } else if (lastNameController.text.isNotEmpty &&
-                ValidationHelper.validateName(lastNameController.text) !=
-                    null) {
-              lastNameFocusNode.requestFocus();
-            } else if (phoneController.text.isNotEmpty &&
-                ValidationHelper.validatePhone(phoneController.text) != null) {
-              phoneFocusNode.requestFocus();
-            } else if (emailController.text.isNotEmpty &&
-                ValidationHelper.validateEmail(emailController.text) != null) {
-              emailFocusNode.requestFocus();
-            } else if (passwordController.text.isNotEmpty &&
-                ValidationHelper.validatePassword(passwordController.text) !=
-                    null) {
-              passwordFocusNode.requestFocus();
-            }
-          } else if (state is SignUpSuccess) {
-            context.go('/home');
+    create: (context) => SignUpCubit(),
+    child: BlocConsumer<SignUpCubit, SignUpState>(
+      listener: (context, state) {
+        if (state is SignUpFailure) {
+          if (firstNameController.text.isNotEmpty &&
+              ValidationHelper.validateName(firstNameController.text) !=
+                  null) {
+            firstNameFocusNode.requestFocus();
+          } else if (lastNameController.text.isNotEmpty &&
+              ValidationHelper.validateName(lastNameController.text) !=
+                  null) {
+            lastNameFocusNode.requestFocus();
+          } else if (phoneController.text.isNotEmpty &&
+              ValidationHelper.validatePhone(phoneController.text) != null) {
+            phoneFocusNode.requestFocus();
+          } else if (emailController.text.isNotEmpty &&
+              ValidationHelper.validateEmail(emailController.text) != null) {
+            emailFocusNode.requestFocus();
+          } else if (passwordController.text.isNotEmpty &&
+              ValidationHelper.validatePassword(passwordController.text) !=
+                  null) {
+            passwordFocusNode.requestFocus();
           }
-        },
-        builder: (context, state) {
-          final cubit = context.read<SignUpCubit>();
-          final currentState =
-              state is SignUpInitial ? state : const SignUpInitial();
+        } else if (state is SignUpSuccess) {
+          final Map<String, dynamic> userData = {
+            SharedKeys.isRegisteredUser: true,
+            SharedKeys.userFullName: '${firstNameController.text} ${lastNameController.text}',
+            SharedKeys.email: emailController.text,
+            SharedKeys.phone: phoneController.text,
+            SharedKeys.userEmail: emailController.text,
+            SharedKeys.userPhone: phoneController.text,
+          };
 
-          return Scaffold(
-            body: Form(
-              key: formKey,
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    const AuthCustomStack(),
-                    20.verticalSpace,
-                    SignUpFields(
-                      currentState: currentState,
-                      cubit: cubit,
-                      firstNameFocusNode: firstNameFocusNode,
-                      lastNameFocusNode: lastNameFocusNode,
-                      phoneFocusNode: phoneFocusNode,
-                      emailFocusNode: emailFocusNode,
-                      passwordFocusNode: passwordFocusNode,
-                      firstNameController: firstNameController,
-                      lastNameController: lastNameController,
-                      phoneController: phoneController,
-                      emailController: emailController,
-                      passwordController: passwordController,
-                    ),
-                    16.verticalSpace,
-                    SignUpValidationPassword(
-                      hasCapitalLetter: currentState.hasCapitalLetter,
-                      hasNumber: currentState.hasNumber,
-                      hasValidLength: currentState.hasValidLength,
-                    ),
-                    32.verticalSpace,
-                    SignUpButtons(
-                      currentState: currentState,
-                      cubit: cubit,
-                      formKey: formKey,
-                      firstNameController: firstNameController,
-                      lastNameController: lastNameController,
-                      phoneController: phoneController,
-                      emailController: emailController,
-                      passwordController: passwordController,
-                    ),
-                  ],
-                ),
+          context.goNamed(
+            MyRouts.home,
+            extra: userData,
+          );
+        }
+      },
+      builder: (context, state) {
+        final cubit = context.read<SignUpCubit>();
+        final currentState =
+        state is SignUpInitial ? state : const SignUpInitial();
+
+        return Scaffold(
+          body: Form(
+            key: formKey,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  const AuthCustomStack(),
+                  20.verticalSpace,
+                  SignUpFields(
+                    currentState: currentState,
+                    cubit: cubit,
+                    firstNameFocusNode: firstNameFocusNode,
+                    lastNameFocusNode: lastNameFocusNode,
+                    phoneFocusNode: phoneFocusNode,
+                    emailFocusNode: emailFocusNode,
+                    passwordFocusNode: passwordFocusNode,
+                    firstNameController: firstNameController,
+                    lastNameController: lastNameController,
+                    phoneController: phoneController,
+                    emailController: emailController,
+                    passwordController: passwordController,
+                  ),
+                  16.verticalSpace,
+                  SignUpValidationPassword(
+                    hasCapitalLetter: currentState.hasCapitalLetter,
+                    hasNumber: currentState.hasNumber,
+                    hasValidLength: currentState.hasValidLength,
+                  ),
+                  32.verticalSpace,
+                  SignUpButtons(
+                    currentState: currentState,
+                    cubit: cubit,
+                    formKey: formKey,
+                    firstNameController: firstNameController,
+                    lastNameController: lastNameController,
+                    phoneController: phoneController,
+                    emailController: emailController,
+                    passwordController: passwordController,
+                  ),
+                ],
               ),
             ),
-          );
-        },
-      ),
-    );
+          ),
+        );
+      },
+    ),
+  );
 }

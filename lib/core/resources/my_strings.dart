@@ -35,7 +35,8 @@ class MyStrings {
   static String get title => 'title'.tr();
   static String get welcomeEmailUser => 'welcomeEmailUser'.tr();
   static String get welcomePhoneUser => 'welcomePhoneUser'.tr();
-
-  static const String signOutError = 'حدث خطأ أثناء تسجيل الخروج';
-  static const String loadDataError = 'حدث خطأ أثناء تحميل بيانات المستخدم';
+  static String get home => 'home'.tr();
+  static String get categories => 'categories'.tr();
+  static String get cart => 'cart'.tr();
+  static String get profile => 'profile'.tr();
 }

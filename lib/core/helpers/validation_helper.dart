@@ -1,6 +1,15 @@
 import 'package:untitled/core/resources/my_strings.dart';
 
 class ValidationHelper {
+  static String? validateFullName(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Full name is required';
+    }
+    if (value.length < 2) {
+      return 'Full name must be at least 2 characters';
+    }
+    return null;
+  }
   static String? validatePhone(String? phone) {
     if (phone == null || phone.isEmpty) return MyStrings.enterPhoneNumber;
     if (!phone.startsWith('01')) return MyStrings.phoneNumberMustStartWith01;
