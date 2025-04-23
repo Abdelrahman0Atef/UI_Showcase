@@ -23,7 +23,6 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
   @override
   void initState() {
     super.initState();
-    //cubit = getIt<SignInCubit>();
     _loadCredentialsFromState();
   }
 

@@ -18,7 +18,6 @@ class HomeBody extends StatelessWidget {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Header with welcome message
         Center(
           child: Text(
             state.isRegisteredUser

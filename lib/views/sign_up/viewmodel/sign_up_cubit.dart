@@ -45,23 +45,15 @@ class SignUpCubit extends BaseCubit<SignUpState> {
     required String email,
     required String password,
   }) async {
-    // Save full name (combining first and last name)
     final fullName = '$firstName $lastName';
-    await _storageService.setString(SharedKeys.userFullName, fullName);
 
-    // Save email, phone and password
+    await _storageService.setString(SharedKeys.userFullName, fullName);
     await _storageService.setString(SharedKeys.userEmail, email);
     await _storageService.setString(SharedKeys.userPhone, phone);
     await _storageService.setString(SharedKeys.password, password);
-
-    // Mark as registered user
     await _storageService.setIsChecked(SharedKeys.isRegisteredUser, true);
-
-    // Set remember me flags
     await _storageService.setIsChecked(SharedKeys.emailRememberMe, true);
     await _storageService.setIsChecked(SharedKeys.phoneRememberMe, true);
-
-    // Save email and phone in their respective keys as well
     await _storageService.setString(SharedKeys.email, email);
     await _storageService.setString(SharedKeys.phone, phone);
   }
@@ -91,7 +83,6 @@ class SignUpCubit extends BaseCubit<SignUpState> {
         !currentState.isPasswordValid) {
       emit(SignUpFailure(MyStrings.thereIsAnErrorInTheData));
     } else {
-      // Save user data to local storage
       await _saveUserData(
         firstName: firstName,
         lastName: lastName,
@@ -101,8 +92,6 @@ class SignUpCubit extends BaseCubit<SignUpState> {
       );
 
       emit(SignUpSuccess());
-
-      // Navigate to home screen after successful registration
       if (context.mounted) {
         context.goNamed(MyRouts.home);
       }

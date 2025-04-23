@@ -78,15 +78,11 @@ class HomeCubit extends Cubit<HomeState> {
       final emailRememberMe = _storageService.getIsChecked(SharedKeys.emailRememberMe) ?? false;
       final phoneRememberMe = _storageService.getIsChecked(SharedKeys.phoneRememberMe) ?? false;
 
-      // Clear registration status
       await _storageService.setIsChecked(SharedKeys.isRegisteredUser, false);
-
-      // Clear user specific data
       await _storageService.remove(SharedKeys.userFullName);
       await _storageService.remove(SharedKeys.userEmail);
       await _storageService.remove(SharedKeys.userPhone);
 
-      // Only clear general data if remember me is false
       if (!emailRememberMe) {
         await _storageService.remove(SharedKeys.email);
       }
