@@ -32,6 +32,7 @@ class HomeLoaded extends HomeState {
       userFullName: userFullName ?? this.userFullName,
       selectedIndex: selectedIndex ?? this.selectedIndex,
     );
+
 }
 
 class HomeError extends HomeState {

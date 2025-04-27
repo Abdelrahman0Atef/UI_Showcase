@@ -3,11 +3,12 @@ import 'package:untitled/core/resources/my_routs.dart';
 import 'package:untitled/views/home/home_imports.dart';
 import 'package:untitled/views/sign_in/sign_in_imports.dart';
 import 'package:untitled/views/sign_up/sign_up_imports.dart';
-import 'package:untitled/views/splash/view/splash_view.dart';
+import 'package:untitled/views/splash/splash_imports.dart';
 
 class AppRouter {
   static GoRouter router = GoRouter(
       initialLocation: '/${MyRouts.splash}',
+      debugLogDiagnostics: true,
       routes: [
         GoRoute(
           name: MyRouts.splash,
@@ -16,7 +17,7 @@ class AppRouter {
         ),
         GoRoute(
           name: MyRouts.signIn,
-          path: MyRouts.signIn,
+          path: '/${MyRouts.signIn}',
           builder: (context, state) => const SigInView(),
         ),
         GoRoute(

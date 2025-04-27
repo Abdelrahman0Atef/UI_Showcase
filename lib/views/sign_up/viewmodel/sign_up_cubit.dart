@@ -38,24 +38,8 @@ class SignUpCubit extends BaseCubit<SignUpState> {
     }
   }
 
-  Future<void> _saveUserData({
-    required String firstName,
-    required String lastName,
-    required String phone,
-    required String email,
-    required String password,
-  }) async {
-    final fullName = '$firstName $lastName';
-
-    await _storageService.setString(SharedKeys.userFullName, fullName);
-    await _storageService.setString(SharedKeys.userEmail, email);
-    await _storageService.setString(SharedKeys.userPhone, phone);
-    await _storageService.setString(SharedKeys.password, password);
+  Future<void> _saveMinimalUserData() async {
     await _storageService.setIsChecked(SharedKeys.isRegisteredUser, true);
-    await _storageService.setIsChecked(SharedKeys.emailRememberMe, true);
-    await _storageService.setIsChecked(SharedKeys.phoneRememberMe, true);
-    await _storageService.setString(SharedKeys.email, email);
-    await _storageService.setString(SharedKeys.phone, phone);
   }
 
   void validateAndProceed({
@@ -83,17 +67,21 @@ class SignUpCubit extends BaseCubit<SignUpState> {
         !currentState.isPasswordValid) {
       emit(SignUpFailure(MyStrings.thereIsAnErrorInTheData));
     } else {
-      await _saveUserData(
-        firstName: firstName,
-        lastName: lastName,
-        phone: phone,
-        email: email,
-        password: password,
-      );
+      await _saveMinimalUserData();
+
+      // Create userData to pass to home screen instead of storing it
+      final Map<String, dynamic> userData = {
+        SharedKeys.isRegisteredUser: true,
+        SharedKeys.userFullName: '$firstName $lastName',
+        SharedKeys.email: email,
+        SharedKeys.phone: phone,
+        SharedKeys.userEmail: email,
+        SharedKeys.userPhone: phone,
+      };
 
       emit(SignUpSuccess());
       if (context.mounted) {
-        context.goNamed(MyRouts.home);
+        context.goNamed(MyRouts.home, extra: userData);
       }
 
       Future.delayed(Duration.zero, () => emit(const SignUpInitial()));

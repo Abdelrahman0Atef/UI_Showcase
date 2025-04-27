@@ -43,6 +43,7 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
       children: [
         16.verticalSpace,
         CustomTextFieldWithTitle(
+
           label: MyStrings.email,
           validator: (value) => ValidationHelper.validateEmail(value as String?),
           focusNode: emailFocusNode,
@@ -54,6 +55,7 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
         ),
         24.verticalSpace,
         CustomTextFieldWithTitle(
+
           label: MyStrings.password,
           obscureText: !widget.currentState.passwordVisible,
           isPasswordVisible: widget.currentState.passwordVisible,
@@ -98,10 +100,16 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
                   passwordController.text,
                   true,
                 );
+              } else {
+                widget.cubit.saveEmailCredentials('', '', false);
               }
+
+              final storageService = getIt<LocalStorageService>();
+              storageService.setIsChecked(SharedKeys.isRegisteredUser, true);
+
               final Map<String, dynamic> userData = {
                 SharedKeys.email: emailController.text,
-                SharedKeys.userEmail: emailController.text, // Add this
+                SharedKeys.userEmail: emailController.text,
                 SharedKeys.isRegisteredUser: true,
                 SharedKeys.userFullName: emailController.text.split('@').first,
               };

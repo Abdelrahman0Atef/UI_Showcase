@@ -88,11 +88,13 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
               if (widget.currentState.isPhoneRememberMeChecked) {
                 widget.cubit.savePhoneCredentials(phoneController.text, true);
               }
+              final storageService = getIt<LocalStorageService>();
+              storageService.setIsChecked(SharedKeys.isRegisteredUser, true);
               context.goNamed(
                   MyRouts.home,
                   extra: {
                     SharedKeys.phone: phoneController.text,
-                    SharedKeys.isRegisteredUser: false,
+                    SharedKeys.isRegisteredUser: true,
                   }
               );
             }

@@ -7,5 +7,5 @@ final getIt = GetIt.instance;
 Future<void> locatorServices() async {
   final localStorageService = await LocalStorageService.init();
   getIt.registerSingleton<LocalStorageService>(localStorageService);
-  getIt.registerLazySingleton<SignInCubit>(() => SignInCubit(getIt<LocalStorageService>()));
+  getIt.registerFactory<SignInCubit>(() => SignInCubit(getIt<LocalStorageService>()));
 }
