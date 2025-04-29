@@ -45,7 +45,7 @@ class SignUpFields extends StatelessWidget {
         16.verticalSpace,
         CustomTextFieldWithTitle(
           isPhoneField: true,
-          label: MyStrings.phone,
+          label: MyStrings.phoneNumber,
           validator: (value) => ValidationHelper.validatePhone(value as String?),
           focusNode: phoneFocusNode,
           controller: phoneController,

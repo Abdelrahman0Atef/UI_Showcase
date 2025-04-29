@@ -12,15 +12,6 @@ class SigInView extends StatelessWidget {
         final currentState =
         state is SignInInitial ? state : const SignInInitial(1, false);
         return Scaffold(
-          floatingActionButton: FloatingActionButton(
-            child: const Icon(Icons.language),
-            onPressed: () {
-              final newLocale = context.locale == AppLanguage.english
-                  ? AppLanguage.arabic
-                  : AppLanguage.english;
-              context.setLocale(newLocale);
-            },
-          ),
           body: SingleChildScrollView(
             child: Column(
               children: [

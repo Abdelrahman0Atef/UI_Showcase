@@ -30,11 +30,11 @@ class _SplashViewState extends State<SplashView>
     Timer(const Duration(seconds: 2), () async {
       final storageService = getIt<LocalStorageService>();
 
-      final isRegistered = storageService.getIsChecked(
-        SharedKeys.isRegisteredUser,
-      );
+      final isRegistered = storageService.getIsChecked(SharedKeys.isRegisteredUser,);
+      final isPhoneRememberMe = storageService.getIsChecked(SharedKeys.phoneRememberMe);
 
-      if (isRegistered == true) {
+
+      if (isRegistered == true && isPhoneRememberMe == true) {
         context.goNamed(MyRouts.home);
       } else {
         context.goNamed(MyRouts.signIn);

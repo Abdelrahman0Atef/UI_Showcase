@@ -53,7 +53,7 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
         16.verticalSpace,
         CustomTextFieldWithTitle(
           isPhoneField: true,
-          label: MyStrings.phone,
+          label: MyStrings.phoneNumber,
           keyboardType: TextInputType.phone,
           validator:
               (value) => ValidationHelper.validatePhone(value as String?),
@@ -73,6 +73,9 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
                 );
                 if (value == true) {
                   widget.cubit.savePhoneCredentials(phoneController.text, true);
+
+                  final storageService = getIt<LocalStorageService>();
+                  storageService.setIsChecked(SharedKeys.isRegisteredUser, true);
                 }
               },
               activeColor: MyColors.red,
@@ -87,9 +90,9 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
             if (phoneFormKey.currentState!.validate()) {
               if (widget.currentState.isPhoneRememberMeChecked) {
                 widget.cubit.savePhoneCredentials(phoneController.text, true);
+                final storageService = getIt<LocalStorageService>();
+                storageService.setIsChecked(SharedKeys.isRegisteredUser, true);
               }
-              final storageService = getIt<LocalStorageService>();
-              storageService.setIsChecked(SharedKeys.isRegisteredUser, true);
               context.goNamed(
                   MyRouts.home,
                   extra: {

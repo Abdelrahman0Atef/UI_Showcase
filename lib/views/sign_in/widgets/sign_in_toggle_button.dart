@@ -19,11 +19,11 @@ class SignInToggleButton extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50.r),
           color: MyColors.white,
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
               color: MyColors.darkYellow,
-              offset: Offset(0, 1),
-              blurRadius: 8.0,
+              offset: const Offset(0, 1),
+              blurRadius: 8.r,
             ),
           ],
         ),

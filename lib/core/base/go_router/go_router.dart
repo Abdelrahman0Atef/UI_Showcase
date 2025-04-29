@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:untitled/core/resources/my_routs.dart';
-import 'package:untitled/views/home/home_imports.dart';
+import 'package:untitled/views/profile/profile_imports.dart';
 import 'package:untitled/views/sign_in/sign_in_imports.dart';
 import 'package:untitled/views/sign_up/sign_up_imports.dart';
 import 'package:untitled/views/splash/splash_imports.dart';
@@ -30,7 +30,7 @@ class AppRouter {
           path: '/${MyRouts.home}',
           builder: (context, state) {
             final userData = state.extra as Map<String, dynamic>?;
-            return HomeView(userData: userData);
+            return ProfileView(userData: userData);
           },
         ),
       ],

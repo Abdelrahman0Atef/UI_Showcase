@@ -69,7 +69,7 @@ class SignUpCubit extends BaseCubit<SignUpState> {
     } else {
       await _saveMinimalUserData();
 
-      // Create userData to pass to home screen instead of storing it
+      // Create userData to pass to profile screen instead of storing it
       final Map<String, dynamic> userData = {
         SharedKeys.isRegisteredUser: true,
         SharedKeys.userFullName: '$firstName $lastName',
