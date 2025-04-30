@@ -78,11 +78,10 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   void fetchAppVersion() async {
-    final info = await PackageInfo.fromPlatform();
-    _appVersion = info.version;
+    final currentState = state;
 
-    if (state is ProfileLoaded) {
-      emit((state as ProfileLoaded).copyWith(appVersion: _appVersion));
+    if (currentState is ProfileLoaded && _appVersion != null) {
+      emit(currentState.copyWith(appVersion: _appVersion));
     }
   }
 }

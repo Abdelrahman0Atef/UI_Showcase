@@ -1,24 +1,21 @@
 part of '../profile_imports.dart';
 
 class ProfileBody extends StatelessWidget {
-  final BuildContext context;
   final ProfileLoaded state;
-  final VoidCallback onPressed;
+  final ProfileViewModel viewModel;
 
   const ProfileBody({
-    required this.context,
+    required this.viewModel,
     required this.state,
-    required this.onPressed,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    final profileCubit = context.read<ProfileCubit>();
-    final version =
-        (state.appVersion != null)
-            ? state.appVersion
-            : profileCubit._appVersion;
+    final version = (state.appVersion != null)
+        ? state.appVersion
+        : (viewModel.state as ProfileLoaded).appVersion;
+
     return Padding(
       padding: EdgeInsets.all(16.r),
       child: SingleChildScrollView(
@@ -44,7 +41,6 @@ class ProfileBody extends StatelessWidget {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
               children: [
                 ProfileCustomCardButton(
                   onTap: () {},
@@ -109,9 +105,7 @@ class ProfileBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ProfileCustomCardButton(
-                  onTap: () {
-                    shareApp(context);
-                  },
+                  onTap: () => viewModel.shareApp(),
                   icon: Icons.share,
                   text: MyStrings.shareApp,
                 ),
@@ -126,7 +120,21 @@ class ProfileBody extends StatelessWidget {
               child: SizedBox(
                 width: double.infinity.w,
                 child: ProfileCustomCardButton(
-                  onTap: onPressed,
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      useRootNavigator: true,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(20.r),
+                        ),
+                      ),
+                      builder: (sheetContext) => BlocProvider.value(
+                        value: context.read<ProfileCubit>(),
+                        child: const ProfileSignOutBottomSheet(),
+                      ),
+                    );
+                  },
                   text: MyStrings.signOut,
                   icon: Icons.logout,
                 ),
@@ -135,7 +143,7 @@ class ProfileBody extends StatelessWidget {
             16.verticalSpace,
             Center(
               child: CustomText(
-                text: MyStrings.version + version!,
+                text: MyStrings.version + viewModel.getVersionText(),
                 textStyle: TextStyle(
                   decoration: TextDecoration.underline,
                   fontSize: 14.sp,
@@ -147,17 +155,5 @@ class ProfileBody extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void shareApp(BuildContext context) {
-    final bool isIOS = Theme.of(context).platform == TargetPlatform.iOS;
-    final bool isAndroid = Theme.of(context).platform == TargetPlatform.android;
-    if (isIOS) {
-      context.read<ProfileCubit>().shareApp(MyStrings.iosLink);
-    } else if (isAndroid) {
-      context.read<ProfileCubit>().shareApp(MyStrings.androidLink);
-    } else {
-      context.read<ProfileCubit>().shareApp(MyStrings.webSiteLink);
-    }
   }
 }

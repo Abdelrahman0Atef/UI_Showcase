@@ -23,3 +23,4 @@ part 'widgets/profile_custom_data_card.dart';
 part 'widgets/profile_custom_card_button.dart';
 part 'widgets/profile_sign_out_bottom_sheet.dart';
 part 'widgets/profile_radio_change_language.dart';
+part 'viewmodel/profile_view_model.dart';
