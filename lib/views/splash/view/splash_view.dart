@@ -11,10 +11,15 @@ class _SplashViewState extends State<SplashView>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _animation;
+  late final SplashViewModel _viewModel;
 
   @override
   void initState() {
     super.initState();
+
+    _viewModel = SplashViewModel(context);
+    _viewModel.handleNavigation();
+
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 1),
@@ -26,20 +31,6 @@ class _SplashViewState extends State<SplashView>
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeIn));
 
     _controller.forward();
-
-    Timer(const Duration(seconds: 2), () async {
-      final storageService = getIt<LocalStorageService>();
-
-      final isRegistered = storageService.getIsChecked(SharedKeys.isRegisteredUser,);
-      final isPhoneRememberMe = storageService.getIsChecked(SharedKeys.phoneRememberMe);
-
-
-      if (isRegistered == true && isPhoneRememberMe == true) {
-        context.goNamed(MyRouts.home);
-      } else {
-        context.goNamed(MyRouts.signIn);
-      }
-    });
   }
 
   @override

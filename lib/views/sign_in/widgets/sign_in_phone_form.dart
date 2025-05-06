@@ -1,44 +1,36 @@
 part of '../sign_in_imports.dart';
 
 class SignInPhoneFormWidget extends StatefulWidget {
-  final SignInInitial currentState;
-  final SignInCubit cubit;
+  final SignInViewModel viewModel;
 
-  const SignInPhoneFormWidget({
-    required this.currentState,
-    required this.cubit,
-    super.key,
-  });
+  const SignInPhoneFormWidget({required this.viewModel, super.key});
 
   @override
   State<SignInPhoneFormWidget> createState() => _SignInPhoneFormWidgetState();
 }
 
 class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
-  late final SignInCubit cubit;
   final GlobalKey<FormState> phoneFormKey = GlobalKey<FormState>();
   final TextEditingController phoneController = TextEditingController();
   final FocusNode phoneFocusNode = FocusNode();
 
+  bool isRememberMeChecked = false;
+
   @override
   void initState() {
     super.initState();
-    _loadCredentialsFromState();
+    final storageService = getIt<LocalStorageService>();
+    isRememberMeChecked =
+        storageService.getIsChecked(SharedKeys.phoneRememberMe) ?? false;
+    final savedPhone = storageService.getString(SharedKeys.phone) ?? '';
+    phoneController.text = savedPhone;
   }
 
   @override
-  void didUpdateWidget(covariant SignInPhoneFormWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (widget.currentState != oldWidget.currentState) {
-      _loadCredentialsFromState();
-    }
-  }
-
-  void _loadCredentialsFromState() {
-    if (phoneController.text.isEmpty &&
-        widget.currentState.savedPhone.isNotEmpty) {
-      phoneController.text = widget.currentState.savedPhone;
-    }
+  void dispose() {
+    phoneController.dispose();
+    phoneFocusNode.dispose();
+    super.dispose();
   }
 
   void _closeKeyboard() {
@@ -65,17 +57,21 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
         Row(
           children: [
             Checkbox(
-              value: widget.currentState.isPhoneRememberMeChecked,
+              value: isRememberMeChecked,
               onChanged: (value) {
-                widget.cubit.togglePhoneRememberMe(
-                  value ?? false,
+                setState(() {
+                  isRememberMeChecked = value ?? false;
+                });
+                widget.viewModel._togglePhoneRememberMe(
+                  isRememberMeChecked,
                   phoneController.text,
                 );
-                if (value == true) {
-                  widget.cubit.savePhoneCredentials(phoneController.text, true);
-
+                if (isRememberMeChecked) {
                   final storageService = getIt<LocalStorageService>();
-                  storageService.setIsChecked(SharedKeys.isRegisteredUser, true);
+                  storageService.setIsChecked(
+                    SharedKeys.isRegisteredUser,
+                    true,
+                  );
                 }
               },
               activeColor: MyColors.red,
@@ -87,18 +83,23 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
         CustomButton(
           onPressed: () {
             _closeKeyboard();
-            if (phoneFormKey.currentState!.validate()) {
-              if (widget.currentState.isPhoneRememberMeChecked) {
-                widget.cubit.savePhoneCredentials(phoneController.text, true);
-                final storageService = getIt<LocalStorageService>();
-                storageService.setIsChecked(SharedKeys.isRegisteredUser, true);
-              }
+            if (phoneController.text.isNotEmpty) {
+              widget.viewModel._validatePhoneSignIn(
+                formKey: phoneFormKey,
+                phone: phoneController.text,
+                phoneFocusNode: phoneFocusNode,
+                rememberMe: isRememberMeChecked,
+              );
+
+              final storageService = getIt<LocalStorageService>();
+              storageService.setIsChecked(SharedKeys.isRegisteredUser, true);
+
               context.goNamed(
-                  MyRouts.home,
-                  extra: {
-                    SharedKeys.phone: phoneController.text,
-                    SharedKeys.isRegisteredUser: true,
-                  }
+                MyRouts.home,
+                extra: {
+                  SharedKeys.phone: phoneController.text,
+                  SharedKeys.isRegisteredUser: true,
+                },
               );
             }
           },
@@ -111,7 +112,7 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
         16.verticalSpace,
         CustomButton(
           onPressed: () {
-            widget.cubit.signUp();
+            widget.viewModel._signUp();
             context.pushNamed(MyRouts.signUp);
           },
           color: MyColors.white,
@@ -134,11 +135,4 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
       ],
     ),
   );
-
-  @override
-  void dispose() {
-    phoneController.dispose();
-    phoneFocusNode.dispose();
-    super.dispose();
-  }
 }

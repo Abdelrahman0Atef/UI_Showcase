@@ -1,50 +1,73 @@
 part of '../profile_imports.dart';
 
 class ProfileViewModel {
-  final BuildContext context;
-  late final ProfileCubit cubit;
+  final GenericCubit<int> _selectedIndexCubit = GenericCubit(0);
+  final GenericCubit<String?> _versionCubit = GenericCubit(null);
+  final GenericCubit<String?> _phoneCubit = GenericCubit(null);
+  final GenericCubit<String?> _emailCubit = GenericCubit(null);
+  final GenericCubit<String?> _firstNameCubit = GenericCubit(null);
+  final GenericCubit<String?> _lastNameCubit = GenericCubit(null);
+  final LocalStorageService _storageService = getIt<LocalStorageService>();
 
-  ProfileViewModel(this.context) {
-    cubit = context.read<ProfileCubit>();
+  final SignUpViewModel vm = SignUpViewModel();
+
+  void _init(){
+    _getPhone();
+    _getVersion();
+    _getEmail();
+    _getFirstName();
+    _getLastName();
+    vm.loadSavedData();
+    vm.loadSavedCredentials();
   }
 
-  ProfileState get state => cubit.state;
-
-  Future<void> loadUserInfo([Map<String, dynamic>? userData]) async {
-    cubit.loadUserInfo(userData);
-    await getVersion();
+  void _signOut(BuildContext context) async {
+    await _storageService.setIsChecked(SharedKeys.isRegisteredUser, false);
+    final isRegistered = _storageService.getIsChecked(SharedKeys.isRegisteredUser);
+    if (isRegistered == false) {
+      context.pushReplacementNamed(MyRouts.signIn);
+    }
   }
 
-  void updateIndex(int index) => cubit.updateSelectedIndex(index);
 
-  void signOut() => cubit.signOut();
-
-  void shareApp() {
+  void _shareApp(BuildContext context) {
     final platform = Theme.of(context).platform;
     if (platform == TargetPlatform.iOS) {
-      cubit.shareApp(MyStrings.iosLink);
+      _shareAppLink(MyStrings.iosLink);
     } else if (platform == TargetPlatform.android) {
-      cubit.shareApp(MyStrings.androidLink);
+      _shareAppLink(MyStrings.androidLink);
     } else {
-      cubit.shareApp(MyStrings.webSiteLink);
+      _shareAppLink(MyStrings.webSiteLink);
     }
   }
 
-  Future<void> getVersion() async {
+  void _shareAppLink(String link) {
+    SharePlus.instance.share(ShareParams(text: link));
+  }
+
+  void _getVersion() async {
     final info = await PackageInfo.fromPlatform();
-    cubit._appVersion = info.version;
-
-    final currentState = cubit.state;
-    if (currentState is ProfileLoaded) {
-      cubit.fetchAppVersion();
+    final String version = info.version;
+    if (kDebugMode) {
+      print(version);
     }
+    _versionCubit.onUpdateData(version);
   }
 
-  String getVersionText() {
-    if (state is ProfileLoaded) {
-      final loadedState = state as ProfileLoaded;
-      return loadedState.appVersion ?? cubit._appVersion ?? '1.0.0';
-    }
-    return '1.0.0';
+  void _getPhone() {
+    final String? phone = _storageService.getString(SharedKeys.phone) ?? '';
+    _phoneCubit.onUpdateData(phone);
+  }
+  void _getEmail() {
+    final String? email = _storageService.getString(SharedKeys.email) ?? '';
+    _emailCubit.onUpdateData(email);
+  }
+  void _getFirstName() {
+    final String? firstName = _storageService.getString(SharedKeys.firstName) ?? '';
+    _firstNameCubit.onUpdateData(firstName);
+  }
+  void _getLastName() {
+    final String? lastName = _storageService.getString(SharedKeys.lastName) ?? '';
+    _lastNameCubit.onUpdateData(lastName);
   }
 }

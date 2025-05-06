@@ -9,143 +9,113 @@ class SignUpView extends StatefulWidget {
 
 class SignUpViewState extends State<SignUpView> {
   final formKey = GlobalKey<FormState>();
-  late FocusNode firstNameFocusNode;
-  late FocusNode lastNameFocusNode;
-  late FocusNode phoneFocusNode;
-  late FocusNode emailFocusNode;
-  late FocusNode passwordFocusNode;
-  late TextEditingController firstNameController;
-  late TextEditingController lastNameController;
-  late TextEditingController phoneController;
-  late TextEditingController emailController;
-  late TextEditingController passwordController;
+  late SignUpViewModel vm = SignUpViewModel();
 
   @override
   void initState() {
     super.initState();
-    firstNameFocusNode = FocusNode();
-    lastNameFocusNode = FocusNode();
-    phoneFocusNode = FocusNode();
-    emailFocusNode = FocusNode();
-    passwordFocusNode = FocusNode();
-    firstNameController = TextEditingController();
-    lastNameController = TextEditingController();
-    phoneController = TextEditingController();
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
   }
 
   @override
   void dispose() {
-    firstNameFocusNode.dispose();
-    lastNameFocusNode.dispose();
-    phoneFocusNode.dispose();
-    emailFocusNode.dispose();
-    passwordFocusNode.dispose();
-    firstNameController.dispose();
-    lastNameController.dispose();
-    phoneController.dispose();
-    emailController.dispose();
-    passwordController.dispose();
+    vm._dispose();
     super.dispose();
   }
 
-  void closeKeyboard() {
-    FocusScope.of(context).unfocus();
-  }
-
   @override
-  Widget build(BuildContext context) => BlocProvider(
-    create: (context) => SignUpCubit(),
-    child: BlocConsumer<SignUpCubit, SignUpState>(
+  Widget build(BuildContext context) => MultiBlocProvider(
+    providers: [
+      BlocProvider<GenericCubit<bool>>.value(value: vm._passwordVisibleCubit),
+      BlocProvider<GenericCubit<bool>>.value(value: vm._hasCapitalLetterCubit),
+      BlocProvider<GenericCubit<bool>>.value(value: vm._hasNumberCubit),
+      BlocProvider<GenericCubit<bool>>.value(value: vm._hasValidLengthCubit),
+      BlocProvider<GenericCubit<String?>>.value(value: vm._statusMessageCubit),
+    ],
+    child: BlocConsumer<GenericCubit<String?>, GenericState<String?>>(
+      bloc: vm._statusMessageCubit,
       listener: (context, state) {
-        if (state is SignUpFailure) {
-          if (firstNameController.text.isNotEmpty &&
-              ValidationHelper.validateName(firstNameController.text) !=
+        if (state is GenericUpdateState) {
+          if (vm._firstNameController.text.isNotEmpty &&
+              ValidationHelper.validateName(vm._firstNameController.text) !=
                   null) {
-            firstNameFocusNode.requestFocus();
-          } else if (lastNameController.text.isNotEmpty &&
-              ValidationHelper.validateName(lastNameController.text) !=
+            vm._firstNameFocusNode.requestFocus();
+          } else if (vm._lastNameController.text.isNotEmpty &&
+              ValidationHelper.validateName(vm._lastNameController.text) !=
                   null) {
-            lastNameFocusNode.requestFocus();
-          } else if (phoneController.text.isNotEmpty &&
-              ValidationHelper.validatePhone(phoneController.text) != null) {
-            phoneFocusNode.requestFocus();
-          } else if (emailController.text.isNotEmpty &&
-              ValidationHelper.validateEmail(emailController.text) != null) {
-            emailFocusNode.requestFocus();
-          } else if (passwordController.text.isNotEmpty &&
-              ValidationHelper.validatePassword(passwordController.text) !=
+            vm._lastNameFocusNode.requestFocus();
+          } else if (vm._phoneController.text.isNotEmpty &&
+              ValidationHelper.validatePhone(vm._phoneController.text) != null) {
+            vm._phoneFocusNode.requestFocus();
+          } else if (vm._emailController.text.isNotEmpty &&
+              ValidationHelper.validateEmail(vm._emailController.text) != null) {
+            vm._emailFocusNode.requestFocus();
+          } else if (vm._passwordController.text.isNotEmpty &&
+              ValidationHelper.validatePassword(vm._passwordController.text) !=
                   null) {
-            passwordFocusNode.requestFocus();
+            vm._passwordFocusNode.requestFocus();
           }
-        } else if (state is SignUpSuccess) {
-          final Map<String, dynamic> userData = {
-            SharedKeys.isRegisteredUser: true,
-            SharedKeys.userFullName: '${firstNameController.text} ${lastNameController.text}',
-            SharedKeys.email: emailController.text,
-            SharedKeys.phone: phoneController.text,
-            SharedKeys.userEmail: emailController.text,
-            SharedKeys.userPhone: phoneController.text,
-          };
-
-          context.goNamed(
-            MyRouts.home,
-            extra: userData,
-          );
         }
       },
-      builder: (context, state) {
-        final cubit = context.read<SignUpCubit>();
-        final currentState =
-        state is SignUpInitial ? state : const SignUpInitial();
-
-        return Scaffold(
-          body: Form(
-            key: formKey,
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  const AuthCustomStack(),
-                  20.verticalSpace,
-                  SignUpFields(
-                    currentState: currentState,
-                    cubit: cubit,
-                    firstNameFocusNode: firstNameFocusNode,
-                    lastNameFocusNode: lastNameFocusNode,
-                    phoneFocusNode: phoneFocusNode,
-                    emailFocusNode: emailFocusNode,
-                    passwordFocusNode: passwordFocusNode,
-                    firstNameController: firstNameController,
-                    lastNameController: lastNameController,
-                    phoneController: phoneController,
-                    emailController: emailController,
-                    passwordController: passwordController,
-                  ),
-                  16.verticalSpace,
-                  SignUpValidationPassword(
-                    hasCapitalLetter: currentState.hasCapitalLetter,
-                    hasNumber: currentState.hasNumber,
-                    hasValidLength: currentState.hasValidLength,
-                  ),
-                  32.verticalSpace,
-                  SignUpButtons(
-                    currentState: currentState,
-                    cubit: cubit,
-                    formKey: formKey,
-                    firstNameController: firstNameController,
-                    lastNameController: lastNameController,
-                    phoneController: phoneController,
-                    emailController: emailController,
-                    passwordController: passwordController,
-                  ),
-                ],
+      builder:
+          (context, state) => Scaffold(
+            body: Form(
+              key: formKey,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    const AuthCustomStack(),
+                    20.verticalSpace,
+                    SignUpFields(
+                      viewModel: vm,
+                      firstNameFocusNode: vm._firstNameFocusNode,
+                      lastNameFocusNode: vm._lastNameFocusNode,
+                      phoneFocusNode: vm._phoneFocusNode,
+                      emailFocusNode: vm._emailFocusNode,
+                      passwordFocusNode: vm._passwordFocusNode,
+                      firstNameController: vm._firstNameController,
+                      lastNameController: vm._lastNameController,
+                      phoneController: vm._phoneController,
+                      emailController: vm._emailController,
+                      passwordController: vm._passwordController,
+                    ),
+                    16.verticalSpace,
+                    BlocBuilder<GenericCubit<bool>, GenericState<bool>>(
+                      bloc: vm._hasCapitalLetterCubit,
+                      builder:
+                          (context, capitalState) => BlocBuilder<GenericCubit<bool>, GenericState<bool>>(
+                            bloc: vm._hasNumberCubit,
+                            builder:
+                                (context, numberState) => BlocBuilder<GenericCubit<bool>,GenericState<bool>>(
+                                  bloc: vm._hasValidLengthCubit,
+                                  builder:
+                                      (context, lengthState,) => SignUpValidationPassword(
+                                        hasCapitalLetter:
+                                            capitalState is GenericUpdateState
+                                                ? capitalState.data
+                                                : false,
+                                        hasNumber:
+                                            numberState is GenericUpdateState
+                                                ? numberState.data
+                                                : false,
+                                        hasValidLength:
+                                            lengthState is GenericUpdateState
+                                                ? lengthState.data
+                                                : false,
+                                      ),
+                                ),
+                          ),
+                    ),
+                    32.verticalSpace,
+                    BlocBuilder<GenericCubit<bool>,GenericState<bool>>(
+                      bloc: vm._hasValidLengthCubit,
+                      builder: (context, state)=>SignUpButtons(viewModel: vm, formKey: formKey),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-        );
-      },
     ),
   );
 }

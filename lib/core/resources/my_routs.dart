@@ -3,4 +3,5 @@ class MyRouts{
   static const signUp = 'signUp';
   static const home = 'profile';
   static const splash = 'splash';
+
 }

@@ -9,3 +9,4 @@ import 'package:untitled/core/services/locator_services/locator_services.dart';
 import 'package:untitled/core/resources/shared_keys.dart';
 
 part 'view/splash_view.dart';
+part 'viewmodel/splash_view_model.dart';

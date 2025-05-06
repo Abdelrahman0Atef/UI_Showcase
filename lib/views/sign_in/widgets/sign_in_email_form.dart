@@ -1,14 +1,9 @@
 part of '../sign_in_imports.dart';
 
 class SignInEmailFormWidget extends StatefulWidget {
-  final SignInInitial currentState;
-  final SignInCubit cubit;
+  final SignInViewModel viewModel;
 
-  const SignInEmailFormWidget({
-    required this.currentState,
-    required this.cubit,
-    super.key,
-  });
+  const SignInEmailFormWidget({required this.viewModel, super.key});
 
   @override
   State<SignInEmailFormWidget> createState() => _SignInEmailFormWidgetState();
@@ -21,19 +16,29 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
   final FocusNode emailFocusNode = FocusNode();
   final FocusNode passwordFocusNode = FocusNode();
 
+  bool isRememberMeChecked = false;
+  bool passwordVisible = false;
+
   @override
   void initState() {
     super.initState();
-    _loadCredentialsFromState();
+    final storageService = getIt<LocalStorageService>();
+    isRememberMeChecked =
+        storageService.getIsChecked(SharedKeys.emailRememberMe) ?? false;
+
+    emailController.text = storageService.getString(SharedKeys.email) ?? '';
+    passwordController.text =
+        storageService.getString(SharedKeys.password) ?? '';
+
+    passwordVisible = widget.viewModel._isPasswordVisible;
   }
 
-  void _loadCredentialsFromState() {
-    if (emailController.text.isEmpty && widget.currentState.savedEmail.isNotEmpty) {
-      emailController.text = widget.currentState.savedEmail;
-    }
-    if (passwordController.text.isEmpty && widget.currentState.savedPassword.isNotEmpty) {
-      passwordController.text = widget.currentState.savedPassword;
-    }
+  void _togglePasswordVisibility() {
+    setState(() {
+      passwordVisible = !passwordVisible;
+      widget.viewModel
+          ._togglePasswordVisibility();
+    });
   }
 
   @override
@@ -43,9 +48,9 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
       children: [
         16.verticalSpace,
         CustomTextFieldWithTitle(
-
           label: MyStrings.email,
-          validator: (value) => ValidationHelper.validateEmail(value as String?),
+          validator:
+              (value) => ValidationHelper.validateEmail(value as String?),
           focusNode: emailFocusNode,
           controller: emailController,
           onSubmitted: (_) {
@@ -55,12 +60,12 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
         ),
         24.verticalSpace,
         CustomTextFieldWithTitle(
-
           label: MyStrings.password,
-          obscureText: !widget.currentState.passwordVisible,
-          isPasswordVisible: widget.currentState.passwordVisible,
-          onIconPressed: widget.cubit.togglePasswordVisibility,
-          validator: (value) => ValidationHelper.validatePassword(value as String?),
+          obscureText: !passwordVisible,
+          isPasswordVisible: passwordVisible,
+          onIconPressed: _togglePasswordVisibility,
+          validator:
+              (value) => ValidationHelper.validatePassword(value as String?),
           focusNode: passwordFocusNode,
           controller: passwordController,
           isLastField: true,
@@ -77,10 +82,13 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
         Row(
           children: [
             Checkbox(
-              value: widget.currentState.isEmailRememberMeChecked,
+              value: isRememberMeChecked,
               onChanged: (value) {
-                widget.cubit.toggleEmailRememberMe(
-                  value ?? false,
+                setState(() {
+                  isRememberMeChecked = value ?? false;
+                });
+                widget.viewModel._toggleEmailRememberMe(
+                  isRememberMeChecked,
                   emailController.text,
                   passwordController.text,
                 );
@@ -93,31 +101,22 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
         22.verticalSpace,
         CustomButton(
           onPressed: () {
-            if (emailFormKey.currentState!.validate()) {
-              if (widget.currentState.isEmailRememberMeChecked) {
-                widget.cubit.saveEmailCredentials(
-                  emailController.text,
-                  passwordController.text,
-                  true,
-                );
-              } else {
-                widget.cubit.saveEmailCredentials('', '', false);
-              }
+            if (emailController.text.isNotEmpty &&
+                passwordController.text.isNotEmpty) {
+              widget.viewModel._validateEmailSignIn(
+                formKey: emailFormKey,
+                email: emailController.text,
+                password: passwordController.text,
+                emailFocusNode: emailFocusNode,
+                passwordFocusNode: passwordFocusNode,
+                rememberMe: isRememberMeChecked,
+              );
 
               final storageService = getIt<LocalStorageService>();
               storageService.setIsChecked(SharedKeys.isRegisteredUser, true);
 
-              final Map<String, dynamic> userData = {
-                SharedKeys.email: emailController.text,
-                SharedKeys.userEmail: emailController.text,
-                SharedKeys.isRegisteredUser: true,
-                SharedKeys.userFullName: emailController.text.split('@').first,
-              };
 
-              context.goNamed(
-                MyRouts.home,
-                extra: userData,
-              );
+              context.goNamed(MyRouts.home);
             }
           },
           color: MyColors.red,
@@ -129,7 +128,7 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
         16.verticalSpace,
         CustomButton(
           onPressed: () {
-            widget.cubit.signUp();
+            widget.viewModel._signUp();
             context.pushNamed(MyRouts.signUp);
           },
           color: MyColors.white,
