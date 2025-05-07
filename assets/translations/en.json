@@ -50,5 +50,11 @@
   "rateTheApp": "Rate The App",
   "signOutConfirmation": "Are you sure you want to log out?",
   "yes": "Yes",
-  "no":"No"
+  "no":"No",
+  "pound": "Pound",
+  "point": "Point",
+  "noProducts": "There are no products yet",
+  "search": "Search",
+  "discount": "Get 25% discount",
+  "product": "Swibel hair ampoules vitamin"
 }

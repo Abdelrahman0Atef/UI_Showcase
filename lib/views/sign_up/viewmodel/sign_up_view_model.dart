@@ -40,8 +40,6 @@ class SignUpViewModel {
     _passwordVisibleCubit.onUpdateData(!current);
   }
 
-  bool get _isPasswordVisible => _passwordVisibleCubit.state.data;
-
   void _updatePasswordValidation(String password) {
     _hasCapitalLetterCubit.onUpdateData(
       ValidationHelper.hasCapitalLetter(password),
@@ -51,11 +49,6 @@ class SignUpViewModel {
       ValidationHelper.hasValidLength(password),
     );
   }
-
-  bool get _isPasswordValid =>
-      _hasCapitalLetterCubit.state.data &&
-      _hasNumberCubit.state.data &&
-      _hasValidLengthCubit.state.data;
 
   Future<void> _validateAndProceed({
     required GlobalKey<FormState> formKey,
@@ -82,7 +75,7 @@ class SignUpViewModel {
       _statusMessageCubit.onUpdateData(MyStrings.thereIsAnErrorInTheData);
       return;
     }
-    _saveCread();
+    _saveUserData();
 
     _statusMessageCubit.onUpdateData(null);
 
@@ -95,29 +88,30 @@ class SignUpViewModel {
     });
   }
 
-  void _saveCread()async{
+  void _saveUserData() async {
     await _storageService.setIsChecked(SharedKeys.isRegisteredUser, true);
-    await _storageService.setIsChecked(SharedKeys.emailRememberMe, true);
-    await _storageService.setString(SharedKeys.firstName, _firstNameController.text);
-    await _storageService.setString(SharedKeys.lastName, _lastNameController.text);
+    await _storageService.setString(
+      SharedKeys.firstName,
+      _firstNameController.text,
+    );
+    await _storageService.setString(
+      SharedKeys.lastName,
+      _lastNameController.text,
+    );
     await _storageService.setString(SharedKeys.email, _emailController.text);
     await _storageService.setString(SharedKeys.phone, _phoneController.text);
-    await _storageService.setString(SharedKeys.password, _passwordController.text);
-
+    await _storageService.setString(
+      SharedKeys.password,
+      _passwordController.text,
+    );
   }
+
   final GenericCubit<String> _firstNameCubit = GenericCubit('');
   final GenericCubit<String> _lastNameCubit = GenericCubit('');
   final GenericCubit<String> _emailCubit = GenericCubit('');
   final GenericCubit<String> _phoneCubit = GenericCubit('');
 
-  void loadSavedCredentials() {
-    _firstNameCubit.onUpdateData(_storageService.getString(SharedKeys.firstName) ?? '');
-    _lastNameCubit.onUpdateData(_storageService.getString(SharedKeys.lastName) ?? '');
-    _emailCubit.onUpdateData(_storageService.getString(SharedKeys.email) ?? '');
-    _phoneCubit.onUpdateData(_storageService.getString(SharedKeys.phone) ?? '');
-  }
-
-  void loadSavedData() async {
+  void loadUserData() async {
     final firstName = await _storageService.getString(SharedKeys.firstName);
     final lastName = await _storageService.getString(SharedKeys.lastName);
     final email = await _storageService.getString(SharedKeys.email);
@@ -128,5 +122,4 @@ class SignUpViewModel {
     _emailCubit.onUpdateData(email ?? '');
     _phoneCubit.onUpdateData(phone ?? '');
   }
-
 }

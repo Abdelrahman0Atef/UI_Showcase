@@ -82,8 +82,8 @@ class SignUpFields extends StatelessWidget {
         builder:
             (context, state) => CustomTextFieldWithTitle(
               label: MyStrings.password,
-              obscureText: !viewModel._isPasswordVisible,
-              isPasswordVisible: viewModel._isPasswordVisible,
+              obscureText: !viewModel._passwordVisibleCubit.state.data,
+              isPasswordVisible: viewModel._passwordVisibleCubit.state.data,
               onIconPressed: viewModel._togglePasswordVisibility,
               validator:
                   (value) =>

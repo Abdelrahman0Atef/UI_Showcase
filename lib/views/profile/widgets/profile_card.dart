@@ -22,7 +22,7 @@ class ProfileCustomDataCard extends StatelessWidget {
                 builder: (context, state) {
                   if (state is GenericUpdateState<String?>) {
                     return CustomText(
-                      text: state.data ?? MyStrings.support,
+                      text: state.data ?? MyStrings.email,
                       textStyle: const TextStyle(
                         color: MyColors.grey,
                         fontWeight: FontWeight.bold,
@@ -49,7 +49,7 @@ class ProfileCustomDataCard extends StatelessWidget {
                         builder: (context, state) {
                           if (state is GenericUpdateState<String?>) {
                             return CustomText(
-                              text: state.data ?? MyStrings.support,
+                              text: state.data ?? MyStrings.firstName,
                               textStyle: const TextStyle(
                                 color: MyColors.grey,
                                 fontWeight: FontWeight.bold,
@@ -70,7 +70,7 @@ class ProfileCustomDataCard extends StatelessWidget {
                         builder: (context, state) {
                           if (state is GenericUpdateState<String?>) {
                             return CustomText(
-                              text: state.data ?? MyStrings.support,
+                              text: state.data ?? MyStrings.lastName,
                               textStyle: const TextStyle(
                                 color: MyColors.grey,
                                 fontWeight: FontWeight.bold,

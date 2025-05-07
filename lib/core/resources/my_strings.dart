@@ -53,6 +53,12 @@ class MyStrings {
   static String get signOutConfirmation => 'signOutConfirmation'.tr();
   static String get yes => 'yes'.tr();
   static String get no => 'no'.tr();
+  static String get pound => 'pound'.tr();
+  static String get point => 'point'.tr();
+  static String get noProducts => 'noProducts'.tr();
+  static String get search => 'search'.tr();
+  static String get discount => 'discount'.tr();
+  static String get product => 'product';
 
   //Share Link
   static const iosLink = 'Check out this awesome app: https://apps.apple.com/us/app/almasry-store/id6483365001';
@@ -66,7 +72,7 @@ class MyStrings {
   static const male = 'Male';
   static const date = '16-04-2003';
   static const croCo = 'croco2 Test';
-  static const support = 'croco@support.com.test';
   static const version = 'v';
+  static const quantity = '1';
 
 }

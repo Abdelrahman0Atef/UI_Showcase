@@ -20,7 +20,9 @@ class SignUpButtons extends StatelessWidget {
       Center(
         child: CustomButton(
           onPressed:
-              viewModel._isPasswordValid
+              viewModel._hasCapitalLetterCubit.state.data &&
+                      viewModel._hasNumberCubit.state.data &&
+                      viewModel._hasValidLengthCubit.state.data
                   ? () {
                     closeKeyboard(context);
                     viewModel._validateAndProceed(
@@ -34,10 +36,19 @@ class SignUpButtons extends StatelessWidget {
                   : () {},
           text: MyStrings.createAnAccount,
           textColor: MyColors.white,
-          color: viewModel._isPasswordValid ? MyColors.red : MyColors.grey,
+          color:
+              viewModel._hasCapitalLetterCubit.state.data &&
+                      viewModel._hasNumberCubit.state.data &&
+                      viewModel._hasValidLengthCubit.state.data
+                  ? MyColors.red
+                  : MyColors.grey,
           width: 0.w,
           borderColor:
-              viewModel._isPasswordValid ? MyColors.red : MyColors.grey,
+              viewModel._hasCapitalLetterCubit.state.data &&
+                      viewModel._hasNumberCubit.state.data &&
+                      viewModel._hasValidLengthCubit.state.data
+                  ? MyColors.red
+                  : MyColors.grey,
         ),
       ),
       8.verticalSpace,

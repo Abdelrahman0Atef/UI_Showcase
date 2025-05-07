@@ -17,8 +17,7 @@ class ProfileViewModel {
     _getEmail();
     _getFirstName();
     _getLastName();
-    vm.loadSavedData();
-    vm.loadSavedCredentials();
+    vm.loadUserData();
   }
 
   void _signOut(BuildContext context) async {

@@ -4,19 +4,21 @@ class CustomText extends StatelessWidget {
   const CustomText({
     required this.text, super.key,
     this.textStyle,
-    this.fontSize
+    this.fontSize,
+    this.textAlign
   });
 
   final String text;
   final TextStyle? textStyle;
   final double? fontSize;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) => Text(
     softWrap: true,
       overflow: TextOverflow.visible,
       maxLines: 2,
-    textAlign: TextAlign.center,
+      textAlign: textAlign ?? TextAlign.center,
       text,
       style: textStyle ??
           TextStyle(
