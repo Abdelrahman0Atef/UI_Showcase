@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:untitled/core/resources/my_routs.dart';
+import 'package:untitled/views/home/home_imports.dart';
 import 'package:untitled/views/layout/layout_imports.dart';
 import 'package:untitled/views/search/search_imports.dart';
 import 'package:untitled/views/sign_in/sign_in_imports.dart';
@@ -26,15 +27,22 @@ class AppRouter {
         path: '/${MyRouts.signUp}',
         builder: (context, state) => const SignUpView(),
       ),
-      GoRoute(
-        name: MyRouts.home,
-        path: '/${MyRouts.home}',
-        builder: (context, state) => const LayoutView(),
-      ),
-      GoRoute(
-        name: MyRouts.search,
-        path: '/${MyRouts.search}',
-        builder: (context, state) => const SearchView(),
+      ShellRoute(
+        builder: (context, state, child) => LayoutView(child: child),
+        routes: [
+          GoRoute(
+            name: MyRouts.home,
+            path: '/${MyRouts.home}',
+            builder: (context, state) => const HomeView(),
+            routes: [
+              GoRoute(
+                name: MyRouts.search,
+                path: 'search',
+                builder: (context, state) => const SearchView(),
+              ),
+            ],
+          ),
+        ],
       ),
     ],
   );
