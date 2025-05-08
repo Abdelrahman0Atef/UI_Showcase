@@ -7,13 +7,16 @@ class HomeView extends StatefulWidget {
   State<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
-  final HomeViewModel vm = HomeViewModel();
+final HomeViewModel vm = HomeViewModel();
 
+class _HomeViewState extends State<HomeView> {
   @override
-  Widget build(BuildContext context) =>
-      Scaffold(appBar: AppBar(
-          title:Text(MyStrings.home) , centerTitle: true),
-          body: const HomeBody()
-      );
+  Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar(
+      automaticallyImplyLeading: false,
+      title: CustomText(text: MyStrings.home),
+      centerTitle: true,
+    ),
+    body: HomeBody(vm: vm),
+  );
 }

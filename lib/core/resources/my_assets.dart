@@ -4,4 +4,8 @@ class MyAssets{
   static const egyptFlag = 'assets/images/egypt_flag.png';
   static const usaFlag = 'assets/images/usa_flag.png';
   static const product = 'assets/images/product.png';
+  static const card = 'assets/images/card.png';
+  static const ccard = 'assets/images/ccard.png';
+
+
 }

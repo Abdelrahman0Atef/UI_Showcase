@@ -1,4 +1,4 @@
-part of '../home_imports.dart';
+part of '../search_imports.dart';
 
 class ProductIconButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -10,8 +10,7 @@ class ProductIconButton extends StatelessWidget {
 
   const ProductIconButton({
     required this.onPressed,
-    required this.icon,
-    this.width, this.height, super.key, this.decoration, this.color,
+    required this.icon,this.width, this.height, super.key, this.decoration, this.color,
   });
 
   @override

@@ -15,9 +15,9 @@ class CustomText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Text(
-    softWrap: true,
-      overflow: TextOverflow.visible,
-      maxLines: 2,
+      softWrap: true,
+      overflow: TextOverflow.ellipsis,
+      maxLines: 1,
       textAlign: textAlign ?? TextAlign.center,
       text,
       style: textStyle ??

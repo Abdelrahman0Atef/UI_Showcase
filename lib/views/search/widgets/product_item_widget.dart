@@ -1,36 +1,38 @@
-part of '../home_imports.dart';
+part of '../search_imports.dart';
 
 class ProductItemWidget extends StatelessWidget {
   final ProductModel product;
+  final SearchViewModel vm;
 
-  const ProductItemWidget({required this.product, super.key});
+  const ProductItemWidget({required this.product, required this.vm, super.key});
 
   @override
   Widget build(BuildContext context) => Container(
-    width: 161.w,
     height: 322.h,
+    width: 161.w,
     decoration: BoxDecoration(
       border: Border.all(color: MyColors.darkWhite),
-      borderRadius: BorderRadius.circular(4.r),
+      borderRadius: BorderRadius.circular(15.r),
     ),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
-          child: Center(
+          child: ClipRRect(
+            borderRadius: BorderRadius.only(topLeft:  Radius.circular(15.r), topRight:  Radius.circular(15.r)),
             child: Container(
               color: MyColors.darkWhite,
               height: 164.h,
-              width: 159.w,
+              width: double.infinity.w,
               child: Column(
                 children: [
                   Image.asset(
                     product.image,
                     fit: BoxFit.cover,
-                    height: context.locale == AppLanguage.arabic ? 125.h : 138.h,
-                    width: 159.w,
+                    height: 145.h,
+                    width: double.infinity.w,
                   ),
-                  context.locale == AppLanguage.arabic ? 3.verticalSpace : 5.verticalSpace,
+                  7.verticalSpace,
                   CustomText(
                     text: MyStrings.discount,
                     textStyle: TextStyle(
@@ -44,7 +46,7 @@ class ProductItemWidget extends StatelessWidget {
             ),
           ),
         ),
-        5.verticalSpace,
+        4.verticalSpace,
         Container(
           padding: EdgeInsets.symmetric(horizontal: 10.r),
           child: Column(
@@ -52,7 +54,7 @@ class ProductItemWidget extends StatelessWidget {
             children: [
               CustomText(
                 textAlign: TextAlign.start,
-                text: product.title.tr(),
+                text: product.title,
                 textStyle: const TextStyle(fontWeight: FontWeight.w500),
               ),
               6.verticalSpace,
@@ -74,6 +76,7 @@ class ProductItemWidget extends StatelessWidget {
                   ),
                 ],
               ),
+              4.verticalSpace,
               CustomText(
                 text: '${product.price.toStringAsFixed(2)} ${MyStrings.pound}',
                 textStyle: TextStyle(
@@ -82,7 +85,7 @@ class ProductItemWidget extends StatelessWidget {
                   decoration: TextDecoration.lineThrough,
                 ),
               ),
-              20.verticalSpace,
+              19.verticalSpace,
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -97,18 +100,30 @@ class ProductItemWidget extends StatelessWidget {
                     ),
                   ),
                   25.horizontalSpace,
-                  ProductIconButton(onPressed: () {}, icon: Icons.add),
+                  ProductIconButton(
+                    onPressed: () {
+                      vm._incrementQuantity(product);
+                    },
+                    icon: Icons.add,
+                  ),
                   12.horizontalSpace,
-                  const CustomText(text: MyStrings.quantity),
+                  BlocBuilder<GenericCubit<int>, GenericState<int>>(
+                    bloc: product.quantityCubit,
+                    builder: (context, state) {
+                      if(state is GenericUpdateState) {
+                        return CustomText(text:'${product.quantityCubit.state.data}');
+                      }return const CustomText(text: MyStrings.quantity);
+                    },
+                  ),
                   12.horizontalSpace,
                   ProductIconButton(
-                    onPressed: () {},
+                    onPressed: () {vm._decrementQuantity(product);},
                     icon: Icons.remove,
                     color: MyColors.grey,
                   ),
                 ],
               ),
-              10.verticalSpace
+              16.verticalSpace,
             ],
           ),
         ),

@@ -58,7 +58,6 @@ class MyStrings {
   static String get noProducts => 'noProducts'.tr();
   static String get search => 'search'.tr();
   static String get discount => 'discount'.tr();
-  static String get product => 'product';
 
   //Share Link
   static const iosLink = 'Check out this awesome app: https://apps.apple.com/us/app/almasry-store/id6483365001';
@@ -73,6 +72,6 @@ class MyStrings {
   static const date = '16-04-2003';
   static const croCo = 'croco2 Test';
   static const version = 'v';
-  static const quantity = '1';
+  static const quantity = '0';
 
 }

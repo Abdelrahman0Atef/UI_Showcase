@@ -1,17 +1,20 @@
-part of '../home_imports.dart';
+part of '../search_imports.dart';
 
-class HomeSearch extends StatelessWidget {
+class SearchField extends StatelessWidget {
   final TextEditingController controller;
   final bool hasResults;
   final ValueChanged<String> onChanged;
   final VoidCallback onTap;
+  final VoidCallback onClear;
+  final bool? isHome;
 
-  const HomeSearch({
+  const SearchField({
     required this.controller,
     required this.hasResults,
     required this.onChanged,
     required this.onTap,
-    super.key,
+    required this.onClear,
+    this.isHome = false, super.key,
   });
 
   @override
@@ -19,14 +22,16 @@ class HomeSearch extends StatelessWidget {
     padding: EdgeInsets.all(8.r),
     child: Row(
       children: [
-        IconButton(
+        isHome == true ? IconButton(
           icon: const Icon(Icons.arrow_back, color: MyColors.darkGrayish),
           onPressed: () {
             context.pushReplacementNamed(MyRouts.home);
           },
-        ),
+        ) : const SizedBox.shrink(),
         Expanded(
           child: TextField(
+            autofocus: isHome == true ? true : false,
+            onTap: onTap,
             controller: controller,
             decoration: InputDecoration(
               hintText: MyStrings.search,
@@ -35,7 +40,7 @@ class HomeSearch extends StatelessWidget {
               suffixIcon:
                   hasResults
                       ? GestureDetector(
-                        onTap: onTap,
+                        onTap: onClear,
                         child: const Icon(
                           Icons.close,
                           color: MyColors.darkGrayish,
