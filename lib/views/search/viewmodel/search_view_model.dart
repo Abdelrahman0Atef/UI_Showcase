@@ -1,8 +1,8 @@
 part of '../search_imports.dart';
 
 class SearchViewModel {
-  final GenericCubit<List<ProductModel>> _productListCubit = GenericCubit([]);
-  final GenericCubit<bool> _showListCubit = GenericCubit(false);
+  final GenericCubit<List<ProductModel>> productListCubit = GenericCubit([]);
+  final GenericCubit<bool> showListCubit = GenericCubit(false);
   final GenericCubit<bool> _showClearIconCubit = GenericCubit(false);
   final TextEditingController _searchController = TextEditingController();
 
@@ -30,7 +30,7 @@ class SearchViewModel {
   ];
 
 
-  void _init(){
+  void init(){
     _searchProducts('');
     _toggleList(true);
   }
@@ -46,24 +46,24 @@ class SearchViewModel {
 
   void _searchProducts(String query) {
     if (query.isEmpty) {
-      _productListCubit.onUpdateData(_allProducts);
+      productListCubit.onUpdateData(_allProducts);
       _showClearIconCubit.onUpdateData(false);
       return;
     }
     final filtered = _allProducts
         .where((p) => p.title.toLowerCase().contains(query.toLowerCase()))
         .toList();
-    _productListCubit.onUpdateData(filtered);
+    productListCubit.onUpdateData(filtered);
     _showClearIconCubit.onUpdateData(query.isNotEmpty);
   }
 
   void _toggleList(bool show) {
-    _showListCubit.onUpdateData(show);
+    showListCubit.onUpdateData(show);
   }
 
   void _clearSearchResults() {
-    _productListCubit.onUpdateData(_allProducts);
-    _showListCubit.onUpdateData(true);
+    productListCubit.onUpdateData(_allProducts);
+    showListCubit.onUpdateData(true);
     _showClearIconCubit.onUpdateData(false);
   }
 }

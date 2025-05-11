@@ -30,16 +30,11 @@ class _LayoutViewState extends State<LayoutView> {
     builder: (context, state) {
       final _ = context.locale;
       return Scaffold(
-        body: state.data == 0
-            ? widget.child
-            : _pages[state.data],
+        body: state.data == 0 ? widget.child : _pages[state.data],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: state.data,
           onTap: (index) {
             viewModel._changeScreen(index);
-            if (index == 0) {
-              GoRouter.of(context).goNamed(MyRouts.home);
-            }
           },
           selectedItemColor: MyColors.red,
           unselectedItemColor: MyColors.grey,

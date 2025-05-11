@@ -1,4 +1,4 @@
-part of '../search_imports.dart';
+part of '../views/search/search_imports.dart';
 
 class ProductItemWidget extends StatelessWidget {
   final ProductModel product;
@@ -19,18 +19,24 @@ class ProductItemWidget extends StatelessWidget {
       children: [
         Expanded(
           child: ClipRRect(
-            borderRadius: BorderRadius.only(topLeft:  Radius.circular(15.r), topRight:  Radius.circular(15.r)),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(15.r),
+              topRight: Radius.circular(15.r),
+            ),
             child: Container(
               color: MyColors.darkWhite,
               height: 164.h,
               width: double.infinity.w,
               child: Column(
                 children: [
-                  Image.asset(
-                    product.image,
-                    fit: BoxFit.cover,
-                    height: 145.h,
-                    width: double.infinity.w,
+                  AspectRatio(
+                  aspectRatio: 1.35,
+                  child: Image.asset(
+                      product.image,
+                      fit: BoxFit.cover,
+                      height: 135.h,
+                      width: double.infinity.w,
+                    ),
                   ),
                   7.verticalSpace,
                   CustomText(
@@ -53,6 +59,7 @@ class ProductItemWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomText(
+                maxLines: 1,
                 textAlign: TextAlign.start,
                 text: product.title,
                 textStyle: const TextStyle(fontWeight: FontWeight.w500),
@@ -110,16 +117,32 @@ class ProductItemWidget extends StatelessWidget {
                   BlocBuilder<GenericCubit<int>, GenericState<int>>(
                     bloc: product.quantityCubit,
                     builder: (context, state) {
-                      if(state is GenericUpdateState) {
-                        return CustomText(text:'${product.quantityCubit.state.data}');
-                      }return const CustomText(text: MyStrings.quantity);
+                      if (state is GenericUpdateState) {
+                        return CustomText(
+                          text: '${product.quantityCubit.state.data}',
+                        );
+                      }
+                      return const CustomText(text: MyStrings.quantity);
                     },
                   ),
                   12.horizontalSpace,
-                  ProductIconButton(
-                    onPressed: () {vm._decrementQuantity(product);},
-                    icon: Icons.remove,
-                    color: MyColors.grey,
+                  BlocBuilder<GenericCubit<int>, GenericState<int>>(
+                    bloc: product.quantityCubit,
+                    builder: (context, state) {
+                      if (state is GenericUpdateState){
+                        state.data;
+                      }
+                        return ProductIconButton(
+                          onPressed: () {
+                            vm._decrementQuantity(product);
+                          },
+                          icon: Icons.remove,
+                          color:
+                              product.quantityCubit.state.data <= 0
+                                  ? MyColors.grey
+                                  : MyColors.black,
+                        );
+                    },
                   ),
                 ],
               ),

@@ -13,7 +13,7 @@ class _SearchViewState extends State<SearchView> {
   @override
   void initState() {
     super.initState();
-    vm._init();
+    vm.init();
   }
 
   @override

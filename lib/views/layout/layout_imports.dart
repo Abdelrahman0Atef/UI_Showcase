@@ -6,6 +6,7 @@ import 'package:untitled/core/generic_cubit/generic_cubit.dart';
 import 'package:untitled/core/resources/my_routs.dart';
 import 'package:untitled/views/home/home_imports.dart';
 import 'package:untitled/views/profile/profile_imports.dart';
+import 'package:untitled/views/search/search_imports.dart';
 import '../../../core/resources/my_colors.dart';
 import '../../../core/resources/my_strings.dart';
 

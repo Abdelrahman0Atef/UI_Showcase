@@ -12,7 +12,7 @@ class CustomImageSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SizedBox(
-    height: 180.h,
+    height: 220.h,
     width: 342.w,
     child: Stack(
       children: [
@@ -37,7 +37,7 @@ class CustomImageSlider extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.only(bottom: 25.h),
             child: BlocBuilder<GenericCubit<int>, GenericState<int>>(
-              bloc: viewModel.pageCubit,
+              bloc: viewModel._pageCubit,
               builder:
                   (context, state) => Container(
                     width: 74.w,
@@ -60,7 +60,7 @@ class CustomImageSlider extends StatelessWidget {
                             color:
                                 state.data == index
                                     ? MyColors.red
-                                    : MyColors.darkBlue.withValues(alpha: 60),
+                                    : MyColors.grey,
                             borderRadius: BorderRadius.circular(4),
                           ),
                         );

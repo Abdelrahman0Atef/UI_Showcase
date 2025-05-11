@@ -5,19 +5,20 @@ class CustomText extends StatelessWidget {
     required this.text, super.key,
     this.textStyle,
     this.fontSize,
-    this.textAlign
+    this.textAlign, this.maxLines
   });
 
   final String text;
   final TextStyle? textStyle;
   final double? fontSize;
   final TextAlign? textAlign;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) => Text(
       softWrap: true,
       overflow: TextOverflow.ellipsis,
-      maxLines: 1,
+      maxLines: maxLines ?? 2,
       textAlign: textAlign ?? TextAlign.center,
       text,
       style: textStyle ??

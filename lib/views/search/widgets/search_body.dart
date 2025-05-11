@@ -32,11 +32,11 @@ class SearchBody extends StatelessWidget {
       ),
       16.verticalSpace,
       BlocBuilder<GenericCubit<bool>, GenericState<bool>>(
-        bloc: vm._showListCubit,
+        bloc: vm.showListCubit,
         builder: (context, state) {
           if (!state.data) return const SizedBox.shrink();
           return BlocBuilder<GenericCubit<List<ProductModel>>, GenericState<List<ProductModel>>>(
-            bloc: vm._productListCubit,
+            bloc: vm.productListCubit,
             builder: (context, state) {
               if (state is GenericUpdateState) {
                 if (state.data.isEmpty) {
