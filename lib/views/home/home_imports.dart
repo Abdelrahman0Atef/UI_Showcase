@@ -15,4 +15,7 @@ part 'view/home_view.dart';
 part 'widgets/home_body.dart';
 part 'widgets/home_slider.dart';
 part 'widgets/home_offers_card.dart';
+part 'widgets/home_split_text_row.dart';
+part 'widgets/home_split_card.dart';
+part 'widgets/home_info_card.dart';
 part 'viewmodel/home_view_model.dart';

@@ -6,6 +6,15 @@ class MyAssets{
   static const product = 'assets/images/product.png';
   static const card = 'assets/images/card.png';
   static const ccard = 'assets/images/ccard.png';
+  static const fitness = 'assets/images/fitness.png';
+  static const face = 'assets/images/face.png';
+  static const brands = 'assets/images/brands.png';
+  static const headache = 'assets/images/headache.png';
+  static const flu = 'assets/images/flu.png';
+  static const car = 'assets/images/car.png';
+  static const mobile = 'assets/images/mobile.png';
+  static const callCenter = 'assets/images/call_center.png';
+  static const money = 'assets/images/money.png';
 
 
 }

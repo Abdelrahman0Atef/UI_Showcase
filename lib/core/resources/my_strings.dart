@@ -73,5 +73,23 @@ class MyStrings {
   static const croCo = 'croco2 Test';
   static const version = 'v';
   static const quantity = '0';
+  static const fastShipping = 'الشحن السريع';
+  static const shippingTime = 'الشحن في نفس اليوم على الطلبات شحن مجاني لما يزيد على 250 جنيه';
+  static const safeShopping = 'تسوق امن';
+  static const security = 'افضل طرق التسويق واعلي مستويات الامان';
+  static const callCenter = 'خدمه العملاء';
+  static const ambassadors  = 'سفراء العافية يقفون إلى جانب 7 أيام في الأسبوع';
+  static const refund = 'استعادة الاموال';
+  static const credit = 'ضمان استعادة الأموال! ألا يعجبك؟ أعده ألينا!';
+  static const offers = 'افضل العروض';
+  static const goals = 'الاهداف';
+  static const fitness = 'الرشاقة';
+  static const skinCare = 'العنايه بالبشره';
+  static const product = 'اكثر المنتجات مبيعات';
+  static const worries = 'ما يقلقني';
+  static const headache = 'الصداع المزمن';
+  static const flu = 'الانفلوانزا';
+  static const more = 'المزيد';
+  static const skin = 'عروض العنايه بالجمال';
 
 }

@@ -6,7 +6,7 @@ class SearchViewModel {
   final GenericCubit<bool> _showClearIconCubit = GenericCubit(false);
   final TextEditingController _searchController = TextEditingController();
 
-  static final List<ProductModel> _allProducts = [
+  static final List<ProductModel> allProducts = [
     ProductModel(image: MyAssets.product, title: 'Panadol Extraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', price: 245, points: 10, totalPrice: 245),
     ProductModel(image: MyAssets.product, title: 'Amoxicillin 500mg', price: 245, points: 10, totalPrice: 245),
     ProductModel(image: MyAssets.product, title: 'Voltaren Emulgel', price: 245, points: 10, totalPrice: 245),
@@ -46,11 +46,11 @@ class SearchViewModel {
 
   void _searchProducts(String query) {
     if (query.isEmpty) {
-      productListCubit.onUpdateData(_allProducts);
+      productListCubit.onUpdateData(allProducts);
       _showClearIconCubit.onUpdateData(false);
       return;
     }
-    final filtered = _allProducts
+    final filtered = allProducts
         .where((p) => p.title.toLowerCase().contains(query.toLowerCase()))
         .toList();
     productListCubit.onUpdateData(filtered);
@@ -62,7 +62,7 @@ class SearchViewModel {
   }
 
   void _clearSearchResults() {
-    productListCubit.onUpdateData(_allProducts);
+    productListCubit.onUpdateData(allProducts);
     showListCubit.onUpdateData(true);
     _showClearIconCubit.onUpdateData(false);
   }

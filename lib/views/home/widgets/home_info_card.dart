@@ -1,0 +1,49 @@
+part of '../home_imports.dart';
+
+class HomeInfoCard extends StatelessWidget {
+  const HomeInfoCard({
+    required this.image,
+    required this.title,
+    required this.subTitle,
+    super.key,
+  });
+
+  final String image;
+  final String title;
+  final String subTitle;
+
+  @override
+  Widget build(BuildContext context) => Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(6.r),
+      color: MyColors.white,
+      boxShadow: [
+        BoxShadow(blurRadius: 8.r, color: MyColors.black.withOpacity(0.1)),
+      ],
+    ),
+    child: Column(
+      children: [
+        16.verticalSpace,
+        Image.asset(image),
+        16.verticalSpace,
+        CustomText(
+          text: title,
+          textStyle: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 12,
+            color: MyColors.navy,
+          ),
+        ),
+        8.verticalSpace,
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 35.r),
+          child: CustomText(
+            text: subTitle,
+            textStyle: const TextStyle(fontSize: 10, color: MyColors.grey),
+            maxLines: 3,
+          ),
+        ),
+      ],
+    ),
+  );
+}

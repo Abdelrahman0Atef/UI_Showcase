@@ -8,6 +8,8 @@ class HomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final SearchViewModel searchModel = SearchViewModel();
+    searchModel.init();
+
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -21,29 +23,10 @@ class HomeBody extends StatelessWidget {
             },
           ),
           CustomImageSlider(viewModel: vm, imageUrls: vm.imageUrls),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              CustomText(
-                text: 'Offers',
-                textStyle: TextStyle(
-                  color: MyColors.navy,
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const CustomText(
-                text: 'More',
-                textStyle: TextStyle(
-                  decoration: TextDecoration.underline,
-                  color: MyColors.grey,
-                ),
-              ),
-            ],
-          ),
-          26.verticalSpace,
+          const HomeSplitTextRow(label: MyStrings.offers),
+          15.verticalSpace,
           SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.w),
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
@@ -55,39 +38,117 @@ class HomeBody extends StatelessWidget {
               ],
             ),
           ),
-          BlocBuilder<GenericCubit<bool>, GenericState<bool>>(
-            bloc: searchModel.showListCubit,
-            builder: (context, state) {
-              if (!state.data) return const SizedBox.shrink();
-              return BlocBuilder<
-                GenericCubit<List<ProductModel>>,
-                GenericState<List<ProductModel>>
-              >(
-                bloc: searchModel.productListCubit,
-                builder: (context, state) {
-                  if (state is GenericUpdateState) {
-                    if (state.data.isEmpty) {
-                      return CustomText(text: MyStrings.noProducts);
-                    }
-                    return Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10.r),
-                        child: ListView.builder(
-                          itemCount: state.data.length,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder:
-                              (_, index) => ProductItemWidget(
-                                product: state.data[index],
-                                vm: searchModel,
-                              ),
-                        ),
-                      ),
-                    );
-                  }
-                  return const SizedBox.shrink();
-                },
-              );
-            },
+          15.verticalSpace,
+          SizedBox(
+            height: 322.h,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              itemCount: SearchViewModel.allProducts.length,
+              itemBuilder: (context, index) {
+                final product = SearchViewModel.allProducts[index];
+                return Padding(
+                  padding: EdgeInsets.only(right: 12.w),
+                  child: ProductItemWidget(product: product, vm: searchModel),
+                );
+              },
+            ),
+          ),
+          30.verticalSpace,
+          const HomeSplitTextRow(label: MyStrings.goals),
+          25.verticalSpace,
+          const SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                HomeSplitCard(
+                  text: MyStrings.fitness,
+                  color: MyColors.lightNavy,
+                  image: MyAssets.fitness,
+                ),
+                HomeSplitCard(
+                  text: MyStrings.skinCare,
+                  color: MyColors.lightPink,
+                  image: MyAssets.face,
+                ),
+              ],
+            ),
+          ),
+          30.verticalSpace,
+          Image.asset(
+            MyAssets.brands,
+            width: double.infinity.w,
+            fit: BoxFit.cover,
+          ),
+          30.verticalSpace,
+          const HomeSplitTextRow(label: MyStrings.product),
+          25.verticalSpace,
+          SizedBox(
+            height: 322.h,
+            width: double.infinity.w,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              itemCount: SearchViewModel.allProducts.length,
+              itemBuilder: (context, index) {
+                final product = SearchViewModel.allProducts[index];
+                return Padding(
+                  padding: EdgeInsets.only(right: 12.w),
+                  child: ProductItemWidget(product: product, vm: searchModel),
+                );
+              },
+            ),
+          ),
+          30.verticalSpace,
+          const HomeSplitTextRow(label: MyStrings.worries),
+          25.verticalSpace,
+          const SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                HomeSplitCard(
+                  text: MyStrings.headache,
+                  color: MyColors.lightNavy,
+                  image: MyAssets.headache,
+                ),
+                HomeSplitCard(
+                  text: MyStrings.flu,
+                  color: MyColors.lightPink,
+                  image: MyAssets.flu,
+                ),
+              ],
+            ),
+          ),
+          20.verticalSpace,
+          GridView.count(
+            padding: EdgeInsets.all(16.r),
+              crossAxisCount: 2,
+            crossAxisSpacing: 12.h,
+              mainAxisSpacing: 12.h,
+              shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            children: const [
+              HomeInfoCard(
+                image: MyAssets.car,
+                title: MyStrings.fastShipping,
+                subTitle: MyStrings.shippingTime,
+              ),
+              HomeInfoCard(
+                image: MyAssets.mobile,
+                title: MyStrings.safeShopping,
+                subTitle: MyStrings.security,
+              ),
+              HomeInfoCard(
+                image: MyAssets.callCenter,
+                title: MyStrings.callCenter,
+                subTitle: MyStrings.ambassadors,
+              ),
+              HomeInfoCard(
+                image: MyAssets.money,
+                title: MyStrings.refund,
+                subTitle: MyStrings.credit,
+              ),
+            ],
           ),
         ],
       ),

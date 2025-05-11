@@ -43,20 +43,17 @@ class SearchBody extends StatelessWidget {
                   return CustomText(text: MyStrings.noProducts);
                 }
                 return Expanded(
-                  child: Padding(
+                  child: GridView.builder(
                     padding: EdgeInsets.symmetric(horizontal: 10.r),
-                    child: GridView.builder(
-                      itemCount: state.data.length,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            mainAxisSpacing: 10,
-                            crossAxisSpacing: 3,
-                            childAspectRatio: 0.65,
-                          ),
-                      itemBuilder: (_, index) => ProductItemWidget(vm: vm,product: state.data[index]),
-                      shrinkWrap: true,
-                    ),
+                    itemCount: state.data.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 10,
+                          childAspectRatio: 0.68,
+                        ),
+                    itemBuilder: (_, index) => ProductItemWidget(vm: vm,product: state.data[index]),
                   ),
                 );
               }

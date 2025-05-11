@@ -17,42 +17,37 @@ class ProductItemWidget extends StatelessWidget {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(
-          child: ClipRRect(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(15.r),
-              topRight: Radius.circular(15.r),
-            ),
-            child: Container(
-              color: MyColors.darkWhite,
-              height: 164.h,
-              width: double.infinity.w,
-              child: Column(
-                children: [
-                  AspectRatio(
-                  aspectRatio: 1.35,
-                  child: Image.asset(
-                      product.image,
-                      fit: BoxFit.cover,
-                      height: 135.h,
-                      width: double.infinity.w,
-                    ),
+        ClipRRect(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(15.r),
+            topRight: Radius.circular(15.r),
+          ),
+          child: Container(
+            color: MyColors.darkWhite,
+            height: 164.h,
+            width: double.infinity.w,
+            child: Column(
+              children: [
+                Image.asset(
+                    product.image,
+                    fit: BoxFit.cover,
+                    height: 138.h,
+                    width: double.infinity.w,
                   ),
-                  7.verticalSpace,
-                  CustomText(
-                    text: MyStrings.discount,
-                    textStyle: TextStyle(
-                      fontSize: 10.sp,
-                      fontWeight: FontWeight.w500,
-                      color: MyColors.charcoal,
-                    ),
+                7.verticalSpace,
+                CustomText(
+                  text: MyStrings.discount,
+                  textStyle: TextStyle(
+                    fontSize: 10.sp,
+                    fontWeight: FontWeight.w500,
+                    color: MyColors.charcoal,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
-        4.verticalSpace,
+        7.verticalSpace,
         Container(
           padding: EdgeInsets.symmetric(horizontal: 10.r),
           child: Column(
@@ -64,7 +59,7 @@ class ProductItemWidget extends StatelessWidget {
                 text: product.title,
                 textStyle: const TextStyle(fontWeight: FontWeight.w500),
               ),
-              6.verticalSpace,
+              10.verticalSpace,
               Row(
                 children: [
                   CustomText(
@@ -83,7 +78,7 @@ class ProductItemWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              4.verticalSpace,
+              12.verticalSpace,
               CustomText(
                 text: '${product.price.toStringAsFixed(2)} ${MyStrings.pound}',
                 textStyle: TextStyle(
@@ -92,7 +87,7 @@ class ProductItemWidget extends StatelessWidget {
                   decoration: TextDecoration.lineThrough,
                 ),
               ),
-              19.verticalSpace,
+              30.verticalSpace,
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -146,7 +141,6 @@ class ProductItemWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              16.verticalSpace,
             ],
           ),
         ),
