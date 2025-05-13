@@ -1,4 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:untitled/core/services/data_sources/data_sources.dart';
 import 'package:untitled/core/services/local_storage_data/local_storage_data.dart';
 import 'package:untitled/views/sign_in/sign_in_imports.dart';
 import 'package:untitled/views/sign_up/sign_up_imports.dart';
@@ -10,6 +12,7 @@ Future<void> locatorServices() async {
   getIt.registerSingleton<LocalStorageService>(localStorageService);
   getIt.registerFactory<SignInViewModel>(() => SignInViewModel());
   getIt.registerFactory<SignUpViewModel>(() => SignUpViewModel());
+  getIt.registerLazySingleton<DataSources>(() => DataSources(getIt<Dio>()));
 
 
 }

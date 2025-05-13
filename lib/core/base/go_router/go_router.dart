@@ -1,11 +1,17 @@
 import 'package:go_router/go_router.dart';
 import 'package:untitled/core/resources/my_routs.dart';
+import 'package:untitled/views/cart/cart_imports.dart';
+import 'package:untitled/views/categorie/categorie_imports.dart';
+import 'package:untitled/views/categoriesProduct/categories_product_imports.dart';
 import 'package:untitled/views/home/home_imports.dart';
 import 'package:untitled/views/layout/layout_imports.dart';
+import 'package:untitled/views/product/product_imports.dart';
+import 'package:untitled/views/profile/profile_imports.dart';
 import 'package:untitled/views/search/search_imports.dart';
 import 'package:untitled/views/sign_in/sign_in_imports.dart';
 import 'package:untitled/views/sign_up/sign_up_imports.dart';
 import 'package:untitled/views/splash/splash_imports.dart';
+
 
 class AppRouter {
   static GoRouter router = GoRouter(
@@ -41,6 +47,36 @@ class AppRouter {
                 builder: (context, state) => const SearchView(),
               ),
             ],
+          ),
+          GoRoute(
+            name: MyRouts.categories,
+            path: '/${MyRouts.categories}',
+            builder: (context, state) => const CategoryGridView(),
+            routes: [
+              GoRoute(
+                name: MyRouts.categoriesProducts,
+                path: 'products',
+                builder: (context, state) {
+                  final category = state.uri.queryParameters['category'] ?? '';
+                  return CategoriesProductsView(category: category);
+                },
+              ),
+            ],
+          ),
+          GoRoute(
+            name: MyRouts.products,
+            path: '/${MyRouts.products}',
+            builder: (context, state) => const ProductView(),
+          ),
+          GoRoute(
+            name: MyRouts.cart,
+            path: '/${MyRouts.cart}',
+            builder: (context, state) => const CartView(),
+          ),
+          GoRoute(
+            name: MyRouts.profile,
+            path: '/${MyRouts.profile}',
+            builder: (context, state) => const ProfileView(),
           ),
         ],
       ),

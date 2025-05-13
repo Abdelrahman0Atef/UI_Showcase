@@ -17,9 +17,5 @@ class _ProfileViewState extends State<ProfileView> {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: Text(MyStrings.profile), centerTitle: true),
-    body: ProfileBody(viewModel: vm),
-    backgroundColor: MyColors.white,
-  );
+  Widget build(BuildContext context) => Container(color: MyColors.white,child: ProfileBody(viewModel: vm));
 }

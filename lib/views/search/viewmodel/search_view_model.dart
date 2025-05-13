@@ -2,9 +2,14 @@ part of '../search_imports.dart';
 
 class SearchViewModel {
   final GenericCubit<List<ProductModel>> productListCubit = GenericCubit([]);
+  final GenericCubit<List<ProModel>> listProducts = GenericCubit([]);
   final GenericCubit<bool> showListCubit = GenericCubit(false);
   final GenericCubit<bool> _showClearIconCubit = GenericCubit(false);
   final TextEditingController _searchController = TextEditingController();
+  late final DataSources dataSources;
+  final CategoriesProductViewModel vm = CategoriesProductViewModel(DataSources(Dio()));
+  final GenericCubit<List<ProModel>> productCubit = GenericCubit([]);
+
 
   static final List<ProductModel> allProducts = [
     ProductModel(image: MyAssets.product, title: 'Panadol Extraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', price: 245, points: 10, totalPrice: 245),
@@ -29,6 +34,14 @@ class SearchViewModel {
     ProductModel(image: MyAssets.product, title: 'Aerius Tablets', price: 245, points: 10, totalPrice: 245),
   ];
 
+  void fetchAllProducts() async {
+    try {
+      final products = await dataSources.getAllProduct();
+      listProducts.onUpdateData(products);
+    } on Exception catch (e) {
+      throw Exception('Failed Loading $e');
+    }
+  }
 
   void init(){
     _searchProducts('');

@@ -10,6 +10,7 @@ class MyColors{
   static const Color darkGrayish = Color(0xff96A7AF);
   static const Color lightNavy = Color(0xff202D50);
   static const Color lightPink = Color(0xffFFAFAF);
+  static const Color fortress = Color(0x1A000000);
   static const Color red = Colors.red;
   static const Color white = Colors.white;
   static const Color grey = Colors.grey;

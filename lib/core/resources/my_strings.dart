@@ -58,6 +58,8 @@ class MyStrings {
   static String get noProducts => 'noProducts'.tr();
   static String get search => 'search'.tr();
   static String get discount => 'discount'.tr();
+  static String get products => 'products'.tr();
+
 
   //Share Link
   static const iosLink = 'Check out this awesome app: https://apps.apple.com/us/app/almasry-store/id6483365001';
@@ -91,5 +93,9 @@ class MyStrings {
   static const flu = 'الانفلوانزا';
   static const more = 'المزيد';
   static const skin = 'عروض العنايه بالجمال';
+  static const rate = 'التقييم';
+  static const noCategories  = 'No categories found.';
+  static const errorLoading  = 'Error loading products.';
+  static const allProducts  = 'All Products';
 
 }

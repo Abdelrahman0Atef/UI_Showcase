@@ -11,13 +11,5 @@ final HomeViewModel vm = HomeViewModel();
 
 class _HomeViewState extends State<HomeView> {
   @override
-  Widget build(BuildContext context) => Scaffold(
-    backgroundColor: MyColors.white,
-    appBar: AppBar(
-      automaticallyImplyLeading: false,
-      title: CustomText(text: MyStrings.home),
-      centerTitle: true,
-    ),
-    body: HomeBody(vm: vm),
-  );
+  Widget build(BuildContext context) => Container(color: MyColors.white,child: HomeBody(vm: vm));
 }

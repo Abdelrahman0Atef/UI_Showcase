@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:untitled/core/generic_cubit/generic_cubit.dart';
-import 'package:untitled/core/models/product_model/product_model.dart';
 import 'package:untitled/core/resources/my_assets.dart';
 import 'package:untitled/core/resources/my_colors.dart';
 import 'package:untitled/core/resources/my_routs.dart';
