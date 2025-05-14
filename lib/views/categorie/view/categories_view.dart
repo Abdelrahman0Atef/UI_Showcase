@@ -8,7 +8,7 @@ class CategoryGridView extends StatefulWidget {
 }
 
 class _CategoryGridViewState extends State<CategoryGridView> {
-  final CategoryViewModel vm = CategoryViewModel(DataSources(Dio()));
+  final CategoryViewModel vm = CategoryViewModel();
 
   @override
   void initState() {

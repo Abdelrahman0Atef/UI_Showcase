@@ -1,9 +1,10 @@
 part of '../home_imports.dart';
 
 class HomeOffersCard extends StatelessWidget {
-  const HomeOffersCard({required this.isSelected, super.key});
+  const HomeOffersCard({required this.isSelected, this.label = MyStrings.skin,super.key});
 
   final bool isSelected;
+  final String? label;
 
   @override
   Widget build(BuildContext context) => Container(
@@ -21,7 +22,7 @@ class HomeOffersCard extends StatelessWidget {
     ),
     child: Center(
       child: CustomText(
-        text: MyStrings.skin,
+        text: label ?? MyStrings.skin,
         textStyle: TextStyle(
           fontWeight: FontWeight.normal,
           color: isSelected ? MyColors.white : MyColors.black,

@@ -9,5 +9,5 @@ class MyRouts{
   static const cart = 'cart';
   static const profile = 'profile';
   static const products = 'products';
-
+  static const productsDetails = 'productsDetails';
 }

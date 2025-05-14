@@ -6,8 +6,8 @@ class SearchViewModel {
   final GenericCubit<bool> showListCubit = GenericCubit(false);
   final GenericCubit<bool> _showClearIconCubit = GenericCubit(false);
   final TextEditingController _searchController = TextEditingController();
-  late final DataSources dataSources;
-  final CategoriesProductViewModel vm = CategoriesProductViewModel(DataSources(Dio()));
+  final RestApiServices restApiServices = getIt<RestApiServices>();
+  final CategoriesProductViewModel vm = CategoriesProductViewModel();
   final GenericCubit<List<ProModel>> productCubit = GenericCubit([]);
 
 
@@ -36,12 +36,14 @@ class SearchViewModel {
 
   void fetchAllProducts() async {
     try {
-      final products = await dataSources.getAllProduct();
+      final data = await restApiServices.get(restApiServices.baseUrl);
+      final products = (data as List).map((e) => ProModel.fromJson(e)).toList();
       listProducts.onUpdateData(products);
-    } on Exception catch (e) {
+    } catch (e) {
       throw Exception('Failed Loading $e');
     }
   }
+
 
   void init(){
     _searchProducts('');

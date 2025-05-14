@@ -71,19 +71,19 @@ class _LayoutViewState extends State<LayoutView> {
           onTap: (index) {
             switch (index) {
               case 0:
-                context.goNamed(MyRouts.home);
+                context.pushNamed(MyRouts.home);
                 break;
               case 1:
-                context.goNamed(MyRouts.categories);
+                context.pushNamed(MyRouts.categories);
                 break;
               case 2:
-                context.goNamed(MyRouts.products,);
+                context.pushNamed(MyRouts.products,);
                 break;
               case 3:
-                context.goNamed(MyRouts.cart,);
+                context.pushNamed(MyRouts.cart,);
                 break;
               case 4:
-                context.goNamed(MyRouts.profile,);
+                context.pushNamed(MyRouts.profile,);
                 break;
             }
             viewModel._changeScreen(index);

@@ -2,13 +2,12 @@ part of '../categorie_imports.dart';
 
 class CategoryViewModel {
   final GenericCubit<List<String>> categoryCubit = GenericCubit([]);
-  final DataSources dataSource;
-
-  CategoryViewModel(this.dataSource);
+  final RestApiServices restApiServices = getIt<RestApiServices>();
 
   Future<void> getCategories() async {
     try {
-      final categories = await dataSource.getCategories();
+      final data = await restApiServices.get('${restApiServices.baseUrl}/categories');
+      final categories = List<String>.from(data);
       categoryCubit.onUpdateData(categories);
     } catch (e) {
       throw Exception('Error $e');

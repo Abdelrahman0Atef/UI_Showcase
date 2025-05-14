@@ -8,9 +8,7 @@ class ProductView extends StatefulWidget {
 }
 
 class _ProductViewState extends State<ProductView> {
-  final CategoriesProductViewModel vm = CategoriesProductViewModel(
-    DataSources(Dio()),
-  );
+  final ProductViewModel vm = ProductViewModel();
 
   @override
   void initState() {
@@ -28,7 +26,7 @@ class _ProductViewState extends State<ProductView> {
               if (products.isEmpty) {
                 return const Center(child: CircularProgressIndicator());
               }
-              return ProductsGridView(products: products);
+              return ProductsGridView(products: products,homeViewModel: vm.homeViewModel,);
             },
     ),
   );

@@ -11,8 +11,8 @@ class CategoriesProductsView extends StatefulWidget {
 }
 
 class _CategoriesProductsViewState extends State<CategoriesProductsView> {
-  final CategoriesProductViewModel viewModel = CategoriesProductViewModel(DataSources(Dio()),);
-  final SearchViewModel vm = SearchViewModel();
+  final CategoriesProductViewModel viewModel = CategoriesProductViewModel();
+  //final SearchViewModel vm = SearchViewModel();
 
   @override
   void initState() {
@@ -33,7 +33,7 @@ class _CategoriesProductsViewState extends State<CategoriesProductsView> {
               if (products.isEmpty) {
                 return Center(child: CustomText(text: MyStrings.noProducts));
               }
-              return ProductsGridView(products: products);
+              return ProductsGridView(products: products, homeViewModel: viewModel.homeViewModel,);
             } else if (state is GenericInitialState) {
               return const Center(child: CircularProgressIndicator());
             } else {
