@@ -1,23 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
-import 'package:untitled/core/models/product_model/api_product_model.dart';
-import 'package:untitled/core/resources/my_colors.dart';
-import 'package:untitled/core/resources/my_routs.dart';
-import 'package:untitled/core/resources/my_strings.dart';
-import 'package:untitled/views/home/home_imports.dart';
-import 'package:untitled/widgets/product_order_control.dart';
-import 'package:untitled/widgets/widgets_imports.dart';
+part of '../widgets/widgets_imports.dart';
 
-class ProItemWidget extends StatelessWidget {
+class ApiProItemWidget extends StatelessWidget {
   final ProModel product;
   final HomeViewModel vm;
 
-  const ProItemWidget({
-    required this.product,
-    required this.vm,
-    super.key,
-  });
+  const ApiProItemWidget({required this.product, required this.vm, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +53,7 @@ class ProItemWidget extends StatelessWidget {
                 ),
               ),
             ),
-            5.verticalSpace,
+            15.verticalSpace,
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.r),
               child: Column(
@@ -78,13 +65,13 @@ class ProItemWidget extends StatelessWidget {
                     text: product.description ?? '',
                     textStyle: const TextStyle(fontWeight: FontWeight.w500),
                   ),
-                  8.verticalSpace,
+                  15.verticalSpace,
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CustomText(
                         text:
-                        '${product.price?.toStringAsFixed(2) ?? '0.00'} ${MyStrings.pound}',
+                            '${product.price?.toStringAsFixed(2) ?? '0.00'} ${MyStrings.pound}',
                         textStyle: TextStyle(
                           color: MyColors.navy,
                           fontSize: 10.sp,
@@ -94,18 +81,25 @@ class ProItemWidget extends StatelessWidget {
                       25.horizontalSpace,
                       CustomText(
                         text: product.category ?? '',
-                        textStyle: TextStyle(color: MyColors.red, fontSize: 9.sp),
+                        textStyle: TextStyle(
+                          color: MyColors.red,
+                          fontSize: 9.sp,
+                        ),
                       ),
                     ],
                   ),
-                  10.verticalSpace,
+                  15.verticalSpace,
                   CustomText(
                     text:
-                    '${product.rating?.rate?.toStringAsFixed(1) ?? '0.0'} ${MyStrings.rate}',
+                        '${product.rating?.rate?.toStringAsFixed(1) ?? '0.0'} ${MyStrings.rate}',
                     textStyle: TextStyle(color: MyColors.grey, fontSize: 10.sp),
                   ),
-                  5.verticalSpace,
-                  ProductOrderControl(vm: vm, product: product, countCubit: countCubit,),
+                  20.verticalSpace,
+                  ProductOrderControl(
+                    vm: vm,
+                    product: product,
+                    countCubit: countCubit,
+                  ),
                 ],
               ),
             ),

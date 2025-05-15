@@ -1,4 +1,3 @@
-class MyFonts{
+class MyFonts {
   static const font = 'Almarai';
 }
-

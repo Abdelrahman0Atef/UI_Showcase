@@ -15,4 +15,5 @@ import '../../../core/resources/my_strings.dart';
 import '../categorie/categorie_imports.dart';
 
 part 'view/layout_view.dart';
+
 part 'viewmodel/layout_view_model.dart';

@@ -19,9 +19,15 @@ import '../../core/generic_cubit/generic_cubit.dart';
 import '../../core/resources/app_language.dart';
 
 part 'view/profile_view.dart';
+
 part 'widgets/profile_body.dart';
+
 part 'widgets/profile_card.dart';
+
 part 'widgets/profile_card_button.dart';
+
 part 'widgets/profile_sign_out.dart';
+
 part 'widgets/profile_lan_button.dart';
+
 part 'viewmodel/profile_view_model.dart';

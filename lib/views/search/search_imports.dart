@@ -15,8 +15,13 @@ import '../../core/generic_cubit/generic_cubit.dart';
 import 'package:untitled/core/resources/my_colors.dart';
 
 part 'view/search_view.dart';
+
 part 'viewmodel/search_view_model.dart';
+
 part 'widgets/product_icon_button.dart';
+
 part '../../widgets/product_item_widget.dart';
+
 part 'widgets/search_field.dart';
+
 part 'widgets/search_body.dart';

@@ -10,33 +10,153 @@ class SearchViewModel {
   final CategoriesProductViewModel vm = CategoriesProductViewModel();
   final GenericCubit<List<ProModel>> productCubit = GenericCubit([]);
 
-
   static final List<ProductModel> allProducts = [
-    ProductModel(image: MyAssets.product, title: 'Panadol Extraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', price: 245, points: 10, totalPrice: 245),
-    ProductModel(image: MyAssets.product, title: 'Amoxicillin 500mg', price: 245, points: 10, totalPrice: 245),
-    ProductModel(image: MyAssets.product, title: 'Voltaren Emulgel', price: 245, points: 10, totalPrice: 245),
-    ProductModel(image: MyAssets.product, title: 'Cetirizine Tablets', price: 245, points: 10, totalPrice: 245),
-    ProductModel(image: MyAssets.product, title: 'Augmentin 1g', price: 245, points: 10, totalPrice: 245),
-    ProductModel(image: MyAssets.product, title: 'Paracetamol Syrup', price: 245, points: 10, totalPrice: 245),
-    ProductModel(image: MyAssets.product, title: 'Adol Extra', price: 245, points: 10, totalPrice: 245),
-    ProductModel(image: MyAssets.product, title: 'Brufen 400mg', price: 245, points: 10, totalPrice: 245),
-    ProductModel(image: MyAssets.product, title: 'Amricol Syrup', price: 245, points: 10, totalPrice: 245),
-    ProductModel(image: MyAssets.product, title: 'Cataflam Tablets', price: 245, points: 10, totalPrice: 245),
-    ProductModel(image: MyAssets.product, title: 'Feldene Gel', price: 245, points: 10, totalPrice: 245),
-    ProductModel(image: MyAssets.product, title: 'Concor 5 Plus', price: 245, points: 10, totalPrice: 245),
-    ProductModel(image: MyAssets.product, title: 'Systane Eye Drops', price: 245, points: 10, totalPrice: 245),
-    ProductModel(image: MyAssets.product, title: 'Zyrtec Tablets', price: 245, points: 10, totalPrice: 245),
-    ProductModel(image: MyAssets.product, title: 'Neuroton Tablets', price: 245, points: 10, totalPrice: 245),
-    ProductModel(image: MyAssets.product, title: 'Ibuprofen Suspension', price: 245, points: 10, totalPrice: 245),
-    ProductModel(image: MyAssets.product, title: 'Actifed Syrup', price: 245, points: 10, totalPrice: 245),
-    ProductModel(image: MyAssets.product, title: 'Flagyl 500mg', price: 245, points: 10, totalPrice: 245),
-    ProductModel(image: MyAssets.product, title: 'Tavanic 500', price: 245, points: 10, totalPrice: 245),
-    ProductModel(image: MyAssets.product, title: 'Aerius Tablets', price: 245, points: 10, totalPrice: 245),
+    ProductModel(
+      image: MyAssets.product,
+      title:
+          'Panadol Extraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+      price: 245,
+      points: 10,
+      totalPrice: 245,
+    ),
+    ProductModel(
+      image: MyAssets.product,
+      title: 'Amoxicillin 500mg',
+      price: 245,
+      points: 10,
+      totalPrice: 245,
+    ),
+    ProductModel(
+      image: MyAssets.product,
+      title: 'Voltaren Emulgel',
+      price: 245,
+      points: 10,
+      totalPrice: 245,
+    ),
+    ProductModel(
+      image: MyAssets.product,
+      title: 'Cetirizine Tablets',
+      price: 245,
+      points: 10,
+      totalPrice: 245,
+    ),
+    ProductModel(
+      image: MyAssets.product,
+      title: 'Augmentin 1g',
+      price: 245,
+      points: 10,
+      totalPrice: 245,
+    ),
+    ProductModel(
+      image: MyAssets.product,
+      title: 'Paracetamol Syrup',
+      price: 245,
+      points: 10,
+      totalPrice: 245,
+    ),
+    ProductModel(
+      image: MyAssets.product,
+      title: 'Adol Extra',
+      price: 245,
+      points: 10,
+      totalPrice: 245,
+    ),
+    ProductModel(
+      image: MyAssets.product,
+      title: 'Brufen 400mg',
+      price: 245,
+      points: 10,
+      totalPrice: 245,
+    ),
+    ProductModel(
+      image: MyAssets.product,
+      title: 'Amricol Syrup',
+      price: 245,
+      points: 10,
+      totalPrice: 245,
+    ),
+    ProductModel(
+      image: MyAssets.product,
+      title: 'Cataflam Tablets',
+      price: 245,
+      points: 10,
+      totalPrice: 245,
+    ),
+    ProductModel(
+      image: MyAssets.product,
+      title: 'Feldene Gel',
+      price: 245,
+      points: 10,
+      totalPrice: 245,
+    ),
+    ProductModel(
+      image: MyAssets.product,
+      title: 'Concor 5 Plus',
+      price: 245,
+      points: 10,
+      totalPrice: 245,
+    ),
+    ProductModel(
+      image: MyAssets.product,
+      title: 'Systane Eye Drops',
+      price: 245,
+      points: 10,
+      totalPrice: 245,
+    ),
+    ProductModel(
+      image: MyAssets.product,
+      title: 'Zyrtec Tablets',
+      price: 245,
+      points: 10,
+      totalPrice: 245,
+    ),
+    ProductModel(
+      image: MyAssets.product,
+      title: 'Neuroton Tablets',
+      price: 245,
+      points: 10,
+      totalPrice: 245,
+    ),
+    ProductModel(
+      image: MyAssets.product,
+      title: 'Ibuprofen Suspension',
+      price: 245,
+      points: 10,
+      totalPrice: 245,
+    ),
+    ProductModel(
+      image: MyAssets.product,
+      title: 'Actifed Syrup',
+      price: 245,
+      points: 10,
+      totalPrice: 245,
+    ),
+    ProductModel(
+      image: MyAssets.product,
+      title: 'Flagyl 500mg',
+      price: 245,
+      points: 10,
+      totalPrice: 245,
+    ),
+    ProductModel(
+      image: MyAssets.product,
+      title: 'Tavanic 500',
+      price: 245,
+      points: 10,
+      totalPrice: 245,
+    ),
+    ProductModel(
+      image: MyAssets.product,
+      title: 'Aerius Tablets',
+      price: 245,
+      points: 10,
+      totalPrice: 245,
+    ),
   ];
 
   void fetchAllProducts() async {
     try {
-      final data = await restApiServices.get(restApiServices.baseUrl);
+      final data = await restApiServices.get(MyStrings.baseUrl);
       final products = (data as List).map((e) => ProModel.fromJson(e)).toList();
       listProducts.onUpdateData(products);
     } catch (e) {
@@ -44,19 +164,19 @@ class SearchViewModel {
     }
   }
 
-
-  void init(){
+  void init() {
     _searchProducts('');
     _toggleList(true);
   }
 
-  void _incrementQuantity(ProductModel product){
-    product.quantityCubit.onUpdateData(product.quantityCubit.state.data +1);
+  void _incrementQuantity(ProductModel product) {
+    product.quantityCubit.onUpdateData(product.quantityCubit.state.data + 1);
   }
 
-  void _decrementQuantity(ProductModel product){
+  void _decrementQuantity(ProductModel product) {
     if (product.quantityCubit.state.data > 0) {
-      product.quantityCubit.onUpdateData(product.quantityCubit.state.data - 1);}
+      product.quantityCubit.onUpdateData(product.quantityCubit.state.data - 1);
+    }
   }
 
   void _searchProducts(String query) {
@@ -65,9 +185,10 @@ class SearchViewModel {
       _showClearIconCubit.onUpdateData(false);
       return;
     }
-    final filtered = allProducts
-        .where((p) => p.title.toLowerCase().contains(query.toLowerCase()))
-        .toList();
+    final filtered =
+        allProducts
+            .where((p) => p.title.toLowerCase().contains(query.toLowerCase()))
+            .toList();
     productListCubit.onUpdateData(filtered);
     _showClearIconCubit.onUpdateData(query.isNotEmpty);
   }

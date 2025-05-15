@@ -29,11 +29,11 @@ class ProductItemWidget extends StatelessWidget {
             child: Column(
               children: [
                 Image.asset(
-                    product.image,
-                    fit: BoxFit.cover,
-                    height: 138.h,
-                    width: double.infinity.w,
-                  ),
+                  product.image,
+                  fit: BoxFit.cover,
+                  height: 138.h,
+                  width: double.infinity.w,
+                ),
                 7.verticalSpace,
                 CustomText(
                   text: MyStrings.discount,
@@ -124,19 +124,19 @@ class ProductItemWidget extends StatelessWidget {
                   BlocBuilder<GenericCubit<int>, GenericState<int>>(
                     bloc: product.quantityCubit,
                     builder: (context, state) {
-                      if (state is GenericUpdateState){
+                      if (state is GenericUpdateState) {
                         state.data;
                       }
-                        return ProductIconButton(
-                          onPressed: () {
-                            vm._decrementQuantity(product);
-                          },
-                          icon: Icons.remove,
-                          color:
-                              product.quantityCubit.state.data <= 0
-                                  ? MyColors.grey
-                                  : MyColors.black,
-                        );
+                      return ProductIconButton(
+                        onPressed: () {
+                          vm._decrementQuantity(product);
+                        },
+                        icon: Icons.remove,
+                        color:
+                            product.quantityCubit.state.data <= 0
+                                ? MyColors.grey
+                                : MyColors.black,
+                      );
                     },
                   ),
                 ],

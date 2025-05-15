@@ -36,8 +36,7 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
   void _togglePasswordVisibility() {
     setState(() {
       passwordVisible = !passwordVisible;
-      widget.viewModel
-          ._togglePasswordVisibility();
+      widget.viewModel._togglePasswordVisibility();
     });
   }
 
@@ -114,7 +113,6 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
 
               final storageService = getIt<LocalStorageService>();
               storageService.setIsChecked(SharedKeys.isRegisteredUser, true);
-
 
               context.goNamed(MyRouts.home);
             }

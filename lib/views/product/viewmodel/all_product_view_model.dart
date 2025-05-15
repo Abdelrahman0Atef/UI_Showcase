@@ -8,7 +8,7 @@ class ProductViewModel {
 
   Future<void> getAllProducts() async {
     try {
-      final data = await restApiServices.get(restApiServices.baseUrl);
+      final data = await restApiServices.get(MyStrings.baseUrl);
       final products = (data as List).map((e) => ProModel.fromJson(e)).toList();
       productsCubit.onUpdateData(products);
     } catch (e) {

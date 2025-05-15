@@ -14,6 +14,7 @@ import 'package:untitled/views/sign_in/sign_in_imports.dart';
 import 'package:untitled/views/sign_up/sign_up_imports.dart';
 import 'package:untitled/views/splash/splash_imports.dart';
 
+import '../../resources/my_strings.dart';
 
 class AppRouter {
   static GoRouter router = GoRouter(
@@ -35,58 +36,82 @@ class AppRouter {
         path: '/${MyRouts.signUp}',
         builder: (context, state) => const SignUpView(),
       ),
-      ShellRoute(
-        builder: (context, state, child) => LayoutView(child: child),
-        routes: [
-          GoRoute(
-            name: MyRouts.home,
-            path: '/${MyRouts.home}',
-            builder: (context, state) => const HomeView(),
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, shell) => LayoutView(shell: shell),
+        branches: [
+          StatefulShellBranch(
             routes: [
               GoRoute(
-                name: MyRouts.search,
-                path: 'search',
-                builder: (context, state) => const SearchView(),
+                path: '/${MyRouts.home}',
+                name: MyRouts.home,
+                builder: (context, state) => const HomeView(),
+                routes: [
+                  GoRoute(
+                    path: MyRouts.search,
+                    name: MyRouts.search,
+                    builder: (context, state) => const SearchView(),
+                  ),
+                ],
               ),
             ],
           ),
-          GoRoute(
-            name: MyRouts.categories,
-            path: '/${MyRouts.categories}',
-            builder: (context, state) => const CategoryGridView(),
+          StatefulShellBranch(
             routes: [
               GoRoute(
-                name: MyRouts.categoriesProducts,
-                path: 'products',
-                builder: (context, state) {
-                  final category = state.uri.queryParameters['category'] ?? '';
-                  return CategoriesProductsView(category: category);
-                },
+                path: '/${MyRouts.categories}',
+                name: MyRouts.categories,
+                builder: (context, state) => const CategoryGridView(),
+                routes: [
+                  GoRoute(
+                    path: MyRouts.categoriesProducts,
+                    name: MyRouts.categoriesProducts,
+                    builder: (context, state) {
+                      final category =
+                          state.uri.queryParameters[MyStrings.apiCategory] ??
+                          '';
+                      return CategoriesProductsView(category: category);
+                    },
+                  ),
+                ],
               ),
             ],
           ),
-          GoRoute(
-            name: MyRouts.products,
-            path: '/${MyRouts.products}',
-            builder: (context, state) => const ProductView(),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/${MyRouts.products}',
+                name: MyRouts.products,
+                builder: (context, state) => const ProductView(),
+                routes: [
+                  GoRoute(
+                    path: MyRouts.productsDetails,
+                    name: MyRouts.productsDetails,
+                    builder: (context, state) {
+                      final product = state.extra as ProModel;
+                      return ProductDetailsView(product: product);
+                    },
+                  ),
+                ],
+              ),
+            ],
           ),
-          GoRoute(
-            name: MyRouts.cart,
-            path: '/${MyRouts.cart}',
-            builder: (context, state) => const CartView(),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/${MyRouts.cart}',
+                name: MyRouts.cart,
+                builder: (context, state) => const CartView(),
+              ),
+            ],
           ),
-          GoRoute(
-            name: MyRouts.profile,
-            path: '/${MyRouts.profile}',
-            builder: (context, state) => const ProfileView(),
-          ),
-          GoRoute(
-            name: MyRouts.productsDetails,
-            path: '/${MyRouts.productsDetails}',
-            builder: (context, state) {
-              final product = state.extra as ProModel;
-              return ProductDetailsView(product: product);
-            },
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/${MyRouts.profile}',
+                name: MyRouts.profile,
+                builder: (context, state) => const ProfileView(),
+              ),
+            ],
           ),
         ],
       ),

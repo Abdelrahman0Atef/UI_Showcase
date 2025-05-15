@@ -11,7 +11,7 @@ class ProfileViewModel {
 
   final SignUpViewModel vm = SignUpViewModel();
 
-  void _init(){
+  void _init() {
     _getPhone();
     _getVersion();
     _getEmail();
@@ -22,12 +22,13 @@ class ProfileViewModel {
 
   void _signOut(BuildContext context) async {
     await _storageService.setIsChecked(SharedKeys.isRegisteredUser, false);
-    final isRegistered = _storageService.getIsChecked(SharedKeys.isRegisteredUser);
+    final isRegistered = _storageService.getIsChecked(
+      SharedKeys.isRegisteredUser,
+    );
     if (isRegistered == false) {
       context.pushReplacementNamed(MyRouts.signIn);
     }
   }
-
 
   void _shareApp(BuildContext context) {
     final platform = Theme.of(context).platform;
@@ -57,16 +58,21 @@ class ProfileViewModel {
     final String? phone = _storageService.getString(SharedKeys.phone) ?? '';
     _phoneCubit.onUpdateData(phone);
   }
+
   void _getEmail() {
     final String? email = _storageService.getString(SharedKeys.email) ?? '';
     _emailCubit.onUpdateData(email);
   }
+
   void _getFirstName() {
-    final String? firstName = _storageService.getString(SharedKeys.firstName) ?? '';
+    final String? firstName =
+        _storageService.getString(SharedKeys.firstName) ?? '';
     _firstNameCubit.onUpdateData(firstName);
   }
+
   void _getLastName() {
-    final String? lastName = _storageService.getString(SharedKeys.lastName) ?? '';
+    final String? lastName =
+        _storageService.getString(SharedKeys.lastName) ?? '';
     _lastNameCubit.onUpdateData(lastName);
   }
 }

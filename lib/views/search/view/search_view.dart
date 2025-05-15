@@ -17,5 +17,6 @@ class _SearchViewState extends State<SearchView> {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(body: SafeArea(child: SearchBody(vm: vm)));
+  Widget build(BuildContext context) =>
+      Scaffold(body: SafeArea(child: SearchBody(vm: vm)));
 }

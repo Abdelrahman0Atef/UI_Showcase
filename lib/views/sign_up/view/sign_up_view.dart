@@ -44,10 +44,12 @@ class SignUpViewState extends State<SignUpView> {
                   null) {
             vm._lastNameFocusNode.requestFocus();
           } else if (vm._phoneController.text.isNotEmpty &&
-              ValidationHelper.validatePhone(vm._phoneController.text) != null) {
+              ValidationHelper.validatePhone(vm._phoneController.text) !=
+                  null) {
             vm._phoneFocusNode.requestFocus();
           } else if (vm._emailController.text.isNotEmpty &&
-              ValidationHelper.validateEmail(vm._emailController.text) != null) {
+              ValidationHelper.validateEmail(vm._emailController.text) !=
+                  null) {
             vm._emailFocusNode.requestFocus();
           } else if (vm._passwordController.text.isNotEmpty &&
               ValidationHelper.validatePassword(vm._passwordController.text) !=
@@ -83,13 +85,22 @@ class SignUpViewState extends State<SignUpView> {
                     BlocBuilder<GenericCubit<bool>, GenericState<bool>>(
                       bloc: vm._hasCapitalLetterCubit,
                       builder:
-                          (context, capitalState) => BlocBuilder<GenericCubit<bool>, GenericState<bool>>(
+                          (context, capitalState) => BlocBuilder<
+                            GenericCubit<bool>,
+                            GenericState<bool>
+                          >(
                             bloc: vm._hasNumberCubit,
                             builder:
-                                (context, numberState) => BlocBuilder<GenericCubit<bool>,GenericState<bool>>(
+                                (context, numberState) => BlocBuilder<
+                                  GenericCubit<bool>,
+                                  GenericState<bool>
+                                >(
                                   bloc: vm._hasValidLengthCubit,
                                   builder:
-                                      (context, lengthState,) => SignUpValidationPassword(
+                                      (
+                                        context,
+                                        lengthState,
+                                      ) => SignUpValidationPassword(
                                         hasCapitalLetter:
                                             capitalState is GenericUpdateState
                                                 ? capitalState.data
@@ -107,9 +118,11 @@ class SignUpViewState extends State<SignUpView> {
                           ),
                     ),
                     32.verticalSpace,
-                    BlocBuilder<GenericCubit<bool>,GenericState<bool>>(
+                    BlocBuilder<GenericCubit<bool>, GenericState<bool>>(
                       bloc: vm._hasValidLengthCubit,
-                      builder: (context, state)=>SignUpButtons(viewModel: vm, formKey: formKey),
+                      builder:
+                          (context, state) =>
+                              SignUpButtons(viewModel: vm, formKey: formKey),
                     ),
                   ],
                 ),

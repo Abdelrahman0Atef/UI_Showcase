@@ -1,5 +1,5 @@
 import 'dart:ui';
 
-class AppSettings{
+class AppSettings {
   static const designSize = Size(390, 844);
 }

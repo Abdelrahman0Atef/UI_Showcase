@@ -35,7 +35,10 @@ class SearchBody extends StatelessWidget {
         bloc: vm.showListCubit,
         builder: (context, state) {
           if (!state.data) return const SizedBox.shrink();
-          return BlocBuilder<GenericCubit<List<ProductModel>>, GenericState<List<ProductModel>>>(
+          return BlocBuilder<
+            GenericCubit<List<ProductModel>>,
+            GenericState<List<ProductModel>>
+          >(
             bloc: vm.productListCubit,
             builder: (context, state) {
               if (state is GenericUpdateState) {
@@ -51,9 +54,13 @@ class SearchBody extends StatelessWidget {
                           crossAxisCount: 2,
                           mainAxisSpacing: 10,
                           crossAxisSpacing: 10,
-                          childAspectRatio: 0.55,
+                          childAspectRatio: 0.65,
                         ),
-                    itemBuilder: (_, index) => ProductItemWidget(vm: vm,product: state.data[index]),
+                    itemBuilder:
+                        (_, index) => ProductItemWidget(
+                          vm: vm,
+                          product: state.data[index],
+                        ),
                   ),
                 );
               }

@@ -6,11 +6,13 @@ class CategoryViewModel {
 
   Future<void> getCategories() async {
     try {
-      final data = await restApiServices.get('${restApiServices.baseUrl}/categories');
+      final data = await restApiServices.get(
+        '${MyStrings.baseUrl}/${MyStrings.apiCategories}',
+      );
       final categories = List<String>.from(data);
       categoryCubit.onUpdateData(categories);
     } catch (e) {
-      throw Exception('Error $e');
+      throw Exception(e);
     }
   }
 }

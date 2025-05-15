@@ -122,10 +122,10 @@ class HomeBody extends StatelessWidget {
           20.verticalSpace,
           GridView.count(
             padding: EdgeInsets.all(16.r),
-              crossAxisCount: 2,
+            crossAxisCount: 2,
             crossAxisSpacing: 12.h,
-              mainAxisSpacing: 12.h,
-              shrinkWrap: true,
+            mainAxisSpacing: 12.h,
+            shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             children: const [
               HomeInfoCard(

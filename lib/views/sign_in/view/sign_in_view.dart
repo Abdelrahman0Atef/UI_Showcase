@@ -27,9 +27,7 @@ class _SigInViewState extends State<SigInView> {
                   children: [
                     const AuthCustomStack(),
                     20.verticalSpace,
-                    SignInToggleButton(
-                      viewModel: vm,
-                    ),
+                    SignInToggleButton(viewModel: vm),
                   ],
                 ),
               ),

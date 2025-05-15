@@ -28,9 +28,9 @@ class HomeInfoCard extends StatelessWidget {
         16.verticalSpace,
         CustomText(
           text: title,
-          textStyle: const TextStyle(
+          textStyle: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 12,
+            fontSize: 12.sp,
             color: MyColors.navy,
           ),
         ),
@@ -39,7 +39,7 @@ class HomeInfoCard extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 35.r),
           child: CustomText(
             text: subTitle,
-            textStyle: const TextStyle(fontSize: 10, color: MyColors.grey),
+            textStyle: TextStyle(fontSize: 10.sp, color: MyColors.grey),
             maxLines: 3,
           ),
         ),

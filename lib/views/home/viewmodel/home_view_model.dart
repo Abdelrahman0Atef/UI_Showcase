@@ -9,7 +9,8 @@ class HomeViewModel {
 
   final Map<int, GenericCubit<int>> _productCounters = {};
 
-  GenericCubit<int> getProductCounter(ProModel product) => _productCounters.putIfAbsent(product.id ?? 0, () => GenericCubit<int>(0));
+  GenericCubit<int> getProductCounter(ProModel product) =>
+      _productCounters.putIfAbsent(product.id ?? 0, () => GenericCubit<int>(0));
 
   void increment(ProModel product) {
     final cubit = getProductCounter(product);

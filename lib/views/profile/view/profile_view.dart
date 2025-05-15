@@ -17,5 +17,6 @@ class _ProfileViewState extends State<ProfileView> {
   }
 
   @override
-  Widget build(BuildContext context) => Container(color: MyColors.white,child: ProfileBody(viewModel: vm));
+  Widget build(BuildContext context) =>
+      Container(color: MyColors.white, child: ProfileBody(viewModel: vm));
 }

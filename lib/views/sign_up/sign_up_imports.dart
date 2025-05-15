@@ -13,10 +13,13 @@ import 'package:untitled/core/services/locator_services/locator_services.dart';
 import 'package:untitled/widgets/widgets_imports.dart';
 import '../../core/resources/my_colors.dart';
 
-
 // Sign-up feature imports
 part 'view/sign_up_view.dart';
+
 part 'viewmodel/sign_up_view_model.dart';
+
 part 'widgets/sign_up_validation_password.dart';
+
 part 'widgets/sign_up_fields.dart';
+
 part 'widgets/sign_up_buttons.dart';

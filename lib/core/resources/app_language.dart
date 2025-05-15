@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-class AppLanguage{
+class AppLanguage {
   static const path = 'assets/translations';
   static const supportedLocales = [Locale('en'), Locale('ar')];
   static const arabic = Locale('ar');

@@ -1,20 +1,37 @@
 part of '../product_details_imports.dart';
 
-class ProductDetailsView extends StatelessWidget {
+class ProductDetailsView extends StatefulWidget {
   final ProModel product;
 
   const ProductDetailsView({required this.product, super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final countCubit = vm.getProductCounter(product);
-    return Scaffold(
+  State<ProductDetailsView> createState() => _ProductDetailsViewState();
+}
+
+class _ProductDetailsViewState extends State<ProductDetailsView> {
+  late final ProductDetailsViewModel vm = ProductDetailsViewModel();
+  late final GenericCubit<int> countCubit = vm.homeVM.getProductCounter(
+    widget.product,
+  );
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+    floatingActionButton: FloatingActionButton(
+      mini: true,
+      backgroundColor: MyColors.white,
+      onPressed: () {
+        vm.shareProductImageWithDio(widget.product.image.toString());
+      },
+      child: const Icon(Icons.share, color: MyColors.black),
+    ),
+    floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     backgroundColor: MyColors.white,
     appBar: AppBar(
       backgroundColor: MyColors.white,
       elevation: 0,
       title: CustomText(
-        text: product.title ?? '',
+        text: widget.product.title ?? '',
         textStyle: TextStyle(
           color: MyColors.black,
           fontSize: 14.sp,
@@ -29,14 +46,14 @@ class ProductDetailsView extends StatelessWidget {
         children: [
           Center(
             child: Image.network(
-              product.image ?? '',
+              widget.product.image ?? '',
               height: 200.h,
               fit: BoxFit.contain,
             ),
           ),
           20.verticalSpace,
           CustomText(
-            text: product.title ?? '',
+            text: widget.product.title ?? '',
             textStyle: TextStyle(
               fontSize: 16.sp,
               fontWeight: FontWeight.bold,
@@ -46,7 +63,7 @@ class ProductDetailsView extends StatelessWidget {
           10.verticalSpace,
           CustomText(
             text:
-                "${product.price?.toStringAsFixed(2) ?? '0.00'} ${MyStrings.pound}",
+                "${widget.product.price?.toStringAsFixed(2) ?? '0.00'} ${MyStrings.pound}",
             textStyle: TextStyle(
               fontSize: 14.sp,
               fontWeight: FontWeight.bold,
@@ -56,17 +73,21 @@ class ProductDetailsView extends StatelessWidget {
           30.verticalSpace,
           CustomText(text: MyStrings.categories),
           15.verticalSpace,
-          HomeOffersCard(isSelected: true,label: '${product.category ?? ''}',),
+          HomeOffersCard(
+            isSelected: true,
+            label: '${widget.product.category ?? ''}',
+          ),
           30.verticalSpace,
           const HomeSplitTextRow(
-            label: 'التفاصيل',
+            label: MyStrings.details,
             horizontalPadding: 0,
             color: MyColors.grey,
           ),
           15.verticalSpace,
           CustomText(
-            text: product.description ?? '',
+            text: widget.product.description ?? '',
             maxLines: 10,
+            textAlign: TextAlign.start,
             textStyle: TextStyle(
               fontSize: 12.sp,
               color: MyColors.darkGrey,
@@ -74,34 +95,35 @@ class ProductDetailsView extends StatelessWidget {
             ),
           ),
           30.verticalSpace,
-          const HomeSplitTextRow(
-            label: MyStrings.rate,
-            horizontalPadding: 0,
-            color: MyColors.grey,
-          ),
+          const CustomText(text: MyStrings.rate),
           15.verticalSpace,
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 4.r,horizontal:  8.r),
+            padding: EdgeInsets.symmetric(vertical: 4.r, horizontal: 8.r),
             child: Row(
               children: [
                 CustomText(
-                  text: "${product.rating?.rate?.toStringAsFixed(1) ?? '0.0'}",
+                  text:
+                      "${widget.product.rating?.rate?.toStringAsFixed(1) ?? '0.0'}",
                   textStyle: TextStyle(fontSize: 12.sp, color: MyColors.red),
                 ),
                 5.horizontalSpace,
-                Icon(Icons.star, color: MyColors.red, size: 18.sp),
+                ProductRatingStars(
+                  rating: widget.product.rating?.rate ?? 0.0,
+                  size: 18.sp,
+                ),
               ],
             ),
           ),
           30.verticalSpace,
           ProductDetailsOrderControl(
-            vm: vm,
-            product: product,
+            vm: vm.homeVM,
+            product: widget.product,
             countCubit: countCubit,
+            onTap: () {},
           ),
+          25.verticalSpace,
         ],
       ),
     ),
   );
-  }
 }

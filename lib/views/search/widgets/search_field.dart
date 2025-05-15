@@ -14,7 +14,8 @@ class SearchField extends StatelessWidget {
     required this.onChanged,
     required this.onTap,
     required this.onClear,
-    this.isHome = false, super.key,
+    this.isHome = false,
+    super.key,
   });
 
   @override
@@ -22,12 +23,14 @@ class SearchField extends StatelessWidget {
     padding: EdgeInsets.all(8.r),
     child: Row(
       children: [
-        isHome == true ? IconButton(
-          icon: const Icon(Icons.arrow_back, color: MyColors.darkGrayish),
-          onPressed: () {
-            context.pushReplacementNamed(MyRouts.home);
-          },
-        ) : const SizedBox.shrink(),
+        isHome == true
+            ? IconButton(
+              icon: const Icon(Icons.arrow_back, color: MyColors.darkGrayish),
+              onPressed: () {
+                context.pushReplacementNamed(MyRouts.home);
+              },
+            )
+            : const SizedBox.shrink(),
         Expanded(
           child: TextField(
             autofocus: isHome == true ? true : false,

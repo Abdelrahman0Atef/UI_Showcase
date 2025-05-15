@@ -1,4 +1,4 @@
-class SharedKeys{
+class SharedKeys {
   static const email = 'saved_email';
   static const password = 'saved_password';
   static const phone = 'saved_phone';

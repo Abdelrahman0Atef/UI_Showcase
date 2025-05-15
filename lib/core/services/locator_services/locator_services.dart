@@ -12,5 +12,4 @@ Future<void> locatorServices() async {
   getIt.registerFactory<SignInViewModel>(() => SignInViewModel());
   getIt.registerFactory<SignUpViewModel>(() => SignUpViewModel());
   getIt.registerLazySingleton<RestApiServices>(() => RestApiServices());
-
 }

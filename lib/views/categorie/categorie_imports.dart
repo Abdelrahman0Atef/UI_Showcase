@@ -12,4 +12,7 @@ import '../../core/resources/my_colors.dart';
 import '../../core/resources/my_strings.dart';
 
 part 'view/categories_view.dart';
+
 part 'viewmodel/categorie_view_model.dart';
+
+part 'widgets/categories_grid_view.dart';

@@ -1,24 +1,18 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:untitled/core/generic_cubit/generic_cubit.dart';
-import 'package:untitled/core/models/product_model/api_product_model.dart';
-import 'package:untitled/core/resources/my_colors.dart';
-import 'package:untitled/views/home/home_imports.dart';
-import 'package:untitled/views/search/search_imports.dart';
-import 'package:untitled/widgets/widgets_imports.dart';
+part of '../product_details_imports.dart';
 
 class ProductDetailsOrderControl extends StatelessWidget {
   const ProductDetailsOrderControl({
     required this.vm,
     required this.product,
     required this.countCubit,
+    required this.onTap,
     super.key,
   });
 
   final HomeViewModel vm;
   final ProModel product;
   final GenericCubit<int> countCubit;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) => Row(
@@ -40,32 +34,43 @@ class ProductDetailsOrderControl extends StatelessWidget {
             ),
       ),
       8.horizontalSpace,
-      ProductIconButton(
-        iconSize: 25,
-        height: 54.h,
-        width: 54.w,
-        onPressed: () => vm.decrement(product),
-        icon: Icons.remove,
-        color: MyColors.black,
+      BlocBuilder<GenericCubit<int>, GenericState<int>>(
+        bloc: countCubit,
+        builder: (context, state) {
+          final int quantity = state.data;
+          final Color buttonColor =
+              quantity == 0 ? MyColors.grey : MyColors.black;
+          return ProductIconButton(
+            iconSize: 25,
+            height: 54.h,
+            width: 54.w,
+            onPressed: () => vm.decrement(product),
+            icon: Icons.remove,
+            color: buttonColor,
+          );
+        },
       ),
       12.horizontalSpace,
-      Container(
-        height: 40.h,
-        width: 161.w,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(4.r),
-          color: MyColors.red,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(Icons.shopping_basket, color: MyColors.white),
-            5.horizontalSpace,
-            const CustomText(
-              text: 'Add to Basket',
-              textStyle: TextStyle(color: MyColors.white),
-            ),
-          ],
+      GestureDetector(
+        onTap: onTap,
+        child: Container(
+          height: 40.h,
+          width: 161.w,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4.r),
+            color: MyColors.red,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.shopping_basket, color: MyColors.white),
+              5.horizontalSpace,
+              const CustomText(
+                text: MyStrings.basket,
+                textStyle: TextStyle(color: MyColors.white),
+              ),
+            ],
+          ),
         ),
       ),
     ],

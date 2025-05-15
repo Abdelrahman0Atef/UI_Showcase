@@ -17,7 +17,8 @@ class CustomTextFieldWithTitle extends StatefulWidget {
   final bool isPhoneField;
 
   const CustomTextFieldWithTitle({
-    required this.label, super.key,
+    required this.label,
+    super.key,
     this.keyboardType = TextInputType.text,
     this.labelStyle,
     this.inputDecoration,
@@ -34,7 +35,8 @@ class CustomTextFieldWithTitle extends StatefulWidget {
   });
 
   @override
-  CustomTextFieldWithTitleState createState() => CustomTextFieldWithTitleState();
+  CustomTextFieldWithTitleState createState() =>
+      CustomTextFieldWithTitleState();
 }
 
 class CustomTextFieldWithTitleState extends State<CustomTextFieldWithTitle> {
@@ -57,39 +59,41 @@ class CustomTextFieldWithTitleState extends State<CustomTextFieldWithTitle> {
 
   @override
   Widget build(BuildContext context) => Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24.r),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CustomText(text: widget.label, textStyle: widget.labelStyle),
-          TextFormField(
-            inputFormatters: widget.isPhoneField ? [
-              LengthLimitingTextInputFormatter(11),
-            ] : [],
-            controller: _controller,
-            focusNode: _focusNode,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            validator: widget.validator,
-            obscureText: widget.obscureText && !widget.isPasswordVisible,
-            textInputAction: widget.isLastField ? TextInputAction.done : TextInputAction.next,
-            decoration: widget.inputDecoration ??
-                InputDecoration(
-                  suffixIcon: widget.onIconPressed != null
-                      ? IconButton(
-                    onPressed: widget.onIconPressed,
-                    icon: Icon(
-                      widget.isPasswordVisible
-                          ? Icons.visibility
-                          : Icons.visibility_off,
-                    ),
-                  )
-                      : null,
-                ),
-            keyboardType: widget.keyboardType,
-            onFieldSubmitted: widget.onSubmitted,
-            onChanged: widget.onChanged,
-          ),
-        ],
-      ),
-    );
+    padding: EdgeInsets.symmetric(horizontal: 24.r),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CustomText(text: widget.label, textStyle: widget.labelStyle),
+        TextFormField(
+          inputFormatters:
+              widget.isPhoneField ? [LengthLimitingTextInputFormatter(11)] : [],
+          controller: _controller,
+          focusNode: _focusNode,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          validator: widget.validator,
+          obscureText: widget.obscureText && !widget.isPasswordVisible,
+          textInputAction:
+              widget.isLastField ? TextInputAction.done : TextInputAction.next,
+          decoration:
+              widget.inputDecoration ??
+              InputDecoration(
+                suffixIcon:
+                    widget.onIconPressed != null
+                        ? IconButton(
+                          onPressed: widget.onIconPressed,
+                          icon: Icon(
+                            widget.isPasswordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                          ),
+                        )
+                        : null,
+              ),
+          keyboardType: widget.keyboardType,
+          onFieldSubmitted: widget.onSubmitted,
+          onChanged: widget.onChanged,
+        ),
+      ],
+    ),
+  );
 }

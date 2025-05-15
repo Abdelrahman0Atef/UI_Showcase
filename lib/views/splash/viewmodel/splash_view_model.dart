@@ -9,7 +9,9 @@ class SplashViewModel {
     Timer(const Duration(seconds: 2), () async {
       final storageService = getIt<LocalStorageService>();
 
-      final isRegistered = storageService.getIsChecked(SharedKeys.isRegisteredUser,);
+      final isRegistered = storageService.getIsChecked(
+        SharedKeys.isRegisteredUser,
+      );
       if (isRegistered == true) {
         context.goNamed(MyRouts.home);
       } else {

@@ -17,17 +17,22 @@ class _ProductViewState extends State<ProductView> {
   }
 
   @override
-  Widget build(BuildContext context) => Container(color: MyColors.white,
-    child: BlocBuilder<GenericCubit<List<ProModel>>, GenericState<List<ProModel>>>(
-            bloc: vm.productsCubit,
-            builder: (context, state) {
-              final products = state.data;
+  Widget build(BuildContext context) => Container(
+    color: MyColors.white,
+    child:
+        BlocBuilder<GenericCubit<List<ProModel>>, GenericState<List<ProModel>>>(
+          bloc: vm.productsCubit,
+          builder: (context, state) {
+            final products = state.data;
 
-              if (products.isEmpty) {
-                return const Center(child: CircularProgressIndicator());
-              }
-              return ProductsGridView(products: products,homeViewModel: vm.homeViewModel,);
-            },
-    ),
+            if (products.isEmpty) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            return ProductsGridView(
+              products: products,
+              homeViewModel: vm.homeViewModel,
+            );
+          },
+        ),
   );
 }

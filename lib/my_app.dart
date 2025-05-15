@@ -15,13 +15,14 @@ class MyApp extends StatelessWidget {
     designSize: AppSettings.designSize,
     minTextAdapt: true,
     splitScreenMode: true,
-    builder: (_, child) => MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      theme: ThemeData(fontFamily: MyFonts.font),
-      routerConfig: AppRouter.router,
-    ),
+    builder:
+        (_, child) => MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+          theme: ThemeData(fontFamily: MyFonts.font),
+          routerConfig: AppRouter.router,
+        ),
   );
 }

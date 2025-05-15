@@ -1,7 +1,11 @@
 part of '../home_imports.dart';
 
 class HomeOffersCard extends StatelessWidget {
-  const HomeOffersCard({required this.isSelected, this.label = MyStrings.skin,super.key});
+  const HomeOffersCard({
+    required this.isSelected,
+    this.label = MyStrings.skin,
+    super.key,
+  });
 
   final bool isSelected;
   final String? label;
@@ -11,7 +15,7 @@ class HomeOffersCard extends StatelessWidget {
     width: 136.w,
     height: 38.h,
     decoration: BoxDecoration(
-      color:  isSelected ? MyColors.red : MyColors.white,
+      color: isSelected ? MyColors.red : MyColors.white,
       boxShadow: [
         BoxShadow(
           color: const Color(0xFFFF464629).withOpacity(0.16),

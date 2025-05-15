@@ -43,34 +43,35 @@ class SignInViewModel {
     String password,
     bool rememberMe,
   ) async {
-      await _storage.setString(SharedKeys.email, email);
-      await _storage.setString(SharedKeys.password, password);
-      if(rememberMe == false){
+    await _storage.setString(SharedKeys.email, email);
+    await _storage.setString(SharedKeys.password, password);
+    if (rememberMe == false) {
       await _storage.remove(SharedKeys.email);
-      await _storage.remove(SharedKeys.password);}
-      if(rememberMe == true) {
-        await _storage.setIsChecked(SharedKeys.emailRememberMe, true);
-      }
+      await _storage.remove(SharedKeys.password);
+    }
+    if (rememberMe == true) {
+      await _storage.setIsChecked(SharedKeys.emailRememberMe, true);
+    }
 
     if (rememberMe == true) {
       _loadSavedCredentialsEmail();
     }
   }
 
-  void _deleteEmailCredentials(bool rememberMe)async{
-    if(rememberMe == false)
-      {
-        await _storage.remove(SharedKeys.email);
-        await _storage.remove(SharedKeys.password);
-        await _storage.setIsChecked(SharedKeys.emailRememberMe, false);
-      }
+  void _deleteEmailCredentials(bool rememberMe) async {
+    if (rememberMe == false) {
+      await _storage.remove(SharedKeys.email);
+      await _storage.remove(SharedKeys.password);
+      await _storage.setIsChecked(SharedKeys.emailRememberMe, false);
+    }
   }
 
   void _savePhoneCredentials(String phone, bool rememberMe) async {
-      await _storage.setString(SharedKeys.phone, phone);
-      if(rememberMe == false){
-        await _storage.remove(SharedKeys.phone);}
-      if (rememberMe) {
+    await _storage.setString(SharedKeys.phone, phone);
+    if (rememberMe == false) {
+      await _storage.remove(SharedKeys.phone);
+    }
+    if (rememberMe) {
       await _storage.setIsChecked(SharedKeys.phoneRememberMe, true);
     }
     if (rememberMe == true) {
@@ -78,27 +79,27 @@ class SignInViewModel {
     }
   }
 
-  void _deletePhoneCredentials(bool rememberMe)async{
-    if(rememberMe == false)
-    {
+  void _deletePhoneCredentials(bool rememberMe) async {
+    if (rememberMe == false) {
       await _storage.remove(SharedKeys.phone);
       await _storage.setIsChecked(SharedKeys.phoneRememberMe, false);
     }
   }
 
   void _toggleEmailRememberMe(bool value, String email, String password) {
-    if(value == true) {
+    if (value == true) {
       _saveEmailCredentials(email, password, value);
-    }else{
+    } else {
       _deleteEmailCredentials(value);
     }
   }
 
   void _togglePhoneRememberMe(bool value, String phone) {
-    if(value == true) {
-    _savePhoneCredentials(phone, value);
-  }else{
-    _deletePhoneCredentials(value);}
+    if (value == true) {
+      _savePhoneCredentials(phone, value);
+    } else {
+      _deletePhoneCredentials(value);
+    }
   }
 
   void _validateEmailSignIn({
