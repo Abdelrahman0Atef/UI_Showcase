@@ -1,6 +1,6 @@
 import 'package:untitled/core/generic_cubit/generic_cubit.dart';
 
-class ProductModel {
+class HomeModel {
   final String image;
   final String title;
   final double price;
@@ -8,7 +8,7 @@ class ProductModel {
   final double? totalPrice;
   final GenericCubit<int> quantityCubit;
 
-  ProductModel({
+  HomeModel({
     required this.image,
     required this.title,
     required this.price,

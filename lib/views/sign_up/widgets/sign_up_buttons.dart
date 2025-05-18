@@ -1,11 +1,11 @@
 part of '../sign_up_imports.dart';
 
 class SignUpButtons extends StatelessWidget {
-  final SignUpViewModel viewModel;
+  final SignUpViewModel vm;
   final GlobalKey<FormState> formKey;
 
   const SignUpButtons({
-    required this.viewModel,
+    required this.vm,
     required this.formKey,
     super.key,
   });
@@ -20,33 +20,33 @@ class SignUpButtons extends StatelessWidget {
       Center(
         child: CustomButton(
           onPressed:
-              viewModel._hasCapitalLetterCubit.state.data &&
-                      viewModel._hasNumberCubit.state.data &&
-                      viewModel._hasValidLengthCubit.state.data
+              vm._hasCapitalLetterCubit.state.data &&
+                      vm._hasNumberCubit.state.data &&
+                      vm._hasValidLengthCubit.state.data
                   ? () {
                     closeKeyboard(context);
-                    viewModel._validateAndProceed(
+                    vm._validateAndProceed(
                       formKey: formKey,
                       context: context,
                     );
-                    viewModel._updatePasswordValidation(
-                      viewModel._passwordController.text,
+                    vm._updatePasswordValidation(
+                      vm._passwordController.text,
                     );
                   }
                   : () {},
           text: MyStrings.createAnAccount,
           textColor: MyColors.white,
           color:
-              viewModel._hasCapitalLetterCubit.state.data &&
-                      viewModel._hasNumberCubit.state.data &&
-                      viewModel._hasValidLengthCubit.state.data
+              vm._hasCapitalLetterCubit.state.data &&
+                      vm._hasNumberCubit.state.data &&
+                      vm._hasValidLengthCubit.state.data
                   ? MyColors.red
                   : MyColors.grey,
           width: 0.w,
           borderColor:
-              viewModel._hasCapitalLetterCubit.state.data &&
-                      viewModel._hasNumberCubit.state.data &&
-                      viewModel._hasValidLengthCubit.state.data
+              vm._hasCapitalLetterCubit.state.data &&
+                      vm._hasNumberCubit.state.data &&
+                      vm._hasValidLengthCubit.state.data
                   ? MyColors.red
                   : MyColors.grey,
         ),

@@ -2,11 +2,11 @@ part of '../home_imports.dart';
 
 class CustomImageSlider extends StatelessWidget {
   final List<String> imageUrls;
-  final HomeViewModel viewModel;
+  final HomeViewModel vm;
 
   const CustomImageSlider({
     required this.imageUrls,
-    required this.viewModel,
+    required this.vm,
     super.key,
   });
 
@@ -19,7 +19,7 @@ class CustomImageSlider extends StatelessWidget {
         PageView.builder(
           controller: vm._pageController,
           itemCount: imageUrls.length,
-          onPageChanged: viewModel.changePage,
+          onPageChanged: vm.changePage,
           itemBuilder:
               (_, index) => Container(
                 margin: EdgeInsets.symmetric(horizontal: 10.r, vertical: 20.r),
@@ -37,7 +37,7 @@ class CustomImageSlider extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.only(bottom: 25.h),
             child: BlocBuilder<GenericCubit<int>, GenericState<int>>(
-              bloc: viewModel._pageCubit,
+              bloc: vm._pageCubit,
               builder:
                   (context, state) => Container(
                     width: 74.w,

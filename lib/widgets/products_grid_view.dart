@@ -7,7 +7,7 @@ class ProductsGridView extends StatelessWidget {
     super.key,
   });
 
-  final List<ProModel> products;
+  final List<ApiProductModel> products;
   final HomeViewModel homeViewModel;
 
   @override
@@ -16,14 +16,15 @@ class ProductsGridView extends StatelessWidget {
     child: GridView.builder(
       itemCount: products.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        mainAxisExtent: 300.h,
         crossAxisCount: 2,
         childAspectRatio: 0.6,
         crossAxisSpacing: 12.w,
-        mainAxisSpacing: 12.h,
+        mainAxisSpacing: 10.h,
       ),
       itemBuilder:
           (context, index) =>
-              ApiProItemWidget(product: products[index], vm: homeViewModel),
+              ApiProductItem(product: products[index], vm: homeViewModel),
     ),
   );
 }

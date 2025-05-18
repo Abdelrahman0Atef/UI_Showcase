@@ -9,7 +9,7 @@ class ProductOrderControl extends StatelessWidget {
   });
 
   final HomeViewModel vm;
-  final ProModel product;
+  final ApiProductModel product;
   final GenericCubit<int> countCubit;
 
   @override

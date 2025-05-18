@@ -22,7 +22,7 @@ class HomeBody extends StatelessWidget {
               context.pushNamed(MyRouts.search);
             },
           ),
-          CustomImageSlider(viewModel: vm, imageUrls: vm.imageUrls),
+          CustomImageSlider(vm: vm, imageUrls: vm.imageUrls),
           const HomeSplitTextRow(label: MyStrings.offers),
           15.verticalSpace,
           SingleChildScrollView(

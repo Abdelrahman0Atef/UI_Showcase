@@ -1,9 +1,9 @@
 part of '../sign_in_imports.dart';
 
 class SignInEmailFormWidget extends StatefulWidget {
-  final SignInViewModel viewModel;
+  final SignInViewModel vm;
 
-  const SignInEmailFormWidget({required this.viewModel, super.key});
+  const SignInEmailFormWidget({required this.vm, super.key});
 
   @override
   State<SignInEmailFormWidget> createState() => _SignInEmailFormWidgetState();
@@ -30,13 +30,13 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
     passwordController.text =
         storageService.getString(SharedKeys.password) ?? '';
 
-    passwordVisible = widget.viewModel._isPasswordVisible;
+    passwordVisible = widget.vm._isPasswordVisible;
   }
 
   void _togglePasswordVisibility() {
     setState(() {
       passwordVisible = !passwordVisible;
-      widget.viewModel._togglePasswordVisibility();
+      widget.vm._togglePasswordVisibility();
     });
   }
 
@@ -86,7 +86,7 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
                 setState(() {
                   isRememberMeChecked = value ?? false;
                 });
-                widget.viewModel._toggleEmailRememberMe(
+                widget.vm._toggleEmailRememberMe(
                   isRememberMeChecked,
                   emailController.text,
                   passwordController.text,
@@ -102,7 +102,7 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
           onPressed: () {
             if (emailController.text.isNotEmpty &&
                 passwordController.text.isNotEmpty) {
-              widget.viewModel._validateEmailSignIn(
+              widget.vm._validateEmailSignIn(
                 formKey: emailFormKey,
                 email: emailController.text,
                 password: passwordController.text,
@@ -126,7 +126,7 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
         16.verticalSpace,
         CustomButton(
           onPressed: () {
-            widget.viewModel._signUp();
+            widget.vm._signUp();
             context.pushNamed(MyRouts.signUp);
           },
           color: MyColors.white,

@@ -6,7 +6,7 @@ import 'package:untitled/core/resources/my_colors.dart';
 import 'package:untitled/core/resources/my_strings.dart';
 import 'package:untitled/core/services/locator_services/locator_services.dart';
 import 'package:untitled/core/services/rest_api_services/rest_api_services.dart';
-import 'package:untitled/views/categoriesProduct/categories_product_imports.dart';
+import 'package:untitled/views/categories_product/categories_product_imports.dart';
 import 'package:untitled/views/home/home_imports.dart';
 import 'package:untitled/widgets/widgets_imports.dart';
 import 'dart:io';

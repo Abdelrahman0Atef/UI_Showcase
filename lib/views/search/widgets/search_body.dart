@@ -36,8 +36,8 @@ class SearchBody extends StatelessWidget {
         builder: (context, state) {
           if (!state.data) return const SizedBox.shrink();
           return BlocBuilder<
-            GenericCubit<List<ProductModel>>,
-            GenericState<List<ProductModel>>
+            GenericCubit<List<HomeModel>>,
+            GenericState<List<HomeModel>>
           >(
             bloc: vm.productListCubit,
             builder: (context, state) {
@@ -50,10 +50,11 @@ class SearchBody extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 10.r),
                     itemCount: state.data.length,
                     gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
+                        SliverGridDelegateWithFixedCrossAxisCount(
+                          mainAxisExtent: 322.h,
                           crossAxisCount: 2,
-                          mainAxisSpacing: 10,
-                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10.h,
+                          crossAxisSpacing: 10.w,
                           childAspectRatio: 0.65,
                         ),
                     itemBuilder:

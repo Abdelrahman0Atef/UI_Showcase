@@ -1,4 +1,4 @@
-class ProModel {
+class ApiProductModel {
   int? id;
   String? title;
   double? price;
@@ -7,7 +7,7 @@ class ProModel {
   String? image;
   Rating? rating;
 
-  ProModel({
+  ApiProductModel({
     this.id,
     this.title,
     this.price,
@@ -17,7 +17,7 @@ class ProModel {
     this.rating,
   });
 
-  ProModel.fromJson(Map<String, dynamic> json) {
+  ApiProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     price =

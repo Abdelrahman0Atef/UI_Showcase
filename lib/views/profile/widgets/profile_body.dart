@@ -1,9 +1,9 @@
 part of '../profile_imports.dart';
 
 class ProfileBody extends StatelessWidget {
-  final ProfileViewModel viewModel;
+  final ProfileViewModel vm;
 
-  const ProfileBody({required this.viewModel, super.key});
+  const ProfileBody({required this.vm, super.key});
 
   @override
   Widget build(BuildContext context) => Padding(
@@ -13,8 +13,8 @@ class ProfileBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           BlocBuilder<GenericCubit<int>, GenericState<int>>(
-            bloc: viewModel._selectedIndexCubit,
-            builder: (context, state) => ProfileCustomDataCard(vm: viewModel),
+            bloc: vm._selectedIndexCubit,
+            builder: (context, state) => ProfileCustomDataCard(vm: vm),
           ),
           16.verticalSpace,
           Row(
@@ -101,7 +101,7 @@ class ProfileBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               ProfileCustomCardButton(
-                onTap: () => viewModel._shareApp(context),
+                onTap: () => vm._shareApp(context),
                 icon: Icons.share,
                 text: MyStrings.shareApp,
               ),
@@ -128,7 +128,7 @@ class ProfileBody extends StatelessWidget {
                     ),
                     builder:
                         (sheetContext) =>
-                            ProfileSignOutBottomSheet(vm: viewModel),
+                            ProfileSignOutBottomSheet(vm: vm),
                   );
                 },
                 text: MyStrings.signOut,
@@ -138,7 +138,7 @@ class ProfileBody extends StatelessWidget {
           ),
           16.verticalSpace,
           BlocBuilder<GenericCubit<String?>, GenericState<String?>>(
-            bloc: viewModel._versionCubit,
+            bloc: vm._versionCubit,
             builder: (context, state) {
               if (state is GenericUpdateState) {
                 return Center(

@@ -69,7 +69,7 @@ class SignUpViewState extends State<SignUpView> {
                     const AuthCustomStack(),
                     20.verticalSpace,
                     SignUpFields(
-                      viewModel: vm,
+                      vm: vm,
                       firstNameFocusNode: vm._firstNameFocusNode,
                       lastNameFocusNode: vm._lastNameFocusNode,
                       phoneFocusNode: vm._phoneFocusNode,
@@ -122,7 +122,7 @@ class SignUpViewState extends State<SignUpView> {
                       bloc: vm._hasValidLengthCubit,
                       builder:
                           (context, state) =>
-                              SignUpButtons(viewModel: vm, formKey: formKey),
+                              SignUpButtons(vm: vm, formKey: formKey),
                     ),
                   ],
                 ),

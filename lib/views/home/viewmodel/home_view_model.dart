@@ -9,10 +9,10 @@ class HomeViewModel {
 
   final Map<int, GenericCubit<int>> _productCounters = {};
 
-  GenericCubit<int> getProductCounter(ProModel product) =>
+  GenericCubit<int> getProductCounter(ApiProductModel product) =>
       _productCounters.putIfAbsent(product.id ?? 0, () => GenericCubit<int>(0));
 
-  void increment(ProModel product) {
+  void increment(ApiProductModel product) {
     final cubit = getProductCounter(product);
     final maxCount = (product.rating?.count ?? 0) ~/ 4;
     final current = cubit.state.data;
@@ -21,7 +21,7 @@ class HomeViewModel {
     }
   }
 
-  void decrement(ProModel product) {
+  void decrement(ApiProductModel product) {
     final cubit = getProductCounter(product);
     final current = cubit.state.data;
     if (current > 0) {

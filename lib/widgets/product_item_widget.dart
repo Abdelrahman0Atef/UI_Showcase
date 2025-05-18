@@ -1,14 +1,13 @@
 part of '../views/search/search_imports.dart';
 
 class ProductItemWidget extends StatelessWidget {
-  final ProductModel product;
+  final HomeModel product;
   final SearchViewModel vm;
 
   const ProductItemWidget({required this.product, required this.vm, super.key});
 
   @override
   Widget build(BuildContext context) => Container(
-    height: 322.h,
     width: 161.w,
     decoration: BoxDecoration(
       border: Border.all(color: MyColors.darkWhite),

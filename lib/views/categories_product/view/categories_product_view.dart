@@ -11,12 +11,12 @@ class CategoriesProductsView extends StatefulWidget {
 }
 
 class _CategoriesProductsViewState extends State<CategoriesProductsView> {
-  final CategoriesProductViewModel viewModel = CategoriesProductViewModel();
+  final CategoriesProductViewModel vm = CategoriesProductViewModel();
 
   @override
   void initState() {
     super.initState();
-    viewModel.getProductsByCategory(widget.category);
+    vm.getProductsByCategory(widget.category);
   }
 
   @override
@@ -24,8 +24,8 @@ class _CategoriesProductsViewState extends State<CategoriesProductsView> {
     backgroundColor: MyColors.white,
     appBar: AppBar(title: CustomText(text: widget.category), centerTitle: true),
     body:
-        BlocBuilder<GenericCubit<List<ProModel>>, GenericState<List<ProModel>>>(
-          bloc: viewModel.productsCubit,
+        BlocBuilder<GenericCubit<List<ApiProductModel>>, GenericState<List<ApiProductModel>>>(
+          bloc: vm.productsCubit,
           builder: (context, state) {
             if (state is GenericUpdateState) {
               final products = state.data;
@@ -34,7 +34,7 @@ class _CategoriesProductsViewState extends State<CategoriesProductsView> {
               }
               return ProductsGridView(
                 products: products,
-                homeViewModel: viewModel.homeViewModel,
+                homeViewModel: vm.homeViewModel,
               );
             } else if (state is GenericInitialState) {
               return const Center(child: CircularProgressIndicator());

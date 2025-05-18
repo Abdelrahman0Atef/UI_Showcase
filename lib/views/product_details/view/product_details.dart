@@ -1,7 +1,7 @@
 part of '../product_details_imports.dart';
 
 class ProductDetailsView extends StatefulWidget {
-  final ProModel product;
+  final ApiProductModel product;
 
   const ProductDetailsView({required this.product, super.key});
 
@@ -10,22 +10,13 @@ class ProductDetailsView extends StatefulWidget {
 }
 
 class _ProductDetailsViewState extends State<ProductDetailsView> {
-  late final ProductDetailsViewModel vm = ProductDetailsViewModel();
+  final ProductDetailsViewModel vm = ProductDetailsViewModel();
   late final GenericCubit<int> countCubit = vm.homeVM.getProductCounter(
     widget.product,
   );
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    floatingActionButton: FloatingActionButton(
-      mini: true,
-      backgroundColor: MyColors.white,
-      onPressed: () {
-        vm.shareProductImageWithDio(widget.product.image.toString());
-      },
-      child: const Icon(Icons.share, color: MyColors.black),
-    ),
-    floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     backgroundColor: MyColors.white,
     appBar: AppBar(
       backgroundColor: MyColors.white,
@@ -44,12 +35,28 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(
-            child: Image.network(
-              widget.product.image ?? '',
-              height: 200.h,
-              fit: BoxFit.contain,
-            ),
+          Stack(
+            children: [
+              Center(
+                child: Image.network(
+                  widget.product.image ?? '',
+                  height: 200.h,
+                  fit: BoxFit.contain,
+                ),
+              ),
+              GestureDetector(
+                onTap: (){vm.shareProductImageWithDio(widget.product.image.toString());},
+                child: Container(
+                  width: 40.w,
+                  height: 40.h,
+                  decoration: BoxDecoration(
+                    color: MyColors.grey.withOpacity(0.3),
+                    borderRadius: BorderRadius.circular(8.r),
+                  ),
+                  child: const Icon(Icons.share,color: MyColors.black,),
+                ),
+              ),
+            ],
           ),
           20.verticalSpace,
           CustomText(

@@ -1,9 +1,9 @@
 part of '../sign_in_imports.dart';
 
 class SignInPhoneFormWidget extends StatefulWidget {
-  final SignInViewModel viewModel;
+  final SignInViewModel vm;
 
-  const SignInPhoneFormWidget({required this.viewModel, super.key});
+  const SignInPhoneFormWidget({required this.vm, super.key});
 
   @override
   State<SignInPhoneFormWidget> createState() => _SignInPhoneFormWidgetState();
@@ -62,7 +62,7 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
                 setState(() {
                   isRememberMeChecked = value ?? false;
                 });
-                widget.viewModel._togglePhoneRememberMe(
+                widget.vm._togglePhoneRememberMe(
                   isRememberMeChecked,
                   phoneController.text,
                 );
@@ -84,7 +84,7 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
           onPressed: () {
             _closeKeyboard();
             if (phoneController.text.isNotEmpty) {
-              widget.viewModel._validatePhoneSignIn(
+              widget.vm._validatePhoneSignIn(
                 formKey: phoneFormKey,
                 phone: phoneController.text,
                 phoneFocusNode: phoneFocusNode,
@@ -112,7 +112,7 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
         16.verticalSpace,
         CustomButton(
           onPressed: () {
-            widget.viewModel._signUp();
+            widget.vm._signUp();
             context.pushNamed(MyRouts.signUp);
           },
           color: MyColors.white,

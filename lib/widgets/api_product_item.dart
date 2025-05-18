@@ -1,10 +1,10 @@
 part of '../widgets/widgets_imports.dart';
 
-class ApiProItemWidget extends StatelessWidget {
-  final ProModel product;
+class ApiProductItem extends StatelessWidget {
+  final ApiProductModel product;
   final HomeViewModel vm;
 
-  const ApiProItemWidget({required this.product, required this.vm, super.key});
+  const ApiProductItem({required this.product, required this.vm, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class ApiProItemWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () => context.pushNamed(MyRouts.productsDetails, extra: product),
       child: Container(
-        height: 322.h,
+        //height: 250.h,
         width: 161.w,
         decoration: BoxDecoration(
           border: Border.all(color: MyColors.darkWhite),
@@ -53,7 +53,7 @@ class ApiProItemWidget extends StatelessWidget {
                 ),
               ),
             ),
-            15.verticalSpace,
+            5.verticalSpace,
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.r),
               child: Column(
@@ -65,7 +65,7 @@ class ApiProItemWidget extends StatelessWidget {
                     text: product.description ?? '',
                     textStyle: const TextStyle(fontWeight: FontWeight.w500),
                   ),
-                  15.verticalSpace,
+                  10.verticalSpace,
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -88,13 +88,13 @@ class ApiProItemWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  15.verticalSpace,
+                  5.verticalSpace,
                   CustomText(
                     text:
                         '${product.rating?.rate?.toStringAsFixed(1) ?? '0.0'} ${MyStrings.rate}',
                     textStyle: TextStyle(color: MyColors.grey, fontSize: 10.sp),
                   ),
-                  20.verticalSpace,
+                  10.verticalSpace,
                   ProductOrderControl(
                     vm: vm,
                     product: product,

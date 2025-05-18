@@ -2,7 +2,7 @@ part of '../layout_imports.dart';
 
 class LayoutView extends StatelessWidget {
   final StatefulNavigationShell shell;
-  final LayoutViewModel viewModel = LayoutViewModel(); // استخدام الفيو موديل
+  final LayoutViewModel vm = LayoutViewModel();
 
   LayoutView({required this.shell, super.key});
 
@@ -10,8 +10,8 @@ class LayoutView extends StatelessWidget {
   Widget build(BuildContext context) {
     final index = shell.currentIndex;
     final fullLocation = GoRouterState.of(context).fullPath ?? '';
-    final isMainTab = viewModel.isMainTab(fullLocation);
-    final title = viewModel.getAppBarTitle(index);
+    final isMainTab = vm.isMainTab(fullLocation);
+    final title = vm.getAppBarTitle(index);
 
     return Scaffold(
       appBar:

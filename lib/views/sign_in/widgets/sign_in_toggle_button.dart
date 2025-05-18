@@ -1,14 +1,14 @@
 part of '../sign_in_imports.dart';
 
 class SignInToggleButton extends StatelessWidget {
-  final SignInViewModel viewModel;
+  final SignInViewModel vm;
 
-  const SignInToggleButton({required this.viewModel, super.key});
+  const SignInToggleButton({required this.vm, super.key});
 
   @override
   Widget build(BuildContext context) =>
       BlocBuilder<GenericCubit<int>, GenericState<int>>(
-        bloc: viewModel._signInMethodCubit,
+        bloc: vm._signInMethodCubit,
         builder: (context, state) {
           final selectedIndex = state.data;
           return Column(
@@ -45,7 +45,7 @@ class SignInToggleButton extends StatelessWidget {
                 ),
               ),
               16.verticalSpace,
-              SignInBody(selectedIndex: selectedIndex, viewModel: viewModel),
+              SignInBody(selectedIndex: selectedIndex, vm: vm),
             ],
           );
         },
@@ -57,7 +57,7 @@ class SignInToggleButton extends StatelessWidget {
     required int selectedIndex,
   }) => GestureDetector(
     onTap: () {
-      viewModel._toggleSignInMethod(index);
+      vm._toggleSignInMethod(index);
     },
     child: Container(
       width: 135.w,

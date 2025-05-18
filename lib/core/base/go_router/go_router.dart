@@ -3,7 +3,7 @@ import 'package:untitled/core/models/product_model/api_product_model.dart';
 import 'package:untitled/core/resources/my_routs.dart';
 import 'package:untitled/views/cart/cart_imports.dart';
 import 'package:untitled/views/categorie/categorie_imports.dart';
-import 'package:untitled/views/categoriesProduct/categories_product_imports.dart';
+import 'package:untitled/views/categories_product/categories_product_imports.dart';
 import 'package:untitled/views/home/home_imports.dart';
 import 'package:untitled/views/layout/layout_imports.dart';
 import 'package:untitled/views/product/product_imports.dart';
@@ -87,7 +87,7 @@ class AppRouter {
                     path: MyRouts.productsDetails,
                     name: MyRouts.productsDetails,
                     builder: (context, state) {
-                      final product = state.extra as ProModel;
+                      final product = state.extra as ApiProductModel;
                       return ProductDetailsView(product: product);
                     },
                   ),

@@ -1,7 +1,7 @@
 part of '../sign_up_imports.dart';
 
 class SignUpFields extends StatelessWidget {
-  final SignUpViewModel viewModel;
+  final SignUpViewModel vm;
   final FocusNode firstNameFocusNode;
   final FocusNode lastNameFocusNode;
   final FocusNode phoneFocusNode;
@@ -14,7 +14,7 @@ class SignUpFields extends StatelessWidget {
   final TextEditingController passwordController;
 
   const SignUpFields({
-    required this.viewModel,
+    required this.vm,
     required this.firstNameFocusNode,
     required this.lastNameFocusNode,
     required this.phoneFocusNode,
@@ -78,19 +78,19 @@ class SignUpFields extends StatelessWidget {
       ),
       16.verticalSpace,
       BlocBuilder(
-        bloc: viewModel._passwordVisibleCubit,
+        bloc: vm._passwordVisibleCubit,
         builder:
             (context, state) => CustomTextFieldWithTitle(
               label: MyStrings.password,
-              obscureText: !viewModel._passwordVisibleCubit.state.data,
-              isPasswordVisible: viewModel._passwordVisibleCubit.state.data,
-              onIconPressed: viewModel._togglePasswordVisibility,
+              obscureText: !vm._passwordVisibleCubit.state.data,
+              isPasswordVisible: vm._passwordVisibleCubit.state.data,
+              onIconPressed: vm._togglePasswordVisibility,
               validator:
                   (value) =>
                       ValidationHelper.validatePassword(value as String?),
               focusNode: passwordFocusNode,
               controller: passwordController,
-              onChanged: (value) => viewModel._updatePasswordValidation(value),
+              onChanged: (value) => vm._updatePasswordValidation(value),
               onSubmitted: (_) => closeKeyboard(context),
               isLastField: true,
             ),

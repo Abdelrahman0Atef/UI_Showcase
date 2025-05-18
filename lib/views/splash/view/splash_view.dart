@@ -11,14 +11,14 @@ class _SplashViewState extends State<SplashView>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _animation;
-  late final SplashViewModel _viewModel;
+  late final SplashViewModel _vm;
 
   @override
   void initState() {
     super.initState();
 
-    _viewModel = SplashViewModel(context);
-    _viewModel.handleNavigation();
+    _vm = SplashViewModel(context);
+    _vm.handleNavigation();
 
     _controller = AnimationController(
       vsync: this,

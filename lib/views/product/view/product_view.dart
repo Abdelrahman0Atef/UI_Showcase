@@ -20,7 +20,7 @@ class _ProductViewState extends State<ProductView> {
   Widget build(BuildContext context) => Container(
     color: MyColors.white,
     child:
-        BlocBuilder<GenericCubit<List<ProModel>>, GenericState<List<ProModel>>>(
+        BlocBuilder<GenericCubit<List<ApiProductModel>>, GenericState<List<ApiProductModel>>>(
           bloc: vm.productsCubit,
           builder: (context, state) {
             final products = state.data;

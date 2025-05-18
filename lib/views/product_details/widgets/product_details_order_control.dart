@@ -10,7 +10,7 @@ class ProductDetailsOrderControl extends StatelessWidget {
   });
 
   final HomeViewModel vm;
-  final ProModel product;
+  final ApiProductModel product;
   final GenericCubit<int> countCubit;
   final VoidCallback onTap;
 
