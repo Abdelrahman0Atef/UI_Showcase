@@ -9,11 +9,10 @@ class ApiProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final countCubit = vm.getProductCounter(product);
-
+    final WishListViewModel viewModel = WishListViewModel();
     return GestureDetector(
       onTap: () => context.pushNamed(MyRouts.productsDetails, extra: product),
       child: Container(
-        //height: 250.h,
         width: 161.w,
         decoration: BoxDecoration(
           border: Border.all(color: MyColors.darkWhite),
@@ -33,11 +32,15 @@ class ApiProductItem extends StatelessWidget {
                 width: double.infinity,
                 child: Column(
                   children: [
-                    Image.network(
-                      product.image ?? '',
-                      fit: BoxFit.fill,
-                      height: 138.h,
-                      width: double.infinity,
+                    Stack(children: [
+                      Image.network(
+                        product.image ?? '',
+                        fit: BoxFit.fill,
+                        height: 138.h,
+                        width: double.infinity,
+                      ),
+                      FavoriteButton(product: product,vm: viewModel,),
+                    ],
                     ),
                     5.verticalSpace,
                     CustomText(
@@ -60,7 +63,6 @@ class ApiProductItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomText(
-                    maxLines: 2,
                     textAlign: TextAlign.start,
                     text: product.description ?? '',
                     textStyle: const TextStyle(fontWeight: FontWeight.w500),

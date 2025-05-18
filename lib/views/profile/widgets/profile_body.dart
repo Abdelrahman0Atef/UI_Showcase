@@ -43,7 +43,7 @@ class ProfileBody extends StatelessWidget {
               ),
               8.horizontalSpace,
               ProfileCustomCardButton(
-                onTap: () {},
+                onTap: () {context.pushNamed(MyRouts.wishList);},
                 icon: Icons.favorite,
                 text: MyStrings.wishList,
               ),

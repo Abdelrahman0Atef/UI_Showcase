@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/core/resources/my_routs.dart';
 import 'package:untitled/core/resources/app_language.dart';
+import 'package:untitled/core/services/database/database.dart';
 import 'package:untitled/core/services/locator_services/locator_services.dart';
 import 'package:untitled/my_app.dart';
 import 'core/base/bloc_observer.dart';
@@ -10,7 +11,7 @@ import 'core/base/bloc_observer.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
-
+  await DBService();
   await locatorServices();
   await EasyLocalization.ensureInitialized();
 

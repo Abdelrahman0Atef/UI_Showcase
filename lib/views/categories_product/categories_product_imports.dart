@@ -1,5 +1,5 @@
 import 'package:untitled/core/generic_cubit/generic_cubit.dart';
-import 'package:untitled/core/models/product_model/api_product_model.dart';
+import 'package:untitled/core/models/api_product_model/api_product_model.dart';
 import 'package:untitled/core/resources/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

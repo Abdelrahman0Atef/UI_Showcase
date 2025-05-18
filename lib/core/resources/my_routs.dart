@@ -10,4 +10,5 @@ class MyRouts {
   static const profile = 'profile';
   static const products = 'products';
   static const productsDetails = 'productsDetails';
+  static const wishList  = 'wishList';
 }

@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:untitled/core/models/product_model/api_product_model.dart';
+import 'package:untitled/core/models/api_product_model/api_product_model.dart';
 import 'package:untitled/core/resources/my_routs.dart';
 import 'package:untitled/views/cart/cart_imports.dart';
 import 'package:untitled/views/categorie/categorie_imports.dart';
@@ -13,6 +13,7 @@ import 'package:untitled/views/search/search_imports.dart';
 import 'package:untitled/views/sign_in/sign_in_imports.dart';
 import 'package:untitled/views/sign_up/sign_up_imports.dart';
 import 'package:untitled/views/splash/splash_imports.dart';
+import 'package:untitled/views/wish_list/wish_list_imports.dart';
 
 import '../../resources/my_strings.dart';
 
@@ -110,6 +111,11 @@ class AppRouter {
                 path: '/${MyRouts.profile}',
                 name: MyRouts.profile,
                 builder: (context, state) => const ProfileView(),
+              ),
+              GoRoute(
+                path: '/${MyRouts.wishList}',
+                name: MyRouts.wishList,
+                builder: (context, state) => const WishList(),
               ),
             ],
           ),

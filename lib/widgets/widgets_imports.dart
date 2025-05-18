@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:untitled/core/resources/my_assets.dart';
 import 'package:untitled/core/resources/my_colors.dart';
-import 'package:untitled/core/models/product_model/api_product_model.dart';
+import 'package:untitled/core/models/api_product_model/api_product_model.dart';
 import 'package:untitled/views/home/home_imports.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/core/generic_cubit/generic_cubit.dart';
@@ -11,6 +11,8 @@ import 'package:untitled/views/search/search_imports.dart';
 import 'package:go_router/go_router.dart';
 import 'package:untitled/core/resources/my_routs.dart';
 import 'package:untitled/core/resources/my_strings.dart';
+import 'package:untitled/views/wish_list/wish_list_imports.dart';
+import 'package:untitled/widgets/favorite_button.dart';
 
 part 'custom_button.dart';
 

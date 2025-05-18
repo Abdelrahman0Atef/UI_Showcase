@@ -26,11 +26,9 @@ class LayoutViewModel {
     }
   }
 
-  bool isMainTab(String path) {
-    return path.endsWith(MyRouts.home) ||
+  bool isMainTab(String path) => path.endsWith(MyRouts.home) ||
         path.endsWith(MyRouts.categories) ||
         path.endsWith(MyRouts.products) ||
         path.endsWith(MyRouts.cart) ||
         path.endsWith(MyRouts.profile);
-  }
 }
