@@ -173,4 +173,6 @@ class MyStrings {
   static const details = 'التفاصيل';
   static const message = 'Check out this product!';
   static const basket = 'Add to Basket';
+  static const noFavorite = 'No Favorite Products Yet';
+  static const wishlist = 'Wishlist';
 }

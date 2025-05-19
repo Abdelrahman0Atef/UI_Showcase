@@ -4,6 +4,7 @@ class ProductDetailsViewModel {
   final CategoriesProductViewModel categoriesVM = CategoriesProductViewModel();
   final HomeViewModel homeVM = getIt<HomeViewModel>();
   final RestApiServices restApiServices = getIt<RestApiServices>();
+  final WishListViewModel wishListVm = getIt<WishListViewModel>();
 
   Future<void> shareProductImageWithDio(String imageUrl) async {
     try {

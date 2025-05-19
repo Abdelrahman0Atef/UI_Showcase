@@ -44,16 +44,27 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                   fit: BoxFit.contain,
                 ),
               ),
-              GestureDetector(
-                onTap: (){vm.shareProductImageWithDio(widget.product.image.toString());},
-                child: Container(
-                  width: 40.w,
-                  height: 40.h,
-                  decoration: BoxDecoration(
-                    color: MyColors.grey.withOpacity(0.3),
-                    borderRadius: BorderRadius.circular(8.r),
-                  ),
-                  child: const Icon(Icons.share,color: MyColors.black,),
+              Container(
+                decoration: BoxDecoration(
+                  color: MyColors.grey.withOpacity(0.3),
+                  borderRadius: BorderRadius.circular(8.r),
+                ),
+                child: Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        vm.shareProductImageWithDio(
+                          widget.product.image.toString(),
+                        );
+                      },
+                      child: SizedBox(
+                        width: 40.w,
+                        height: 40.h,
+                        child: const Icon(Icons.share, color: MyColors.black),
+                      ),
+                    ),
+                    FavoriteButton(product: widget.product, vm: vm.wishListVm),
+                  ],
                 ),
               ),
             ],

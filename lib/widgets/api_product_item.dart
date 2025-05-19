@@ -111,4 +111,5 @@ class ApiProductItem extends StatelessWidget {
       ),
     );
   }
+
 }

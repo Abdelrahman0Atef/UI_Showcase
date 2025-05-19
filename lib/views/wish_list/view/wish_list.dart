@@ -19,7 +19,7 @@ class _WishListState extends State<WishList> {
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
-      title: const Text('Wishlist'),
+      title: const CustomText(text: MyStrings.wishlist),
       centerTitle: true,
     ),
     body: BlocBuilder<GenericCubit<List<ApiProductModel>>, GenericState<List<ApiProductModel>>>(
@@ -29,7 +29,7 @@ class _WishListState extends State<WishList> {
           if (state.data.isEmpty) {
             return const Center(
               child: CustomText(
-                text: 'No Favorite Products Yet',
+                text: MyStrings.noFavorite,
                 textStyle: TextStyle(color: MyColors.red,fontWeight: FontWeight.bold,),
               ),
             );
@@ -57,7 +57,7 @@ class _WishListState extends State<WishList> {
             );
           }
         } else {
-          return const Center(child: CustomText(text: "Something went wrong"));
+          return const Center(child: CustomText(text: MyStrings.errorLoading));
         }
       },
     ),
