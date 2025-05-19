@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/core/generic_cubit/generic_cubit.dart';
 import 'package:untitled/core/models/api_product_model/api_product_model.dart';
+import 'package:untitled/core/resources/my_colors.dart';
 import 'package:untitled/views/wish_list/wish_list_imports.dart';
 
 class FavoriteButton extends StatelessWidget {
@@ -19,10 +20,10 @@ class FavoriteButton extends StatelessWidget {
         return IconButton(
           icon: Icon(
             isFav ? Icons.favorite : Icons.favorite_border,
-            color: isFav ? Colors.red : null,
+            color: isFav ? MyColors.red : null,
           ),
-          onPressed: () {
-            vm.toggleFavorite(product);
+          onPressed: () async {
+            await vm.toggleFavorite(product);
           },
         );
       },

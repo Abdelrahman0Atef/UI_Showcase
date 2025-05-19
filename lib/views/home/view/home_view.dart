@@ -7,7 +7,7 @@ class HomeView extends StatefulWidget {
   State<HomeView> createState() => _HomeViewState();
 }
 
-final HomeViewModel vm = HomeViewModel();
+final HomeViewModel vm = getIt<HomeViewModel>();
 
 class _HomeViewState extends State<HomeView> {
   @override

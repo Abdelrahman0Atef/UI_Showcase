@@ -2,14 +2,15 @@ part of '../widgets/widgets_imports.dart';
 
 class ApiProductItem extends StatelessWidget {
   final ApiProductModel product;
-  final HomeViewModel vm;
+  final HomeViewModel homVm;
+  final WishListViewModel vm;
 
-  const ApiProductItem({required this.product, required this.vm, super.key});
+
+  const ApiProductItem({required this.product, required this.vm, required this.homVm, super.key});
 
   @override
   Widget build(BuildContext context) {
-    final countCubit = vm.getProductCounter(product);
-    final WishListViewModel viewModel = WishListViewModel();
+    final countCubit = homVm.getProductCounter(product);
     return GestureDetector(
       onTap: () => context.pushNamed(MyRouts.productsDetails, extra: product),
       child: Container(
@@ -39,7 +40,7 @@ class ApiProductItem extends StatelessWidget {
                         height: 138.h,
                         width: double.infinity,
                       ),
-                      FavoriteButton(product: product,vm: viewModel,),
+                      FavoriteButton(product: product,vm: vm,),
                     ],
                     ),
                     5.verticalSpace,
@@ -98,7 +99,7 @@ class ApiProductItem extends StatelessWidget {
                   ),
                   10.verticalSpace,
                   ProductOrderControl(
-                    vm: vm,
+                    vm: homVm,
                     product: product,
                     countCubit: countCubit,
                   ),

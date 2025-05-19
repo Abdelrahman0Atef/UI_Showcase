@@ -11,7 +11,7 @@ import 'core/base/bloc_observer.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
-  await DBService();
+  await DBService().getFavorites();
   await locatorServices();
   await EasyLocalization.ensureInitialized();
 

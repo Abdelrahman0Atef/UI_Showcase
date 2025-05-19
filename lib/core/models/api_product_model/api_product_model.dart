@@ -30,16 +30,6 @@ class ApiProductModel {
         ? Rating.fromJson(json['rating'])
         : null;
   }
-
-  Map<String, dynamic> toJson() => {
-      'id': id,
-      'title': title,
-      'price': price,
-      'description': description,
-      'category': category,
-      'image': image,
-      'rating': rating?.toJson(),
-    };
 }
 
 class Rating {
@@ -54,9 +44,4 @@ class Rating {
         : json['rate'];
     count = json['count'];
   }
-
-  Map<String, dynamic> toJson() => {
-      'rate': rate,
-      'count': count,
-    };
 }

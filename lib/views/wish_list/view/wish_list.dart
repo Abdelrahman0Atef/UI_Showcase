@@ -8,25 +8,37 @@ class WishList extends StatefulWidget {
 }
 
 class _WishListState extends State<WishList> {
-  final WishListViewModel viewModel = WishListViewModel();
+  final WishListViewModel vm = getIt<WishListViewModel>();
 
   @override
   void initState() {
     super.initState();
-    viewModel.loadFavorites();
+    vm.loadFavorites();
   }
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      appBar: AppBar(title: const Text('Wishlist'), elevation: 0),
-      body: BlocBuilder<GenericCubit<List<ApiProductModel>>, GenericState<List<ApiProductModel>>>(
-        bloc: viewModel.favoritesCubit,
-        builder: (context, state) {
-          if (state is GenericUpdateState) {
+    appBar: AppBar(
+      title: const Text('Wishlist'),
+      centerTitle: true,
+    ),
+    body: BlocBuilder<GenericCubit<List<ApiProductModel>>, GenericState<List<ApiProductModel>>>(
+      bloc: vm.favoritesCubit,
+      builder: (context, state) {
+        if (state is GenericUpdateState) {
+          if (state.data.isEmpty) {
+            return const Center(
+              child: CustomText(
+                text: 'No Favorite Products Yet',
+                textStyle: TextStyle(color: MyColors.red,fontWeight: FontWeight.bold,),
+              ),
+            );
+          } else {
             return Padding(
               padding: EdgeInsets.all(10.r),
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  mainAxisExtent:  322.h,
                   crossAxisCount: 2,
                   childAspectRatio: 0.65,
                   crossAxisSpacing: 10.w,
@@ -37,14 +49,17 @@ class _WishListState extends State<WishList> {
                   final product = state.data[index];
                   return ApiProductItem(
                     product: product,
-                    vm: viewModel.homeViewModel,
+                    vm: vm,
+                    homVm: vm.homeVM,
                   );
                 },
               ),
             );
-          } return const Center(child: CustomText(text: 'No Favorite Products Yet'));
-
-        },
-      ),
-    );
+          }
+        } else {
+          return const Center(child: CustomText(text: "Something went wrong"));
+        }
+      },
+    ),
+  );
 }

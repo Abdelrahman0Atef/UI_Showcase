@@ -3,43 +3,53 @@ part of '../wish_list_imports.dart';
 class WishListViewModel {
   final favoritesCubit = GenericCubit<List<ApiProductModel>>([]);
   final favoritesMapCubit = GenericCubit<Map<int, bool>>({});
+  final HomeViewModel homeVM = getIt<HomeViewModel>();
+  final _db = getIt<DBService>();
+  final Map<int, GenericCubit<int>> _productCounters = {};
 
-  final HomeViewModel homeViewModel =HomeViewModel();
+  GenericCubit<int> getProductCounter(ApiProductModel product) =>
+      _productCounters.putIfAbsent(product.id ?? 0, () => GenericCubit<int>(0));
 
   Future<void> loadFavorites() async {
-    final favorites = await DBService().getFavorites();
+    final favorites = await _db.getFavorites();
     favoritesCubit.onUpdateData(favorites);
-
-    final map = {for (var item in favorites) item.id!: true};
-    favoritesMapCubit.onUpdateData(map);
+    favoritesMapCubit.onUpdateData({ for (var item in favorites) item.id!: true });
   }
 
   Future<void> toggleFavorite(ApiProductModel product) async {
-    final db = DBService();
     final currentMap = Map<int, bool>.from(favoritesMapCubit.state.data);
+    final isFav = favoritesMapCubit.state.data[product.id] ?? false;
 
-    final isFav = currentMap[product.id] ?? false;
+    currentMap[product.id!] = !isFav;
+    favoritesMapCubit.onUpdateData(currentMap);
 
     if (isFav) {
-      await db.removeFromFavorites(product.id!);
-      currentMap.remove(product.id);
+      await _db.removeFromFavorites(product.id!);
     } else {
-      await db.addToFavorites(product);
-      currentMap[product.id!] = true;
+      await _db.addToFavorites(product);
     }
 
-    favoritesMapCubit.onUpdateData(currentMap);
     await loadFavorites();
   }
 
-  void checkFavorite(int productId) async {
-    final isFav = await DBService().isFavorite(productId);
-    final currentMap = Map<int, bool>.from(favoritesMapCubit.state.data);
-    currentMap[productId] = isFav;
-    favoritesMapCubit.onUpdateData(currentMap);
-    print('is $isFav ************ cur $currentMap');
+  bool isProductFavorite(int id) => favoritesMapCubit.state.data[id] ?? false;
+
+  void increment(ApiProductModel product) {
+    final cubit = getProductCounter(product);
+    final maxCount = (product.rating?.count ?? 0) ~/ 4;
+    final current = cubit.state.data;
+    if (current < maxCount) {
+      cubit.onUpdateData(current + 1);
+    }
   }
 
-  Future<bool> isFavorite(int id) async => favoritesMapCubit.state.data[id] ?? false;
+  void decrement(ApiProductModel product) {
+    final cubit = getProductCounter(product);
+    final current = cubit.state.data;
+    if (current > 0) {
+      cubit.onUpdateData(current - 1);
+    }
+  }
 }
+
 

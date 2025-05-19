@@ -2,7 +2,7 @@ part of '../product_details_imports.dart';
 
 class ProductDetailsViewModel {
   final CategoriesProductViewModel categoriesVM = CategoriesProductViewModel();
-  final HomeViewModel homeVM = HomeViewModel();
+  final HomeViewModel homeVM = getIt<HomeViewModel>();
   final RestApiServices restApiServices = getIt<RestApiServices>();
 
   Future<void> shareProductImageWithDio(String imageUrl) async {

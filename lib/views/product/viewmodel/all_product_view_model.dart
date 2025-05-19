@@ -2,9 +2,10 @@ part of '../product_imports.dart';
 
 class ProductViewModel {
   final RestApiServices restApiServices = getIt<RestApiServices>();
-
   final GenericCubit<List<ApiProductModel>> productsCubit = GenericCubit([]);
-  final HomeViewModel homeViewModel = HomeViewModel();
+  final HomeViewModel homeViewModel = getIt<HomeViewModel>();
+
+  final WishListViewModel wishListVm = getIt<WishListViewModel>();
 
   Future<void> getAllProducts() async {
     try {
@@ -15,4 +16,9 @@ class ProductViewModel {
       productsCubit.onUpdateData([]);
     }
   }
+
+  bool isProductFavorite(int id) => wishListVm.isProductFavorite(id);
+
+  Future<void> toggleFavorite(ApiProductModel product) => wishListVm.toggleFavorite(product);
 }
+
