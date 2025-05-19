@@ -9,7 +9,6 @@ import 'package:untitled/core/resources/my_colors.dart';
 import 'package:untitled/core/resources/my_routs.dart';
 import 'package:untitled/core/resources/my_strings.dart';
 import 'package:untitled/core/services/locator_services/locator_services.dart';
-import 'package:untitled/views/categorie/categorie_imports.dart';
 import 'package:untitled/views/search/search_imports.dart';
 import 'package:untitled/widgets/widgets_imports.dart';
 
