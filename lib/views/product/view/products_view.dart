@@ -1,14 +1,14 @@
 part of '../product_imports.dart';
 
-class ProductView extends StatefulWidget {
-  const ProductView({Key? key}) : super(key: key);
+class ProductsView extends StatefulWidget {
+  const ProductsView({Key? key}) : super(key: key);
 
   @override
-  State<ProductView> createState() => _ProductViewState();
+  State<ProductsView> createState() => _ProductsViewState();
 }
 
-class _ProductViewState extends State<ProductView> {
-  final ProductViewModel vm = ProductViewModel();
+class _ProductsViewState extends State<ProductsView> {
+  final ProductsViewModel vm = ProductsViewModel();
 
   @override
   void initState() {
@@ -31,7 +31,7 @@ class _ProductViewState extends State<ProductView> {
             }
             return ProductsGridView(
               products: products,
-              homeViewModel: vm.homeViewModel,
+              homeVm: vm.homeViewModel,
             );
           },
         ),

@@ -1,6 +1,6 @@
 part of '../product_imports.dart';
 
-class ProductViewModel {
+class ProductsViewModel {
   final RestApiServices restApiServices = getIt<RestApiServices>();
   final GenericCubit<List<ApiProductModel>> productsCubit = GenericCubit([]);
   final HomeViewModel homeViewModel = getIt<HomeViewModel>();

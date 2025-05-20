@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:untitled/core/resources/my_routs.dart';
 import 'package:untitled/core/resources/app_language.dart';
 import 'package:untitled/core/services/database/database.dart';
 import 'package:untitled/core/services/locator_services/locator_services.dart';
@@ -11,7 +10,7 @@ import 'core/base/bloc_observer.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
-  await DBService().getFavorites();
+  await DataBaseService().getFavorites();
   await locatorServices();
   await EasyLocalization.ensureInitialized();
 
@@ -20,7 +19,7 @@ void main() async {
       supportedLocales: AppLanguage.supportedLocales,
       path: AppLanguage.path,
       fallbackLocale: AppLanguage.arabic,
-      child: const MyApp(initialRoute: MyRouts.splash),
+      child: const MyApp(),
     ),
   );
 }

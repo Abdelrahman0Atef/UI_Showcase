@@ -6,9 +6,7 @@ import 'package:untitled/core/resources/app_settings.dart';
 import 'package:untitled/core/resources/my_fonts.dart';
 
 class MyApp extends StatelessWidget {
-  final String initialRoute;
-
-  const MyApp({required this.initialRoute, super.key});
+  const MyApp({ super.key});
 
   @override
   Widget build(BuildContext context) => ScreenUtilInit(

@@ -13,7 +13,6 @@ import 'package:go_router/go_router.dart';
 import 'package:untitled/core/resources/my_routs.dart';
 import 'package:untitled/core/resources/my_strings.dart';
 import 'package:untitled/views/wish_list/wish_list_imports.dart';
-import 'package:untitled/widgets/favorite_button.dart';
 
 part 'custom_button.dart';
 
@@ -30,3 +29,4 @@ part 'products_grid_view.dart';
 part 'product_order_control.dart';
 
 part 'api_product_item.dart';
+part 'favorite_button.dart';

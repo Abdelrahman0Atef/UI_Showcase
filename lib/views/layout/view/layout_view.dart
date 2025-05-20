@@ -12,6 +12,7 @@ class LayoutView extends StatelessWidget {
     final fullLocation = GoRouterState.of(context).fullPath ?? '';
     final isMainTab = vm.isMainTab(fullLocation);
     final title = vm.getAppBarTitle(index);
+    final _ = context.locale;
 
     return Scaffold(
       appBar:

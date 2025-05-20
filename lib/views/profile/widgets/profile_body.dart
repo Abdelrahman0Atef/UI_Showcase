@@ -27,7 +27,9 @@ class ProfileBody extends StatelessWidget {
               ),
               8.horizontalSpace,
               ProfileCustomCardButton(
-                onTap: () {},
+                onTap: () {
+                  context.pushNamed(MyRouts.blogs);
+                },
                 icon: Icons.shopping_bag,
                 text: MyStrings.orders,
               ),

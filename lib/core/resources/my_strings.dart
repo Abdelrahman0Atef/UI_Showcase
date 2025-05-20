@@ -175,4 +175,7 @@ class MyStrings {
   static const basket = 'Add to Basket';
   static const noFavorite = 'No Favorite Products Yet';
   static const wishlist = 'Wishlist';
+  static const noBlogs = 'No blogs found';
+  static const blogs = 'Blogs';
+  static const postedOn = 'Posted on:';
 }

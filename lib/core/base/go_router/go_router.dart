@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:untitled/core/models/api_product_model/api_product_model.dart';
 import 'package:untitled/core/resources/my_routs.dart';
+import 'package:untitled/views/blogs/blogs.imports.dart';
 import 'package:untitled/views/cart/cart_imports.dart';
 import 'package:untitled/views/categorie/categorie_imports.dart';
 import 'package:untitled/views/categories_product/categories_product_imports.dart';
@@ -82,7 +83,7 @@ class AppRouter {
               GoRoute(
                 path: '/${MyRouts.products}',
                 name: MyRouts.products,
-                builder: (context, state) => const ProductView(),
+                builder: (context, state) => const ProductsView(),
                 routes: [
                   GoRoute(
                     path: MyRouts.productsDetails,
@@ -115,7 +116,12 @@ class AppRouter {
               GoRoute(
                 path: '/${MyRouts.wishList}',
                 name: MyRouts.wishList,
-                builder: (context, state) => const WishList(),
+                builder: (context, state) => const WishListView(),
+              ),
+              GoRoute(
+                path: '/${MyRouts.blogs}',
+                name: MyRouts.blogs,
+                builder: (context, state) =>  const BlogsView(),
               ),
             ],
           ),

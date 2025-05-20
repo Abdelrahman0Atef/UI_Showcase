@@ -3,12 +3,12 @@ part of '../widgets/widgets_imports.dart';
 class ProductsGridView extends StatelessWidget {
   ProductsGridView({
     required this.products,
-    required this.homeViewModel,
+    required this.homeVm,
     super.key,
   });
 
   final List<ApiProductModel> products;
-  final HomeViewModel homeViewModel;
+  final HomeViewModel homeVm;
 
   final WishListViewModel wishVm = getIt<WishListViewModel>();
 
@@ -26,7 +26,7 @@ class ProductsGridView extends StatelessWidget {
       ),
       itemBuilder: (context, index) => ApiProductItem(
         product: products[index],
-        homVm: homeViewModel,
+        homVm: homeVm,
         vm: wishVm,
       ),
     ),

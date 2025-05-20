@@ -1,13 +1,13 @@
 part of '../wish_list_imports.dart';
 
-class WishList extends StatefulWidget {
-  const WishList({Key? key}) : super(key: key);
+class WishListView extends StatefulWidget {
+  const WishListView({Key? key}) : super(key: key);
 
   @override
-  State<WishList> createState() => _WishListState();
+  State<WishListView> createState() => _WishListViewState();
 }
 
-class _WishListState extends State<WishList> {
+class _WishListViewState extends State<WishListView> {
   final WishListViewModel vm = getIt<WishListViewModel>();
 
   @override

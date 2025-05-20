@@ -34,7 +34,7 @@ class _CategoriesProductsViewState extends State<CategoriesProductsView> {
               }
               return ProductsGridView(
                 products: products,
-                homeViewModel: vm.homeViewModel,
+                homeVm: vm.homeVm,
               );
             } else if (state is GenericInitialState) {
               return const Center(child: CircularProgressIndicator());

@@ -4,7 +4,7 @@ class CategoriesProductViewModel {
   final GenericCubit<List<ApiProductModel>> productsCubit =
       GenericCubit<List<ApiProductModel>>([]);
   final RestApiServices restApiServices = getIt<RestApiServices>();
-  final HomeViewModel homeViewModel = getIt<HomeViewModel>();
+  final HomeViewModel homeVm = getIt<HomeViewModel>();
 
   Future<void> getAllProducts() async {
     try {

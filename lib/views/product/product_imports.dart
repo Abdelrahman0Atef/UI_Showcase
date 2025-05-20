@@ -10,6 +10,6 @@ import 'package:untitled/widgets/widgets_imports.dart';
 import '../../core/resources/my_colors.dart';
 import '../../core/resources/my_strings.dart';
 
-part 'view/product_view.dart';
+part 'view/products_view.dart';
 
-part 'viewmodel/all_product_view_model.dart';
+part 'viewmodel/products_view_model.dart';
