@@ -63,4 +63,42 @@ class GraphQLService {
       return [];
     }
   }
+
+  Future<String> submitContactForm(
+    String name,
+    String email,
+    String comment,
+    String? telephone,
+  ) async {
+    final client = getClient();
+
+    final MutationOptions options = MutationOptions(
+      document: gql(r'''
+        mutation SubmitContactForm($name: String!, $email: String!, $comment: String!, $telephone: String) {
+          contactUs(input: {name: $name, email: $email, comment: $comment, telephone: $telephone}) {
+            status
+          }
+        }
+      '''),
+      variables: <String, dynamic>{
+        'name': name,
+        'email': email,
+        'comment': comment,
+        'telephone': telephone,
+      },
+    );
+
+    try {
+      final result = await client.mutate(options);
+
+      if (result.hasException) {
+        throw Exception('Error submitting contact form');
+      }
+
+      final status = result.data?['contactUs']['status'];
+      return status == true ? 'Success' : 'Error';
+    } catch (e) {
+      return 'Error: ${e.toString()}';
+    }
+  }
 }

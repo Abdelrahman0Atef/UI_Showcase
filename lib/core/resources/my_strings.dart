@@ -178,4 +178,8 @@ class MyStrings {
   static const noBlogs = 'No blogs found';
   static const blogs = 'Blogs';
   static const postedOn = 'Posted on:';
+  static const contactUs = 'Contact Us';
+  static const comment = 'Comment';
+  static const requiredComment = 'Comment is required';
+  static const submit = 'Submit';
 }

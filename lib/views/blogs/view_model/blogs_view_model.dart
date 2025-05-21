@@ -2,7 +2,7 @@ part of '../blogs.imports.dart';
 
 class BlogsViewModel {
   final GenericCubit<List<BlogPost>> blogCubit = GenericCubit([]);
-  final GraphQLService graphQLService = GraphQLService();
+  final GraphQLService graphQLService = getIt<GraphQLService>();
 
   Future<void> getBlogs() async {
     try {

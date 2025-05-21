@@ -109,7 +109,7 @@ class ProfileBody extends StatelessWidget {
               ),
               8.horizontalSpace,
               ProfileCustomCardButton(
-                onTap: () {},
+                onTap: () {context.pushNamed(MyRouts.contactUs);},
                 icon: Icons.star_rate,
                 text: MyStrings.rateTheApp,
               ),

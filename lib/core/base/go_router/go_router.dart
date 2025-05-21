@@ -16,6 +16,7 @@ import 'package:untitled/views/sign_up/sign_up_imports.dart';
 import 'package:untitled/views/splash/splash_imports.dart';
 import 'package:untitled/views/wish_list/wish_list_imports.dart';
 
+import '../../../views/contact_us/contact_us_imports.dart';
 import '../../resources/my_strings.dart';
 
 class AppRouter {
@@ -122,6 +123,11 @@ class AppRouter {
                 path: '/${MyRouts.blogs}',
                 name: MyRouts.blogs,
                 builder: (context, state) =>  const BlogsView(),
+              ),
+              GoRoute(
+                path: '/${MyRouts.contactUs}',
+                name: MyRouts.contactUs,
+                builder: (context, state) =>  const ContactUsView(),
               ),
             ],
           ),
