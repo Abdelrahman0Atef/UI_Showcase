@@ -4,11 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:untitled/core/generic_cubit/generic_cubit.dart';
 import 'package:untitled/core/models/api_product_model/api_product_model.dart';
+import 'package:untitled/core/models/blogs_model/blogs_model.dart';
 import 'package:untitled/core/resources/my_assets.dart';
 import 'package:untitled/core/resources/my_colors.dart';
 import 'package:untitled/core/resources/my_routs.dart';
 import 'package:untitled/core/resources/my_strings.dart';
 import 'package:untitled/core/services/locator_services/locator_services.dart';
+import 'package:untitled/core/services/qraph_ql_services/qraph_ql_services.dart';
 import 'package:untitled/views/search/search_imports.dart';
 import 'package:untitled/widgets/widgets_imports.dart';
 
@@ -27,3 +29,4 @@ part 'widgets/home_split_card.dart';
 part 'widgets/home_info_card.dart';
 
 part 'viewmodel/home_view_model.dart';
+part 'widgets/home_blogs_card.dart';

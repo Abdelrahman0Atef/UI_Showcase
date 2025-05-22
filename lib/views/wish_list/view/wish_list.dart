@@ -19,7 +19,7 @@ class _WishListViewState extends State<WishListView> {
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
-      title: const CustomText(text: MyStrings.wishlist),
+      title: CustomText(text: MyStrings.wishList),
       centerTitle: true,
     ),
     body: BlocBuilder<GenericCubit<List<ApiProductModel>>, GenericState<List<ApiProductModel>>>(

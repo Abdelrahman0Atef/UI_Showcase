@@ -1,7 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:untitled/core/models/api_product_model/api_product_model.dart';
 import 'package:untitled/core/resources/my_routs.dart';
-import 'package:untitled/views/blogs/blogs.imports.dart';
 import 'package:untitled/views/cart/cart_imports.dart';
 import 'package:untitled/views/categorie/categorie_imports.dart';
 import 'package:untitled/views/categories_product/categories_product_imports.dart';
@@ -15,7 +14,6 @@ import 'package:untitled/views/sign_in/sign_in_imports.dart';
 import 'package:untitled/views/sign_up/sign_up_imports.dart';
 import 'package:untitled/views/splash/splash_imports.dart';
 import 'package:untitled/views/wish_list/wish_list_imports.dart';
-
 import '../../../views/contact_us/contact_us_imports.dart';
 import '../../resources/my_strings.dart';
 
@@ -113,21 +111,18 @@ class AppRouter {
                 path: '/${MyRouts.profile}',
                 name: MyRouts.profile,
                 builder: (context, state) => const ProfileView(),
-              ),
-              GoRoute(
-                path: '/${MyRouts.wishList}',
-                name: MyRouts.wishList,
-                builder: (context, state) => const WishListView(),
-              ),
-              GoRoute(
-                path: '/${MyRouts.blogs}',
-                name: MyRouts.blogs,
-                builder: (context, state) =>  const BlogsView(),
-              ),
-              GoRoute(
-                path: '/${MyRouts.contactUs}',
-                name: MyRouts.contactUs,
-                builder: (context, state) =>  const ContactUsView(),
+                routes: [
+                  GoRoute(
+                    path: '/${MyRouts.wishList}',
+                    name: MyRouts.wishList,
+                    builder: (context, state) => const WishListView(),
+                  ),
+                  GoRoute(
+                    path: '/${MyRouts.contactUs}',
+                    name: MyRouts.contactUs,
+                    builder: (context, state) =>  const ContactUsView(),
+                  ),
+                ]
               ),
             ],
           ),

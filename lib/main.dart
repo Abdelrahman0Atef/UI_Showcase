@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:untitled/core/resources/app_language.dart';
 import 'package:untitled/core/services/database/database.dart';
 import 'package:untitled/core/services/locator_services/locator_services.dart';
@@ -22,4 +23,12 @@ void main() async {
       child: const MyApp(),
     ),
   );
+  configLoading();
+}
+
+void configLoading() {
+  EasyLoading.instance
+    ..indicatorType = EasyLoadingIndicatorType.cubeGrid
+    ..maskType = EasyLoadingMaskType.black
+    ..dismissOnTap = false;
 }

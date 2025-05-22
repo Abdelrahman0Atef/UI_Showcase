@@ -174,7 +174,6 @@ class MyStrings {
   static const message = 'Check out this product!';
   static const basket = 'Add to Basket';
   static const noFavorite = 'No Favorite Products Yet';
-  static const wishlist = 'Wishlist';
   static const noBlogs = 'No blogs found';
   static const blogs = 'Blogs';
   static const postedOn = 'Posted on:';
@@ -182,4 +181,8 @@ class MyStrings {
   static const comment = 'Comment';
   static const requiredComment = 'Comment is required';
   static const submit = 'Submit';
+  static const articles = 'مقالات';
+  static const sending = 'جاري الإرسال...';
+  static const successSent = 'تم الإرسال بنجاح';
+  static const failedSent = 'حدث خطأ، حاول مرة أخرى';
 }

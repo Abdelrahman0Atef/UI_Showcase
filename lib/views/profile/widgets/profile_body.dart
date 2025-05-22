@@ -27,9 +27,7 @@ class ProfileBody extends StatelessWidget {
               ),
               8.horizontalSpace,
               ProfileCustomCardButton(
-                onTap: () {
-                  context.pushNamed(MyRouts.blogs);
-                },
+                onTap: () {},
                 icon: Icons.shopping_bag,
                 text: MyStrings.orders,
               ),
@@ -109,7 +107,7 @@ class ProfileBody extends StatelessWidget {
               ),
               8.horizontalSpace,
               ProfileCustomCardButton(
-                onTap: () {context.pushNamed(MyRouts.contactUs);},
+                onTap: () {},
                 icon: Icons.star_rate,
                 text: MyStrings.rateTheApp,
               ),

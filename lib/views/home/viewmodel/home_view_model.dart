@@ -4,6 +4,52 @@ class HomeViewModel {
   final List<String> imageUrls = [MyAssets.card, MyAssets.ccard, MyAssets.card];
   final PageController _pageController = PageController();
   final GenericCubit<int> _pageCubit = GenericCubit(0);
+  final GenericCubit<List<BlogPost>> _blogCubit = GenericCubit([]);
+  final GraphQLService _graphQLService = getIt<GraphQLService>();
+
+  Future<void> _getBlogs() async {
+    try {
+      const query = r'''
+      query GetBlogData {
+        blogPosts {
+          items {
+            creation_time
+            featured_image
+            categories {
+              title
+              category_id
+            }
+            title
+            post_id
+            short_content
+            content
+            related_products
+            related_posts {
+              creation_time
+              featured_image
+              title
+              post_id
+              short_content
+              content
+            }
+          }
+        }
+      }
+    ''';
+
+      final data = await _graphQLService.performQuery(query: query);
+      final blogsJson = data?['blogPosts']?['items'] as List<dynamic>?;
+
+      if (blogsJson != null && blogsJson.isNotEmpty) {
+        final blogs = blogsJson.map((e) => BlogPost.fromJson(e)).toList();
+        _blogCubit.onUpdateData(blogs);
+      } else {
+        _blogCubit.onUpdateData([]);
+      }
+    } catch (e) {
+      _blogCubit.onUpdateData([]);
+    }
+  }
 
   void changePage(int index) => _pageCubit.onUpdateData(index);
 

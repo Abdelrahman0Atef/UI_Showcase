@@ -11,6 +11,12 @@ final HomeViewModel vm = getIt<HomeViewModel>();
 
 class _HomeViewState extends State<HomeView> {
   @override
+  void initState() {
+    super.initState();
+    vm._getBlogs();
+  }
+
+  @override
   Widget build(BuildContext context) =>
       Container(color: MyColors.white, child: HomeBody(vm: vm));
 }
