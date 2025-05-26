@@ -14,7 +14,7 @@ class _ProductsViewState extends State<ProductsView> {
   void initState() {
     super.initState();
     vm.getAllProducts();
-    vm.wishListVm.loadFavorites();
+    vm.loadFavorites();
   }
 
   @override

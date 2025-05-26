@@ -18,7 +18,7 @@ class HomeOffersCard extends StatelessWidget {
       color: isSelected ? MyColors.red : MyColors.white,
       boxShadow: [
         BoxShadow(
-          color: const Color(0xFFFF464629).withOpacity(0.16),
+          color: const Color(0xFFFF464629).withValues(alpha: 0.16),
           blurRadius: 8.r,
         ),
       ],

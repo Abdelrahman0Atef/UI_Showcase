@@ -124,6 +124,7 @@ class MyStrings {
   static String get discount => 'discount'.tr();
 
   static String get products => 'products'.tr();
+  static String get lE => 'lE'.tr();
 
   //Share Link
   static const iosLink =
@@ -140,6 +141,12 @@ class MyStrings {
   static const baseUrl = 'https://fakestoreapi.com/products';
   static const apiCategories = 'categories';
   static const apiCategory = 'category';
+
+  //almasry api
+  static const almasryBaseUrl = 'https://backend.almasrypharmacy.com/rest/arabic/V1/';
+  static const almasryToken = 'p75lojdwgxcfldke5czc7gjvgc8q1jj2';
+  static const productsEndpoint = 'products';
+  static const categoryId = '434';
 
   //Dummy Data
   static const male = 'Male';
@@ -185,4 +192,7 @@ class MyStrings {
   static const sending = 'جاري الإرسال...';
   static const successSent = 'تم الإرسال بنجاح';
   static const failedSent = 'حدث خطأ، حاول مرة أخرى';
+  static const outOfStock = 'Out of stock';
+  static const sku = 'SKU';
+  static const tryAgain ='Try Again';
 }

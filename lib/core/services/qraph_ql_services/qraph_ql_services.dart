@@ -18,7 +18,7 @@ class GraphQLService {
       query: Policies(fetch: FetchPolicy.cacheAndNetwork,error: ErrorPolicy.all),
       mutate: Policies(fetch: FetchPolicy.noCache,error: ErrorPolicy.all),
     ),
-    queryRequestTimeout: const Duration(seconds: 15)
+    queryRequestTimeout: const Duration(seconds: 15),
   );
 
   Future<Map<String, dynamic>?> performQuery({

@@ -8,6 +8,7 @@ import 'package:untitled/views/home/home_imports.dart';
 import 'package:untitled/views/layout/layout_imports.dart';
 import 'package:untitled/views/product/product_imports.dart';
 import 'package:untitled/views/product_details/product_details_imports.dart';
+import 'package:untitled/views/product_list/product_list_imports.dart';
 import 'package:untitled/views/profile/profile_imports.dart';
 import 'package:untitled/views/search/search_imports.dart';
 import 'package:untitled/views/sign_in/sign_in_imports.dart';
@@ -121,6 +122,11 @@ class AppRouter {
                     path: '/${MyRouts.contactUs}',
                     name: MyRouts.contactUs,
                     builder: (context, state) =>  const ContactUsView(),
+                  ),
+                  GoRoute(
+                    path: '/${MyRouts.productList}',
+                    name: MyRouts.productList,
+                    builder: (context, state) =>  const ProductListView(),
                   ),
                 ]
               ),

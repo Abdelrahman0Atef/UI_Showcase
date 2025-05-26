@@ -122,15 +122,15 @@ class HomeBody extends StatelessWidget {
           30.verticalSpace,
           const HomeSplitTextRow(label: MyStrings.articles),
           20.verticalSpace,
-          BlocBuilder<GenericCubit<List<BlogPost>>,GenericState<List<BlogPost>>>(
-              bloc: vm._blogCubit,
-              builder: (context, state){
-            if(state is GenericUpdateState && state.data.isNotEmpty){
-              return SizedBox(
-                width: double.infinity.w,
-                height: 375.h,
-                child: ListView.builder(
-                  //shrinkWrap: true,
+          SizedBox(
+            width: double.infinity.w,
+            height: 0.41.sh,
+            child: BlocBuilder<GenericCubit<List<BlogPost>>,GenericState<List<BlogPost>>>(
+                bloc: vm._blogCubit,
+                builder: (context, state){
+              if(state is GenericUpdateState && state.data.isNotEmpty){
+                return ListView.builder(
+                  shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemCount: state.data.length,
                   itemBuilder: (context, index) {
@@ -142,10 +142,10 @@ class HomeBody extends StatelessWidget {
                       shortContent: blog.shortContent,
                     );
                   },
-                ),
-              );
-            } return const Center(child: CustomText(text: MyStrings.noBlogs));
-              }),
+                );
+              } return const Center(child: CustomText(text: MyStrings.noBlogs));
+                }),
+          ),
           5.verticalSpace,
           GridView.count(
             padding: EdgeInsets.all(16.r),

@@ -13,11 +13,18 @@ class ProductDetailsViewModel {
         options: Options(responseType: ResponseType.bytes),
       );
 
+
       final tempDir = await getTemporaryDirectory();
       final file = File('${tempDir.path}/shared_image.jpg');
       await file.writeAsBytes(response.data!);
 
-      await Share.shareXFiles([XFile(file.path)], text: MyStrings.message);
+      final params = ShareParams(
+        text: MyStrings.message,
+        files: [XFile(file.path)],
+      );
+
+      await SharePlus.instance.share(params);
+      //await Share.shareXFiles([XFile], text: MyStrings.message);
     } catch (e) {
       rethrow;
     }

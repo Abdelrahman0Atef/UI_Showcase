@@ -29,7 +29,7 @@ class ProfileSignOutBottomSheet extends StatelessWidget {
             16.horizontalSpace,
             Expanded(
               child: CustomButton(
-                color: MyColors.grey.withOpacity(0.2),
+                color: MyColors.grey.withValues(alpha: 0.2),
                 textColor: MyColors.black,
                 text: MyStrings.no,
                 onPressed: () {

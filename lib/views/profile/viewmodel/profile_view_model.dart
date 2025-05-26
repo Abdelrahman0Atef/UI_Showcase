@@ -9,15 +9,25 @@ class ProfileViewModel {
   final GenericCubit<String?> _lastNameCubit = GenericCubit(null);
   final LocalStorageService _storageService = getIt<LocalStorageService>();
 
-  final SignUpViewModel vm = SignUpViewModel();
-
   void _init() {
     _getPhone();
     _getVersion();
     _getEmail();
     _getFirstName();
     _getLastName();
-    vm.loadUserData();
+    loadUserData();
+  }
+
+  void loadUserData() async {
+    final firstName = await _storageService.getString(SharedKeys.firstName);
+    final lastName = await _storageService.getString(SharedKeys.lastName);
+    final email = await _storageService.getString(SharedKeys.email);
+    final phone = await _storageService.getString(SharedKeys.phone);
+
+    _firstNameCubit.onUpdateData(firstName ?? '');
+    _lastNameCubit.onUpdateData(lastName ?? '');
+    _emailCubit.onUpdateData(email ?? '');
+    _phoneCubit.onUpdateData(phone ?? '');
   }
 
   void _signOut(BuildContext context) async {

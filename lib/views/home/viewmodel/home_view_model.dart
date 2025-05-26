@@ -55,7 +55,7 @@ class HomeViewModel {
 
   final Map<int, GenericCubit<int>> _productCounters = {};
 
-  GenericCubit<int> getProductCounter(ApiProductModel product) =>
+  GenericCubit<int> getProductCounter(dynamic product) =>
       _productCounters.putIfAbsent(product.id ?? 0, () => GenericCubit<int>(0));
 
   void increment(ApiProductModel product) {

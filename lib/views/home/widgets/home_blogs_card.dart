@@ -27,27 +27,31 @@ class HomeBlogsCard extends StatelessWidget {
       ],
     ),
     child: Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(16.r),
-          child: Image.network(
-            featureImage,
-            fit: BoxFit.fill,
-            width: double.infinity.w,
-            height: 170.h,
+        Expanded(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(16.r),
+            child: Image.network(
+              featureImage,
+              fit: BoxFit.fill,
+              width: double.infinity.w,
+              height: 170.h,
+            ),
           ),
         ),
         Expanded(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal:  16.r),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomText(
                   text: '${MyStrings.postedOn} ${creationTime}',
-                  textStyle: TextStyle(fontSize: 11.sp, color: MyColors.grey),
+                  textStyle: TextStyle(fontSize: 12.sp, color: MyColors.grey),
                 ),
-                8.verticalSpace,
+                5.verticalSpace,
                 CustomText(
                   text: title,
                   textStyle: TextStyle(
@@ -56,7 +60,7 @@ class HomeBlogsCard extends StatelessWidget {
                   ),
                   textAlign: TextAlign.start,
                 ),
-                8.verticalSpace,
+                10.verticalSpace,
                 CustomText(
                   text: shortContent,
                   textStyle: TextStyle(fontSize: 12.sp, color: Colors.black87),

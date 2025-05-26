@@ -7,7 +7,6 @@ class SearchViewModel {
   final GenericCubit<bool> _showClearIconCubit = GenericCubit(false);
   final TextEditingController _searchController = TextEditingController();
   final RestApiServices restApiServices = getIt<RestApiServices>();
-  final CategoriesProductViewModel vm = CategoriesProductViewModel();
   final GenericCubit<List<ApiProductModel>> productCubit = GenericCubit([]);
 
   static final List<HomeModel> allProducts = [

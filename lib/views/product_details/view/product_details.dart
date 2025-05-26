@@ -46,7 +46,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
               ),
               Container(
                 decoration: BoxDecoration(
-                  color: MyColors.grey.withOpacity(0.3),
+                  color: MyColors.grey.withValues(alpha: 0.3),
                   borderRadius: BorderRadius.circular(8.r),
                 ),
                 child: Column(

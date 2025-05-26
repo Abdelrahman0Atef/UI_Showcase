@@ -4,8 +4,18 @@ class ProductsViewModel {
   final RestApiServices restApiServices = getIt<RestApiServices>();
   final GenericCubit<List<ApiProductModel>> productsCubit = GenericCubit([]);
   final HomeViewModel homeViewModel = getIt<HomeViewModel>();
+  final _database = getIt<DataBaseService>();
+  final favoritesCubit = GenericCubit<List<ApiProductModel>>([]);
+  final favoritesMapCubit = GenericCubit<Map<int, bool>>({});
 
-  final WishListViewModel wishListVm = getIt<WishListViewModel>();
+
+  Future<void> loadFavorites() async {
+    final favorites = await _database.getFavorites();
+    favoritesCubit.onUpdateData(favorites);
+    favoritesMapCubit.onUpdateData({
+      for (var item in favorites) item.id!: true,
+    });
+  }
 
   Future<void> getAllProducts() async {
     try {
@@ -17,8 +27,7 @@ class ProductsViewModel {
     }
   }
 
-  bool isProductFavorite(int id) => wishListVm.isProductFavorite(id);
+  bool isProductFavorite(int id) =>  favoritesMapCubit.state.data[id] ?? false;
 
-  Future<void> toggleFavorite(ApiProductModel product) => wishListVm.toggleFavorite(product);
 }
 
