@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import '../../resources/my_strings.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class RestApiServices {
   static final RestApiServices _instance = RestApiServices._internal();
@@ -8,7 +8,7 @@ class RestApiServices {
   factory RestApiServices() => _instance;
 
   RestApiServices._internal() {
-    dio.options.baseUrl = MyStrings.baseUrl;
+    dio.options.baseUrl = dotenv.env['FAKE_BASE_URL'] as String;
     dio.options.connectTimeout = const Duration(seconds: 30);
     dio.options.receiveTimeout = const Duration(seconds: 30);
 
@@ -23,8 +23,8 @@ class RestApiServices {
     dio.interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
   }
 
-  Future<dynamic> get(String endpoint) async {
-    final response = await dio.get(endpoint);
+  Future<dynamic> get(String? endpoint) async {
+    final response = await dio.get(endpoint!);
     return response.data;
   }
 

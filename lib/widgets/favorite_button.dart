@@ -10,7 +10,7 @@ class FavoriteButton extends StatelessWidget {
   Widget build(BuildContext context) => BlocBuilder<GenericCubit<Map<int, bool>>, GenericState<Map<int, bool>>>(
       bloc: vm.favoritesMapCubit,
       builder: (context, state) {
-        final isFavorite = state.data[product.id] ?? false;
+        final isFavorite = state.data[product.id!] ?? false;
 
         return IconButton(
           icon: Icon(

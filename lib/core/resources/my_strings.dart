@@ -137,17 +137,6 @@ class MyStrings {
   static const arabicTranslation = 'عربي';
   static const englishTranslation = 'English';
 
-  //rest api
-  static const baseUrl = 'https://fakestoreapi.com/products';
-  static const apiCategories = 'categories';
-  static const apiCategory = 'category';
-
-  //almasry api
-  static const almasryBaseUrl = 'https://backend.almasrypharmacy.com/rest/arabic/V1/';
-  static const almasryToken = 'p75lojdwgxcfldke5czc7gjvgc8q1jj2';
-  static const productsEndpoint = 'products';
-  static const categoryId = '434';
-
   //Dummy Data
   static const male = 'Male';
   static const date = '16-04-2003';
@@ -175,7 +164,7 @@ class MyStrings {
   static const skin = 'عروض العنايه بالجمال';
   static const rate = 'التقييم';
   static const noCategories = 'No categories found.';
-  static const errorLoading = 'Error loading products.';
+  static const errorLoading = 'Error loading.';
   static const allProducts = 'All Products';
   static const details = 'التفاصيل';
   static const message = 'Check out this product!';

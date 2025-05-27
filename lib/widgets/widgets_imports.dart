@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:untitled/core/resources/my_assets.dart';
 import 'package:untitled/core/resources/my_colors.dart';
 import 'package:untitled/core/models/api_product_model/api_product_model.dart';
@@ -30,3 +31,5 @@ part 'product_order_control.dart';
 
 part 'api_product_item.dart';
 part 'favorite_button.dart';
+part 'shimmer_grid_view.dart';
+part 'custom_scrollbar.dart';

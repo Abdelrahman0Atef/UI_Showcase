@@ -4,10 +4,7 @@ class ProductListViewModel {
   final RestApiServices _apiService = getIt<RestApiServices>();
 
   static const int _pageSize = 20;
-  static const String _categoryId = MyStrings.categoryId;
-  static const String _almasryBaseUrl = MyStrings.almasryBaseUrl;
-  static const String _almasryToken = MyStrings.almasryToken;
-  static const String _productsEndpoint = MyStrings.productsEndpoint;
+  static final String? _categoryId = ApiPath.categoryId;
 
   final PagingController<int, Product> pagingController = PagingController(
     firstPageKey: 1,
@@ -44,9 +41,9 @@ class ProductListViewModel {
 
     try {
       final dynamic responseData = await _apiService.getWithCustomAuth(
-        baseUrl: _almasryBaseUrl,
-        endpoint: _productsEndpoint,
-        token: _almasryToken,
+        baseUrl: dotenv.env['ALMASRY_BASE_URL'] as String,
+        endpoint: ApiPath.productsEndPoint,
+        token: dotenv.env['ALMASRY_TOKEN'] as String,
         queryParameters: queryParameters,
       );
 

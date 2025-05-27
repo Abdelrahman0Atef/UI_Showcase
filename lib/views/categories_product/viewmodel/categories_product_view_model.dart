@@ -8,7 +8,7 @@ class CategoriesProductViewModel {
 
   Future<void> getAllProducts() async {
     try {
-      final data = await restApiServices.get(MyStrings.baseUrl);
+      final data = await restApiServices.get(dotenv.env['FAKE_BASE_URL'] as String);
       final products = (data as List).map((e) => ApiProductModel.fromJson(e)).toList();
       productsCubit.onUpdateData(products);
     } catch (e) {
@@ -19,7 +19,7 @@ class CategoriesProductViewModel {
   Future<void> getProductsByCategory(String category) async {
     try {
       final data = await restApiServices.get(
-        '/${MyStrings.apiCategory}/$category',
+        '/${ApiPath.fakeApiCategory}/$category',
       );
       final filteredProducts =
           (data as List).map((e) => ApiProductModel.fromJson(e)).toList();

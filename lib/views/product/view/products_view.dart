@@ -27,11 +27,19 @@ class _ProductsViewState extends State<ProductsView> {
             final products = state.data;
 
             if (products.isEmpty) {
-              return const Center(child: CircularProgressIndicator());
+              return const ShimmerProductGrid();
             }
-            return ProductsGridView(
-              products: products,
-              homeVm: vm.homeViewModel,
+            return RefreshIndicator(
+              strokeWidth: 3,
+              backgroundColor: MyColors.white,
+              color: MyColors.red,
+              onRefresh: () async  =>vm.refresh(),
+              child: CustomScrollbar(
+                child: ProductsGridView(
+                  products: products,
+                  homeVm: vm.homeViewModel,
+                ),
+              ),
             );
           },
         ),

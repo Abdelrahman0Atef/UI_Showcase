@@ -1,5 +1,7 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
 import 'package:untitled/core/models/api_product_model/api_product_model.dart';
+import 'package:untitled/core/resources/api_path.dart';
 import 'package:untitled/core/resources/my_routs.dart';
 import 'package:untitled/views/cart/cart_imports.dart';
 import 'package:untitled/views/categorie/categorie_imports.dart';
@@ -69,7 +71,7 @@ class AppRouter {
                     name: MyRouts.categoriesProducts,
                     builder: (context, state) {
                       final category =
-                          state.uri.queryParameters[MyStrings.apiCategory] ??
+                          state.uri.queryParameters[ApiPath.fakeApiCategory] ??
                           '';
                       return CategoriesProductsView(category: category);
                     },

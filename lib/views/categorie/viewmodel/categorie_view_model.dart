@@ -7,7 +7,7 @@ class CategoryViewModel {
   Future<void> getCategories() async {
     try {
       final data = await restApiServices.get(
-        '/${MyStrings.apiCategories}',
+        '/${ApiPath.fakeApiCategories}',
       );
       final categories = List<String>.from(data);
       categoryCubit.onUpdateData(categories);

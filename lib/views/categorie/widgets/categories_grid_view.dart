@@ -22,7 +22,7 @@ class CategoriesGridView extends StatelessWidget {
         onTap: () {
           context.pushNamed(
             MyRouts.categoriesProducts,
-            queryParameters: {MyStrings.apiCategory: category},
+            queryParameters: {ApiPath.fakeApiCategory: category},
           );
         },
         child: Container(

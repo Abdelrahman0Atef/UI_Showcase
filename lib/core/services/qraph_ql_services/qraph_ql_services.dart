@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:graphql/client.dart';
 
 class GraphQLService {
@@ -8,15 +9,18 @@ class GraphQLService {
   GraphQLService._internal();
 
   final HttpLink _httpLink = HttpLink(
-    'https://backend.almasrypharmacy.com/graphql',
+    '${dotenv.env['ALMASRY_GRAPHQL_BASE_URL']}',
   );
 
   GraphQLClient _getClient() => GraphQLClient(
     cache: GraphQLCache(store: InMemoryStore()),
     link: _httpLink,
     defaultPolicies: DefaultPolicies(
-      query: Policies(fetch: FetchPolicy.cacheAndNetwork,error: ErrorPolicy.all),
-      mutate: Policies(fetch: FetchPolicy.noCache,error: ErrorPolicy.all),
+      query: Policies(
+        fetch: FetchPolicy.cacheAndNetwork,
+        error: ErrorPolicy.all,
+      ),
+      mutate: Policies(fetch: FetchPolicy.noCache, error: ErrorPolicy.all),
     ),
     queryRequestTimeout: const Duration(seconds: 15),
   );

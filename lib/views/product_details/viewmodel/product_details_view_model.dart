@@ -1,7 +1,6 @@
 part of '../product_details_imports.dart';
 
 class ProductDetailsViewModel {
-  final CategoriesProductViewModel categoriesVM = CategoriesProductViewModel();
   final HomeViewModel homeVM = getIt<HomeViewModel>();
   final RestApiServices restApiServices = getIt<RestApiServices>();
   final WishListViewModel wishListVm = getIt<WishListViewModel>();
@@ -24,7 +23,6 @@ class ProductDetailsViewModel {
       );
 
       await SharePlus.instance.share(params);
-      //await Share.shareXFiles([XFile], text: MyStrings.message);
     } catch (e) {
       rethrow;
     }

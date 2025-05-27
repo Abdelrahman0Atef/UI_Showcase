@@ -32,12 +32,20 @@ class _CategoriesProductsViewState extends State<CategoriesProductsView> {
               if (products.isEmpty) {
                 return Center(child: CustomText(text: MyStrings.noProducts));
               }
-              return ProductsGridView(
-                products: products,
-                homeVm: vm.homeVm,
+              return RefreshIndicator(
+                strokeWidth: 3,
+                backgroundColor: MyColors.white,
+                color: MyColors.red,
+                onRefresh: () async  =>vm.getProductsByCategory(widget.category),
+                child: CustomScrollbar(
+                  child: ProductsGridView(
+                    products: products,
+                    homeVm: vm.homeVm,
+                  ),
+                ),
               );
             } else if (state is GenericInitialState) {
-              return const Center(child: CircularProgressIndicator());
+              return const ShimmerProductGrid();
             } else {
               return const Center(
                 child: CustomText(text: MyStrings.errorLoading),

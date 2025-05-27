@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:untitled/core/models/product_model/product_model.dart';
+import 'package:untitled/core/resources/api_path.dart';
 import 'package:untitled/core/resources/my_assets.dart';
 import 'package:untitled/core/resources/my_strings.dart';
 import 'package:untitled/core/services/locator_services/locator_services.dart';

@@ -24,11 +24,19 @@ class _CategoryGridViewState extends State<CategoryGridView> {
       builder: (context, state) {
         if (state is GenericUpdateState) {
           final categories = state.data;
-          return CategoriesGridView(categories: categories);
-        } else if (state.data.isEmpty) {
-          return const Center(child: CircularProgressIndicator());
+          if (categories.isEmpty) {
+            return ShimmerProductGrid(height: 150.h);
+          }
+          return RefreshIndicator(
+              strokeWidth: 3,
+              backgroundColor: MyColors.white,
+              color: MyColors.red,
+              onRefresh: () async  =>vm.getCategories(),
+              child: CategoriesGridView(categories: categories));
+        }else if (state is GenericInitialState){
+          return ShimmerProductGrid(height: 150.h);
         } else {
-          return const Center(child: CustomText(text: MyStrings.noCategories));
+          return const Center(child: CustomText(text: MyStrings.errorLoading));
         }
       },
     ),
