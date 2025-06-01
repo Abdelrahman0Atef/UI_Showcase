@@ -15,7 +15,7 @@ class ProfileCustomDataCard extends StatelessWidget {
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const CustomText(text: MyStrings.croCo),
+          CustomText(text: MyStrings.croCo),
           BlocBuilder<GenericCubit<String?>, GenericState<String?>>(
             bloc: vm._emailCubit,
             builder: (context, state) {
@@ -106,9 +106,9 @@ class ProfileCustomDataCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomText(text: MyStrings.gender),
-                  const CustomText(
+                  CustomText(
                     text: MyStrings.male,
-                    textStyle: TextStyle(
+                    textStyle: const TextStyle(
                       color: MyColors.red,
                       fontWeight: FontWeight.bold,
                     ),
@@ -119,9 +119,9 @@ class ProfileCustomDataCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomText(text: MyStrings.birthDate),
-                  const CustomText(
+                  CustomText(
                     text: MyStrings.date,
-                    textStyle: TextStyle(
+                    textStyle: const TextStyle(
                       color: MyColors.red,
                       fontWeight: FontWeight.bold,
                     ),

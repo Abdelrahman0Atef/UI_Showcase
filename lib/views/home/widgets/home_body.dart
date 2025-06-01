@@ -23,7 +23,7 @@ class HomeBody extends StatelessWidget {
             },
           ),
           CustomImageSlider(vm: vm, imageUrls: vm.imageUrls),
-          const HomeSplitTextRow(label: MyStrings.offers),
+          HomeSplitTextRow(label: MyStrings.offers),
           15.verticalSpace,
           SingleChildScrollView(
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.w),
@@ -55,9 +55,9 @@ class HomeBody extends StatelessWidget {
             ),
           ),
           30.verticalSpace,
-          const HomeSplitTextRow(label: MyStrings.goals),
+          HomeSplitTextRow(label: MyStrings.goals),
           25.verticalSpace,
-          const SingleChildScrollView(
+          SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
@@ -81,7 +81,7 @@ class HomeBody extends StatelessWidget {
             fit: BoxFit.cover,
           ),
           30.verticalSpace,
-          const HomeSplitTextRow(label: MyStrings.product),
+          HomeSplitTextRow(label: MyStrings.product),
           25.verticalSpace,
           SizedBox(
             height: 322.h,
@@ -100,9 +100,9 @@ class HomeBody extends StatelessWidget {
             ),
           ),
           30.verticalSpace,
-          const HomeSplitTextRow(label: MyStrings.worries),
+          HomeSplitTextRow(label: MyStrings.worries),
           25.verticalSpace,
-          const SingleChildScrollView(
+          SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
@@ -120,7 +120,7 @@ class HomeBody extends StatelessWidget {
             ),
           ),
           30.verticalSpace,
-          const HomeSplitTextRow(label: MyStrings.articles),
+          HomeSplitTextRow(label: MyStrings.articles),
           20.verticalSpace,
           SizedBox(
             width: double.infinity.w,
@@ -143,7 +143,7 @@ class HomeBody extends StatelessWidget {
                     );
                   },
                 );
-              } return const Center(child: CustomText(text: MyStrings.noBlogs));
+              } return Center(child: CustomText(text: MyStrings.noBlogs));
                 }),
           ),
           5.verticalSpace,
@@ -155,12 +155,12 @@ class HomeBody extends StatelessWidget {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             children: [
-              const HomeInfoCard(
+              HomeInfoCard(
                 image: MyAssets.car,
                 title: MyStrings.fastShipping,
                 subTitle: MyStrings.shippingTime,
               ),
-              const HomeInfoCard(
+              HomeInfoCard(
                 image: MyAssets.mobile,
                 title: MyStrings.safeShopping,
                 subTitle: MyStrings.security,
@@ -171,7 +171,7 @@ class HomeBody extends StatelessWidget {
                 title: MyStrings.callCenter,
                 subTitle: MyStrings.ambassadors,
               ),
-              const HomeInfoCard(
+              HomeInfoCard(
                 image: MyAssets.money,
                 title: MyStrings.refund,
                 subTitle: MyStrings.credit,

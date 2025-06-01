@@ -27,12 +27,14 @@ class HomeSplitCard extends StatelessWidget {
       children: [
         Image.asset(image, width: 81.w, height: 100.h, fit: BoxFit.fill),
         25.horizontalSpace,
-        CustomText(
-          text: text,
-          textStyle: TextStyle(
-            color: MyColors.grey,
-            fontSize: 16.sp,
-            fontWeight: FontWeight.bold,
+        Expanded(
+          child: CustomText(
+            text: text,
+            textStyle: TextStyle(
+              color: MyColors.grey,
+              fontSize: 16.sp,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ],

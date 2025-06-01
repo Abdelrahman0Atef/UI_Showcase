@@ -13,4 +13,5 @@ class MyRouts {
   static const wishList  = 'wishList';
   static const contactUs  = 'contactUs';
   static const productList  = 'productList';
+  static const prayerTime  = 'prayerTime';
 }

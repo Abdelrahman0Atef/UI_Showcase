@@ -17,6 +17,8 @@ class _HomeViewState extends State<HomeView> {
   }
 
   @override
-  Widget build(BuildContext context) =>
-      Container(color: MyColors.white, child: HomeBody(vm: vm));
+  Widget build(BuildContext context) {
+    final _ = context.locale;
+    return Container(color: MyColors.white, child: HomeBody(vm: vm));
+  }
 }

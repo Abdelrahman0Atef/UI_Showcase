@@ -107,7 +107,9 @@ class ProfileBody extends StatelessWidget {
               ),
               8.horizontalSpace,
               ProfileCustomCardButton(
-                onTap: () {},
+                onTap: () {
+                  context.pushNamed(MyRouts.prayerTime);
+                },
                 icon: Icons.star_rate,
                 text: MyStrings.rateTheApp,
               ),

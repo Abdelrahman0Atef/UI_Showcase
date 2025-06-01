@@ -76,7 +76,7 @@ class _SignInPhoneFormWidgetState extends State<SignInPhoneFormWidget> {
               },
               activeColor: MyColors.red,
             ),
-            Text(MyStrings.rememberMe),
+            CustomText(text: MyStrings.rememberMe),
           ],
         ),
         62.verticalSpace,

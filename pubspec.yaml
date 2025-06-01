@@ -52,6 +52,9 @@ dependencies:
   infinite_scroll_pagination: ^4.0.0
   flutter_dotenv: ^5.2.1
   shimmer: ^3.0.0
+  flutter_local_notifications: ^19.2.1
+  adhan: ^2.0.0+1
+  geolocator: ^11.0.0
 
 dev_dependencies:
   flutter_test:

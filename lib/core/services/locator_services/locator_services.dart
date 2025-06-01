@@ -1,4 +1,3 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:untitled/core/services/database/database.dart';
 import 'package:untitled/core/services/local_storage_data/local_storage_data.dart';

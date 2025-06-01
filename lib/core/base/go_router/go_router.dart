@@ -1,4 +1,3 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
 import 'package:untitled/core/models/api_product_model/api_product_model.dart';
 import 'package:untitled/core/resources/api_path.dart';
@@ -8,6 +7,7 @@ import 'package:untitled/views/categorie/categorie_imports.dart';
 import 'package:untitled/views/categories_product/categories_product_imports.dart';
 import 'package:untitled/views/home/home_imports.dart';
 import 'package:untitled/views/layout/layout_imports.dart';
+import 'package:untitled/views/prayer_time_reminder/prayer_time_reminder_imports.dart';
 import 'package:untitled/views/product/product_imports.dart';
 import 'package:untitled/views/product_details/product_details_imports.dart';
 import 'package:untitled/views/product_list/product_list_imports.dart';
@@ -18,7 +18,6 @@ import 'package:untitled/views/sign_up/sign_up_imports.dart';
 import 'package:untitled/views/splash/splash_imports.dart';
 import 'package:untitled/views/wish_list/wish_list_imports.dart';
 import '../../../views/contact_us/contact_us_imports.dart';
-import '../../resources/my_strings.dart';
 
 class AppRouter {
   static GoRouter router = GoRouter(
@@ -129,6 +128,11 @@ class AppRouter {
                     path: '/${MyRouts.productList}',
                     name: MyRouts.productList,
                     builder: (context, state) =>  const ProductListView(),
+                  ),
+                  GoRoute(
+                    path: '/${MyRouts.prayerTime}',
+                    name: MyRouts.prayerTime,
+                    builder: (context, state) =>  const PrayerTimeReminder(),
                   ),
                 ]
               ),

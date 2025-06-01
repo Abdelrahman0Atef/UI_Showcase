@@ -58,7 +58,9 @@ class CustomTextFieldWithTitleState extends State<CustomTextFieldWithTitle> {
   }
 
   @override
-  Widget build(BuildContext context) => Padding(
+  Widget build(BuildContext context) {
+    final _ = context.locale;
+    return Padding(
     padding: EdgeInsets.symmetric(horizontal: 24.r),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,4 +98,5 @@ class CustomTextFieldWithTitleState extends State<CustomTextFieldWithTitle> {
       ],
     ),
   );
+  }
 }

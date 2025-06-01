@@ -27,10 +27,10 @@ class _WishListViewState extends State<WishListView> {
       builder: (context, state) {
         if (state is GenericUpdateState) {
           if (state.data.isEmpty) {
-            return const Center(
+            return Center(
               child: CustomText(
                 text: MyStrings.noFavorite,
-                textStyle: TextStyle(color: MyColors.red,fontWeight: FontWeight.bold,),
+                textStyle: const TextStyle(color: MyColors.red,fontWeight: FontWeight.bold,),
               ),
             );
           } else {
@@ -57,7 +57,7 @@ class _WishListViewState extends State<WishListView> {
             );
           }
         } else {
-          return const Center(child: CustomText(text: MyStrings.errorLoading));
+          return Center(child: CustomText(text: MyStrings.errorLoading));
         }
       },
     ),

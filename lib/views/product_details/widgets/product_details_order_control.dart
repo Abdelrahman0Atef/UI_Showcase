@@ -65,9 +65,9 @@ class ProductDetailsOrderControl extends StatelessWidget {
             children: [
               const Icon(Icons.shopping_basket, color: MyColors.white),
               5.horizontalSpace,
-              const CustomText(
+              CustomText(
                 text: MyStrings.basket,
-                textStyle: TextStyle(color: MyColors.white),
+                textStyle: const TextStyle(color: MyColors.white),
               ),
             ],
           ),

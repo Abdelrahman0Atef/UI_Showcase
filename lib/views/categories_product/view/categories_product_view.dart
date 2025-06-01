@@ -47,7 +47,7 @@ class _CategoriesProductsViewState extends State<CategoriesProductsView> {
             } else if (state is GenericInitialState) {
               return const ShimmerProductGrid();
             } else {
-              return const Center(
+              return  Center(
                 child: CustomText(text: MyStrings.errorLoading),
               );
             }

@@ -94,7 +94,7 @@ class _SignInEmailFormWidgetState extends State<SignInEmailFormWidget> {
               },
               activeColor: MyColors.red,
             ),
-            Text(MyStrings.rememberMe),
+            CustomText(text: MyStrings.rememberMe),
           ],
         ),
         22.verticalSpace,

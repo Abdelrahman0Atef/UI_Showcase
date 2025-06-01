@@ -79,13 +79,10 @@ class ProductCard extends StatelessWidget {
                   textStyle: TextStyle(fontSize: 10.sp, color: MyColors.grey),
                 ),
                 CustomText(
-                  text: '${product.stock_status}',
+                  text: '${MyStrings.outOfStock}',
                   textStyle: TextStyle(
                     fontSize: 10.sp,
-                    color:
-                        product.stock_status == MyStrings.outOfStock
-                            ? MyColors.red
-                            : MyColors.grey,
+                    color: MyColors.red
                   ),
                 ),
               ],

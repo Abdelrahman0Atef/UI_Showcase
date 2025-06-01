@@ -3,7 +3,7 @@ part of '../home_imports.dart';
 class HomeOffersCard extends StatelessWidget {
   const HomeOffersCard({
     required this.isSelected,
-    this.label = MyStrings.skin,
+    this.label,
     super.key,
   });
 
@@ -11,7 +11,9 @@ class HomeOffersCard extends StatelessWidget {
   final String? label;
 
   @override
-  Widget build(BuildContext context) => Container(
+  Widget build(BuildContext context) {
+    final _ = context.locale;
+    return Container(
     width: 136.w,
     height: 38.h,
     decoration: BoxDecoration(
@@ -34,4 +36,5 @@ class HomeOffersCard extends StatelessWidget {
       ),
     ),
   );
+  }
 }

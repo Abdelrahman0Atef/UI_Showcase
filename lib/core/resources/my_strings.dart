@@ -124,7 +124,113 @@ class MyStrings {
   static String get discount => 'discount'.tr();
 
   static String get products => 'products'.tr();
+
   static String get lE => 'lE'.tr();
+
+  //
+  static String get male => 'male'.tr();
+
+  static String get date => 'date'.tr();
+
+  static String get croCo => 'croco'.tr();
+
+  static String get version => 'version'.tr();
+
+  static String get quantity => 'quantity'.tr();
+
+  static String get fastShipping => 'fast_shipping'.tr();
+
+  static String get shippingTime => 'shipping_time'.tr();
+
+  static String get safeShopping => 'safe_shopping'.tr();
+
+  static String get security => 'security'.tr();
+
+  static String get callCenter => 'call_center'.tr();
+
+  static String get ambassadors => 'ambassadors'.tr();
+
+  static String get refund => 'refund'.tr();
+
+  static String get credit => 'credit'.tr();
+
+  static String get offers => 'offers'.tr();
+
+  static String get goals => 'goals'.tr();
+
+  static String get fitness => 'fitness'.tr();
+
+  static String get skinCare => 'skin_care'.tr();
+
+  static String get product => 'product'.tr();
+
+  static String get worries => 'worries'.tr();
+
+  static String get headache => 'headache'.tr();
+
+  static String get flu => 'flu'.tr();
+
+  static String get more => 'more'.tr();
+
+  static String get skin => 'skin'.tr();
+
+  static String get rate => 'rate'.tr();
+
+  static String get noCategories => 'no_categories'.tr();
+
+  static String get errorLoading => 'error_loading'.tr();
+
+  static String get allProducts => 'all_products'.tr();
+
+  static String get details => 'details'.tr();
+
+  static String get message => 'message'.tr();
+
+  static String get basket => 'basket'.tr();
+
+  static String get noFavorite => 'no_favorite'.tr();
+
+  static String get noBlogs => 'no_blogs'.tr();
+
+  static String get blogs => 'blogs'.tr();
+
+  static String get postedOn => 'posted_on'.tr();
+
+  static String get contactUs => 'contact_us'.tr();
+
+  static String get comment => 'comment'.tr();
+
+  static String get requiredComment => 'required_comment'.tr();
+
+  static String get submit => 'submit'.tr();
+
+  static String get articles => 'articles'.tr();
+
+  static String get sending => 'sending'.tr();
+
+  static String get successSent => 'success_sent'.tr();
+
+  static String get failedSent => 'failed_sent'.tr();
+
+  static String get outOfStock => 'out_of_stock'.tr();
+
+  static String get sku => 'sku'.tr();
+
+  static String get tryAgain => 'try_again'.tr();
+
+  static String get prayerTime => 'prayer_time'.tr();
+
+  static String get timeToPray => 'time_to_pray'.tr();
+
+  static String get prayerReminder => 'prayer_reminder'.tr();
+
+  static String get active => 'active'.tr();
+
+  static String get fullNameMinLength => 'full_name_min_length'.tr();
+
+  static String get fullNameRequired => 'full_name_required'.tr();
+
+  static String get prayerScheduledSuccess => 'prayer_scheduled_success'.tr();
 
   //Share Link
   static const iosLink =
@@ -136,52 +242,4 @@ class MyStrings {
 
   static const arabicTranslation = 'عربي';
   static const englishTranslation = 'English';
-
-  //Dummy Data
-  static const male = 'Male';
-  static const date = '16-04-2003';
-  static const croCo = 'croco2 Test';
-  static const version = 'v';
-  static const quantity = '0';
-  static const fastShipping = 'الشحن السريع';
-  static const shippingTime =
-      'الشحن في نفس اليوم على الطلبات شحن مجاني لما يزيد على 250 جنيه';
-  static const safeShopping = 'تسوق امن';
-  static const security = 'افضل طرق التسويق واعلي مستويات الامان';
-  static const callCenter = 'خدمه العملاء';
-  static const ambassadors = 'سفراء العافية يقفون إلى جانب 7 أيام في الأسبوع';
-  static const refund = 'استعادة الاموال';
-  static const credit = 'ضمان استعادة الأموال! ألا يعجبك؟ أعده ألينا!';
-  static const offers = 'افضل العروض';
-  static const goals = 'الاهداف';
-  static const fitness = 'الرشاقة';
-  static const skinCare = 'العنايه بالبشره';
-  static const product = 'اكثر المنتجات مبيعات';
-  static const worries = 'ما يقلقني';
-  static const headache = 'الصداع المزمن';
-  static const flu = 'الانفلوانزا';
-  static const more = 'المزيد';
-  static const skin = 'عروض العنايه بالجمال';
-  static const rate = 'التقييم';
-  static const noCategories = 'No categories found.';
-  static const errorLoading = 'Error loading.';
-  static const allProducts = 'All Products';
-  static const details = 'التفاصيل';
-  static const message = 'Check out this product!';
-  static const basket = 'Add to Basket';
-  static const noFavorite = 'No Favorite Products Yet';
-  static const noBlogs = 'No blogs found';
-  static const blogs = 'Blogs';
-  static const postedOn = 'Posted on:';
-  static const contactUs = 'Contact Us';
-  static const comment = 'Comment';
-  static const requiredComment = 'Comment is required';
-  static const submit = 'Submit';
-  static const articles = 'مقالات';
-  static const sending = 'جاري الإرسال...';
-  static const successSent = 'تم الإرسال بنجاح';
-  static const failedSent = 'حدث خطأ، حاول مرة أخرى';
-  static const outOfStock = 'Out of stock';
-  static const sku = 'SKU';
-  static const tryAgain ='Try Again';
 }

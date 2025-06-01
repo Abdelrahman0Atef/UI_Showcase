@@ -71,9 +71,11 @@ class ProductItemWidget extends StatelessWidget {
                     ),
                   ),
                   25.horizontalSpace,
-                  CustomText(
-                    text: '${product.points?.toString()} ${MyStrings.point}',
-                    textStyle: TextStyle(color: MyColors.red, fontSize: 10.sp),
+                  Expanded(
+                    child: CustomText(
+                      text: '${product.points?.toString()} ${MyStrings.point}',
+                      textStyle: TextStyle(color: MyColors.red, fontSize: 10.sp),
+                    ),
                   ),
                 ],
               ),
@@ -86,18 +88,20 @@ class ProductItemWidget extends StatelessWidget {
                   decoration: TextDecoration.lineThrough,
                 ),
               ),
-              30.verticalSpace,
+              25.verticalSpace,
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    width: 24.w,
-                    height: 24.h,
-                    child: ProductIconButton(
-                      onPressed: () {},
-                      icon: Icons.shopping_basket,
-                      color: MyColors.red,
-                      decoration: const BoxDecoration(),
+                  Expanded(
+                    child: SizedBox(
+                      width: 24.w,
+                      height: 24.h,
+                      child: ProductIconButton(
+                        onPressed: () {},
+                        icon: Icons.shopping_basket,
+                        color: MyColors.red,
+                        decoration: const BoxDecoration(),
+                      ),
                     ),
                   ),
                   25.horizontalSpace,
@@ -116,7 +120,7 @@ class ProductItemWidget extends StatelessWidget {
                           text: '${product.quantityCubit.state.data}',
                         );
                       }
-                      return const CustomText(text: MyStrings.quantity);
+                      return CustomText(text: MyStrings.quantity);
                     },
                   ),
                   12.horizontalSpace,

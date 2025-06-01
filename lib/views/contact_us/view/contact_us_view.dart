@@ -14,7 +14,7 @@ class _ContactUsViewState extends State<ContactUsView> {
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
       centerTitle: true,
-      title: const CustomText(text: MyStrings.contactUs),
+      title:  CustomText(text: MyStrings.contactUs),
     ),
     body: SingleChildScrollView(
       child: Padding(

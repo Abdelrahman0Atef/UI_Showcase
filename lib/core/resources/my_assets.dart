@@ -15,4 +15,22 @@ class MyAssets {
   static const mobile = 'assets/images/mobile.png';
   static const callCenter = 'assets/images/call_center.png';
   static const money = 'assets/images/money.png';
+  static const appIcon = '@mipmap/ic_launcher';
+
+
+  //Sounds
+ static final List<String> availableSounds = [
+    'fajr',
+    'dhuhr',
+    'asr',
+    'maghrib',
+    'isha',
+  ];
+  static final Map<String, String> prayerSpecificSounds = {
+    'الفجر': 'fajr',
+    'الظهر': 'dhuhr',
+    'العصر': 'asr',
+    'المغرب': 'maghrib',
+    'العشاء': 'isha',
+  };
 }

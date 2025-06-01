@@ -19,10 +19,7 @@ class LayoutView extends StatelessWidget {
           isMainTab
               ? AppBar(
                 centerTitle: true,
-                title: Text(title, style: const TextStyle(color: Colors.black)),
-                backgroundColor: Colors.white,
-                elevation: 1,
-                foregroundColor: Colors.black,
+                title: CustomText(text: title,),
               )
               : null,
       body: shell,

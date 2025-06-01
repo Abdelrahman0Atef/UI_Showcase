@@ -6,6 +6,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:untitled/core/resources/app_language.dart';
 import 'package:untitled/core/services/database/database.dart';
 import 'package:untitled/core/services/locator_services/locator_services.dart';
+import 'package:untitled/core/services/notification_service/notification_service.dart';
 import 'package:untitled/my_app.dart';
 import 'package:untitled/views/wish_list/wish_list_imports.dart';
 import 'core/base/bloc_observer.dart';
@@ -16,6 +17,7 @@ void main() async {
   await DataBaseService();
   await dotenv.load();
   await locatorServices();
+  await NotificationService().init();
   await EasyLocalization.ensureInitialized();
   getIt<WishListViewModel>().loadFavorites();
   runApp(

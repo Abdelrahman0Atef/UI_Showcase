@@ -36,7 +36,7 @@ class _CategoryGridViewState extends State<CategoryGridView> {
         }else if (state is GenericInitialState){
           return ShimmerProductGrid(height: 150.h);
         } else {
-          return const Center(child: CustomText(text: MyStrings.errorLoading));
+          return  Center(child: CustomText(text: MyStrings.errorLoading));
         }
       },
     ),

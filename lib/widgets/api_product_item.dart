@@ -10,6 +10,7 @@ class ApiProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _ = context.locale;
     final countCubit = homVm.getProductCounter(product);
     return GestureDetector(
       onTap: () => context.pushNamed(MyRouts.productsDetails, extra: product),
@@ -82,11 +83,13 @@ class ApiProductItem extends StatelessWidget {
                         ),
                       ),
                       25.horizontalSpace,
-                      CustomText(
-                        text: product.category ?? '',
-                        textStyle: TextStyle(
-                          color: MyColors.red,
-                          fontSize: 9.sp,
+                      Expanded(
+                        child: CustomText(
+                          text: product.category ?? '',
+                          textStyle: TextStyle(
+                            color: MyColors.red,
+                            fontSize: 9.sp,
+                          ),
                         ),
                       ),
                     ],

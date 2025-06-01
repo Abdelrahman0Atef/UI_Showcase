@@ -96,7 +96,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
             label: '${widget.product.category ?? ''}',
           ),
           30.verticalSpace,
-          const HomeSplitTextRow(
+          HomeSplitTextRow(
             label: MyStrings.details,
             horizontalPadding: 0,
             color: MyColors.grey,
@@ -113,7 +113,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
             ),
           ),
           30.verticalSpace,
-          const CustomText(text: MyStrings.rate),
+          CustomText(text: MyStrings.rate),
           15.verticalSpace,
           Padding(
             padding: EdgeInsets.symmetric(vertical: 4.r, horizontal: 8.r),
